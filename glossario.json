@@ -1,1344 +1,1332 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\froman\fcharset0 Times-Roman;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
-{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
-\margl1440\margr1440\vieww24180\viewh22120\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
+[
+  {
+    "term": "Adjustable-Rate Mortgage (ARM)",
+    "definition": "Financiamento em que a taxa de juros varia após um período inicial fixo. Pode trazer risco ao comprador, pois a parcela pode subir.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Addendum",
+    "definition": "Documento adicional que altera ou complementa um contrato existente.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Ad Valorem Tax",
+    "definition": "Imposto baseado no valor do imóvel, geralmente usado em taxas de propriedade.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "ALTA/NSPS Survey",
+    "definition": "Levantamento técnico detalhado do terreno e construções, usado para financiamentos e seguros.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Amortization",
+    "definition": "Processo de pagar o empréstimo ao longo do tempo, com parcelas que reduzem principal e juros.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Annual Percentage Rate (APR)",
+    "definition": "Custo anual total do financiamento, incluindo juros e taxas, expresso em porcentagem.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Appraisal",
+    "definition": "Avaliação oficial do valor de mercado de um imóvel, geralmente exigida pelo banco.",
+    "category": "Avaliação",
+    "videoUrl": null
+  },
+  {
+    "term": "Appraised Value",
+    "definition": "Valor estimado do imóvel após avaliação profissional.",
+    "category": "Avaliação",
+    "videoUrl": null
+  },
+  {
+    "term": "“As Is” Residential Contract",
+    "definition": "Contrato comum na Flórida em que o imóvel é vendido no estado atual, sem obrigação de reparos pelo vendedor.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Assessed Value",
+    "definition": "Valor atribuído pelo condado para cálculo de impostos sobre propriedade.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Assignment (of Contract)",
+    "definition": "Transferência de direitos de um contrato de compra para outra pessoa antes do fechamento.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Asset Verification",
+    "definition": "Comprovação de recursos financeiros do comprador, exigida pelo banco.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Balloon Mortgage",
+    "definition": "Financiamento em que parcelas são menores no início, mas há um pagamento grande (balloon) no final.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Base Flood Elevation (BFE)",
+    "definition": "Nível de referência usado para determinar risco de enchente e necessidade de seguro.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "Bill of Sale",
+    "definition": "Documento que comprova a transferência de bens móveis incluídos na venda da casa (ex: eletrodomésticos).",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Binder (Earnest Money)",
+    "definition": "Depósito inicial feito pelo comprador para mostrar boa fé na compra.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Build-to-Rent (BTR)",
+    "definition": "Imóveis construídos especialmente para aluguel de longo prazo.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Building Permit",
+    "definition": "Autorização emitida pelo município para reformas ou construções.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Buyer’s Agent",
+    "definition": "Corretor que representa os interesses do comprador na transação.",
+    "category": "Profissionais",
+    "videoUrl": null
+  },
+  {
+    "term": "Buydown",
+    "definition": "Estratégia em que o comprador ou vendedor paga para reduzir temporariamente a taxa de juros do financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Cap Rate",
+    "definition": "Taxa de capitalização: mede a rentabilidade de um imóvel de investimento.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Cash to Close",
+    "definition": "Valor total que o comprador deve levar no fechamento, incluindo entrada e taxas.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Cash-on-Cash Return",
+    "definition": "Métrica de retorno sobre o dinheiro investido em um imóvel de aluguel.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "CDD (Community Development District)",
+    "definition": "Taxa extra cobrada em algumas comunidades para pagar infraestrutura local, como ruas e áreas comuns.",
+    "category": "Condomínio",
+    "videoUrl": null
+  },
+  {
+    "term": "Certificate of Occupancy (CO)",
+    "definition": "Documento oficial que autoriza o uso de uma construção nova ou reformada.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Clear to Close (CTC)",
+    "definition": "Autorização final do banco para que o fechamento da compra ocorra.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Closing Costs",
+    "definition": "Custos totais de fechamento, incluindo taxas de cartório, impostos e seguros.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Closing Disclosure (CD)",
+    "definition": "Documento detalhando todos os custos do financiamento, entregue antes do fechamento.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Cloud on Title",
+    "definition": "Problema ou pendência legal que afeta a propriedade de um imóvel.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Comparative Market Analysis (CMA)",
+    "definition": "Análise feita pelo corretor para estimar o valor de mercado do imóvel comparando com outros vendidos na região.",
+    "category": "Avaliação",
+    "videoUrl": null
+  },
+  {
+    "term": "Debt Service",
+    "definition": "Valor necessário para pagar os juros e principal de um financiamento.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Debt-to-Income Ratio (DTI)",
+    "definition": "Percentual da renda do comprador comprometido com dívidas. Os bancos usam para aprovar financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Deed",
+    "definition": "Documento legal que transfere a propriedade do imóvel para o comprador.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Default",
+    "definition": "Situação em que o comprador deixa de pagar o financiamento conforme acordado.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Documentary Stamp Tax",
+    "definition": "Imposto da Flórida pago na transferência de imóveis e financiamentos.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Down Payment",
+    "definition": "Valor de entrada pago pelo comprador no fechamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "DSCR Loan",
+    "definition": "Empréstimo para investidores baseado na renda do imóvel, não na renda pessoal do comprador.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Due Diligence",
+    "definition": "Período de análise do imóvel, contratos e documentos antes de confirmar a compra.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Due-on-Sale Clause",
+    "definition": "Cláusula que exige o pagamento total do financiamento se o imóvel for vendido.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Earnest Money Deposit (EMD)",
+    "definition": "Depósito de garantia feito pelo comprador, geralmente 1% a 3% do preço da casa.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Easement",
+    "definition": "Direito de uso de parte de um terreno por terceiros, como companhias de energia.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Elevation Certificate",
+    "definition": "Documento que mostra a altura do imóvel em relação ao nível do mar, usado para calcular seguro contra enchente.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "Encroachment",
+    "definition": "Quando parte de uma construção invade o terreno vizinho.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Encumbrance",
+    "definition": "Restrição ou ônus sobre o imóvel, como hipoteca ou penhora.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Equity",
+    "definition": "Parte do imóvel que já pertence ao proprietário, diferença entre valor de mercado e saldo devedor.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Escrow Account",
+    "definition": "Conta usada pelo banco para guardar valores de impostos e seguros, pagos junto com a parcela.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Estoppel Letter",
+    "definition": "Documento emitido pelo condomínio informando taxas e débitos do imóvel.",
+    "category": "Condomínio",
+    "videoUrl": null
+  }
+  {
+    "term": "Eviction",
+    "definition": "Processo legal para remover inquilinos que não pagam ou violam o contrato de aluguel.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "FHA Loan",
+    "definition": "Financiamento apoiado pelo governo dos EUA, com entrada menor, usado por muitos compradores de primeira casa.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Final Walkthrough",
+    "definition": "Última visita do comprador antes do fechamento para verificar se o imóvel está nas condições acordadas.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "FIRPTA",
+    "definition": "Lei que exige retenção de imposto em vendas de imóveis pertencentes a estrangeiros.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Fixed-Rate Mortgage",
+    "definition": "Empréstimo com taxa de juros fixa durante todo o prazo do financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Flood Insurance",
+    "definition": "Seguro obrigatório em áreas de risco de enchente na Flórida.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "Flood Zone",
+    "definition": "Classificação de risco de enchente (ex.: Zone AE, X, VE) que influencia seguro.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "Foreclosure",
+    "definition": "Processo em que o banco retoma o imóvel por falta de pagamento do financiamento.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Foundation Settlement",
+    "definition": "Problema estrutural quando a fundação da casa afunda ou racha.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Gift Funds",
+    "definition": "Recursos de familiares que podem ser usados como entrada em um financiamento, mediante carta de doação.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Good-Faith Estimate / Loan Estimate",
+    "definition": "Documento do banco mostrando os custos estimados do financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Grantor / Grantee",
+    "definition": "Grantor é quem transfere a propriedade; Grantee é quem a recebe.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Gross Operating Income (GOI)",
+    "definition": "Renda bruta do imóvel, incluindo aluguel e outras receitas antes de despesas.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Gross Rent Multiplier (GRM)",
+    "definition": "Cálculo rápido de valor do imóvel de aluguel, preço dividido pela renda anual.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Guaranteed Maximum Price (GMP)",
+    "definition": "Valor máximo garantido em contratos de construção com construtoras.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Gutter & Soffit",
+    "definition": "Partes do telhado inspecionadas quanto a vazamentos ou danos.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Gap Coverage",
+    "definition": "Seguro de título que cobre lacunas entre a assinatura e o registro final.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "Hard Money Loan",
+    "definition": "Empréstimo de curto prazo baseado no valor do imóvel, comum entre investidores.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Hazard Insurance",
+    "definition": "Seguro residencial padrão que cobre danos como incêndio, vento ou roubo.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "HOA (Homeowners Association)",
+    "definition": "Associação de moradores que administra regras e taxas de uma comunidade.",
+    "category": "Condomínio",
+    "videoUrl": null
+  },
+  {
+    "term": "HOA Approval",
+    "definition": "Autorização necessária do condomínio para concluir a compra em algumas comunidades.",
+    "category": "Condomínio",
+    "videoUrl": null
+  },
+  {
+    "term": "HOA Disclosure",
+    "definition": "Documento que informa regras, taxas e restrições do condomínio ao comprador.",
+    "category": "Condomínio",
+    "videoUrl": null
+  },
+  {
+    "term": "HOA Estoppel",
+    "definition": "Documento oficial mostrando valores em aberto do imóvel junto ao condomínio.",
+    "category": "Condomínio",
+    "videoUrl": null
+  },
+  {
+    "term": "Homestead Exemption",
+    "definition": "Benefício fiscal que reduz o imposto sobre a casa onde o dono reside na Flórida.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Homestead Portability",
+    "definition": "Permite transferir parte do benefício de isenção de uma casa para outra na Flórida.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "House Hacking",
+    "definition": "Estratégia em que o comprador mora em uma parte do imóvel e aluga o restante.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Impact Fees",
+    "definition": "Taxas cobradas por cidades/condados para novas construções, usadas para infraestrutura.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Included/Excluded Items",
+    "definition": "Itens que ficam ou não ficam no imóvel após a venda (ex.: eletrodomésticos).",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Inspection Contingency",
+    "definition": "Cláusula que permite cancelar a compra caso a inspeção mostre problemas sérios.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Inspection Period",
+    "definition": "Prazo definido no contrato para o comprador realizar inspeções.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Insurance Binder",
+    "definition": "Documento temporário que comprova cobertura de seguro antes da apólice final.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "Intangible Tax",
+    "definition": "Imposto da Flórida cobrado sobre hipotecas registradas.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Interest Rate Lock",
+    "definition": "Garantia da taxa de juros oferecida pelo banco até o fechamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Interest-Only Mortgage",
+    "definition": "Empréstimo em que o comprador paga apenas juros por um período inicial.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Joint Tenancy",
+    "definition": "Forma de propriedade em que dois ou mais donos têm direitos iguais sobre o imóvel.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Joint Venture (JV)",
+    "definition": "Acordo entre investidores para comprar ou desenvolver um imóvel em conjunto.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Judgment Lien",
+    "definition": "Penhora sobre o imóvel por decisão judicial de dívida não paga.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Judicial Foreclosure",
+    "definition": "Processo de retomada do imóvel por ordem judicial na Flórida.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Junior Lien",
+    "definition": "Hipoteca ou penhora registrada depois da primeira, com menor prioridade.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Just Value",
+    "definition": "Valor justo do imóvel calculado para fins de impostos na Flórida.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Jurisdiction",
+    "definition": "Área de competência legal de uma corte ou município sobre o imóvel.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Job History",
+    "definition": "Histórico de emprego do comprador, usado pelo banco para avaliar estabilidade de renda.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Kick-Out Clause",
+    "definition": "Cláusula contratual que permite ao vendedor aceitar nova oferta melhor, mesmo com contrato existente.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Kitec/Polybutylene Plumbing",
+    "definition": "Tubulações problemáticas comuns em casas antigas da Flórida, podem causar vazamentos.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Keybox / Lockbox",
+    "definition": "Caixa com chave usada por corretores para mostrar imóveis.",
+    "category": "Profissionais",
+    "videoUrl": null
+  },
+  {
+    "term": "Key Money",
+    "definition": "Pagamento inicial exigido em alguns contratos de aluguel (pouco comum em residenciais).",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Knockdown Texture",
+    "definition": "Acabamento popular de paredes/tetos na Flórida, importante em inspeções.",
+    "category": "Inspeções",
+    "videoUrl": null
+  }
+{
+    "term": "Known Defects Disclosure",
+    "definition": "Obrigação do vendedor de informar defeitos conhecidos do imóvel ao comprador.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Key Rate",
+    "definition": "Taxa de referência usada no mercado financeiro para precificação de juros.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Kitchen Allowance",
+    "definition": "Valor estipulado em contrato de construtora para acabamentos de cozinha.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "Landlord-Tenant Act (Fla. Stat. 83)",
+    "definition": "Lei da Flórida que regula direitos e deveres de locadores e inquilinos.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Lender’s Title Policy",
+    "definition": "Seguro de título pago pelo comprador para proteger o banco em caso de disputa sobre a propriedade.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Leased Equipment",
+    "definition": "Equipamentos alugados, como painéis solares, que devem ser informados no contrato.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Leaseback",
+    "definition": "Quando o vendedor permanece no imóvel alugado após a venda.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Lease Application",
+    "definition": "Formulário que o inquilino preenche para alugar um imóvel, incluindo histórico e renda.",
+    "category": "Locação",
+    "videoUrl": null
+  },
+  {
+    "term": "Lease Renewal",
+    "definition": "Extensão ou renovação de um contrato de aluguel.",
+    "category": "Locação",
+    "videoUrl": null
+  },
+  {
+    "term": "Lien",
+    "definition": "Ônus ou direito de terceiros sobre o imóvel como garantia de dívida.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Lis Pendens",
+    "definition": "Aviso legal de que o imóvel está envolvido em processo judicial.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Loan Estimate (LE)",
+    "definition": "Documento que detalha custos e condições preliminares do financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Lock Period",
+    "definition": "Prazo durante o qual a taxa de juros negociada com o banco é garantida.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Market Value",
+    "definition": "Valor de mercado de um imóvel, baseado na oferta e demanda atual.",
+    "category": "Avaliação",
+    "videoUrl": null
+  },
+  {
+    "term": "Material Defect",
+    "definition": "Problema sério que afeta o valor ou a segurança do imóvel.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Millage Rate",
+    "definition": "Taxa usada pelos condados da Flórida para calcular impostos de propriedade.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Mortgage Insurance (PMI/MIP)",
+    "definition": "Seguro obrigatório quando a entrada é menor que 20% do valor do imóvel.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Mortgage Note",
+    "definition": "Documento legal que estabelece as condições de pagamento do empréstimo.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Multi-Offer / Multiple Offers",
+    "definition": "Situação em que vários compradores fazem propostas pelo mesmo imóvel.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Municipal Lien Search",
+    "definition": "Pesquisa feita junto à cidade para verificar pendências de taxas ou serviços no imóvel.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Mutual Release",
+    "definition": "Documento que encerra um contrato de compra por acordo entre as partes.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Net Operating Income (NOI)",
+    "definition": "Lucro líquido de um imóvel de investimento após despesas operacionais.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "New Construction Addendum",
+    "definition": "Anexo contratual específico para compras de imóveis novos em construtoras.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "Non-Agency / Non-QM Loan",
+    "definition": "Tipo de financiamento alternativo que não segue padrões tradicionais (ex.: sem comprovação de renda).",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Non-Warrantable Condo",
+    "definition": "Condomínio que não atende exigências de Fannie Mae ou Freddie Mac, dificultando financiamento.",
+    "category": "Condomínio",
+    "videoUrl": null
+  },
+  {
+    "term": "Notary Acknowledgment",
+    "definition": "Reconhecimento oficial de assinaturas em documentos legais.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Notice of Commencement",
+    "definition": "Documento registrado antes de iniciar obras na Flórida, exigido em reformas.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "Notice to Vacate",
+    "definition": "Aviso formal para encerrar contrato de aluguel e desocupar o imóvel.",
+    "category": "Locação",
+    "videoUrl": null
+  },
+  {
+    "term": "Novation",
+    "definition": "Substituição de uma obrigação contratual por outra, com consentimento das partes.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Occupancy Certificate (CO)",
+    "definition": "Documento que confirma que uma casa nova ou reformada pode ser habitada.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "Offer and Acceptance",
+    "definition": "Momento em que a proposta do comprador é aceita pelo vendedor, formando contrato.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Origination Fee",
+    "definition": "Taxa cobrada pelo banco na abertura do financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Owner’s Title Policy",
+    "definition": "Seguro de título que protege o comprador contra disputas futuras de propriedade.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Owner-Occupied vs. Investment",
+    "definition": "Diferença entre imóvel usado como residência principal ou como investimento.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Option to Renew",
+    "definition": "Cláusula em contratos de aluguel que dá direito de renovar o contrato.",
+    "category": "Locação",
+    "videoUrl": null
+  },
+  {
+    "term": "Open Permit",
+    "definition": "Licença de obra que não foi encerrada oficialmente, podendo gerar problemas no fechamento.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "Over-Improvement",
+    "definition": "Melhorias que excedem o padrão da vizinhança, sem retorno proporcional no valor do imóvel.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "P&I / PITI",
+    "definition": "Siglas para parcela do financiamento: Principal & Interest (P&I) e Principal, Interest, Taxes, Insurance (PITI).",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Paid Outside of Closing (POC)",
+    "definition": "Custos pagos antes do fechamento, como taxas de avaliação ou inspeções.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "PACE Lien",
+    "definition": "Ônus sobre imóvel usado para financiar melhorias de eficiência energética.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Per Diem",
+    "definition": "Taxa diária aplicada quando há atraso no fechamento.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Permit Search",
+    "definition": "Pesquisa junto à prefeitura sobre obras e reformas autorizadas no imóvel.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "Pet Deposit / Pet Fee",
+    "definition": "Valor pago pelo inquilino por permitir animais de estimação no imóvel.",
+    "category": "Locação",
+    "videoUrl": null
+  },
+  {
+    "term": "PMI Removal",
+    "definition": "Cancelamento do seguro hipotecário após atingir 20% de equity no imóvel.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Points",
+    "definition": "Taxas pagas ao banco para reduzir a taxa de juros do financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  }
+{
+    "term": "Pre-Approval",
+    "definition": "Carta emitida pelo banco confirmando que o comprador já foi avaliado e possui crédito pré-aprovado para financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Pre-Qualification",
+    "definition": "Etapa inicial em que o comprador fornece informações básicas e o banco dá uma estimativa de quanto ele pode financiar.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Prepayment Penalty",
+    "definition": "Multa aplicada por alguns bancos se o comprador quitar o financiamento antes do prazo.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Qualification (DU/LP)",
+    "definition": "Processo de aprovação automatizada usado pelos bancos (Desktop Underwriter e Loan Prospector).",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Quiet Enjoyment",
+    "definition": "Direito do inquilino de usar o imóvel sem interferências indevidas.",
+    "category": "Locação",
+    "videoUrl": null
+  },
+  {
+    "term": "Quiet Title Action",
+    "definition": "Ação judicial para resolver disputas de propriedade e limpar o título.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Quitclaim Deed",
+    "definition": "Documento de transferência de propriedade sem garantias sobre o título.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Quadplex",
+    "definition": "Imóvel multifamiliar com quatro unidades independentes.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Qualifying Ratios",
+    "definition": "Percentuais de dívida em relação à renda usados pelo banco para aprovar financiamentos.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Quantity Takeoff",
+    "definition": "Lista de materiais e custos em contratos de construção.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "Quorum (HOA/COA)",
+    "definition": "Número mínimo de membros presentes necessário para validar reuniões de condomínio.",
+    "category": "Condomínio",
+    "videoUrl": null
+  },
+  {
+    "term": "Radon Test",
+    "definition": "Exame para detectar gás radioativo natural que pode afetar a saúde dentro de casas.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Rate Buydown",
+    "definition": "Pagamento antecipado para reduzir a taxa de juros temporária ou permanentemente.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Rate Lock",
+    "definition": "Garantia da taxa de juros do financiamento até a data de fechamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Realtor®",
+    "definition": "Corretor de imóveis que é membro da associação nacional NAR e segue seu código de ética.",
+    "category": "Profissionais",
+    "videoUrl": null
+  },
+  {
+    "term": "Replacement Cost",
+    "definition": "Valor estimado para reconstruir o imóvel em caso de perda total.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "Reserve Study",
+    "definition": "Estudo que calcula os fundos necessários para manutenção de longo prazo em condomínios.",
+    "category": "Condomínio",
+    "videoUrl": null
+  },
+  {
+    "term": "Reserves (Cash Reserves)",
+    "definition": "Dinheiro extra que o comprador deve ter guardado após o fechamento, exigido pelos bancos.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "RESPA",
+    "definition": "Lei federal que regula práticas de transparência em transações imobiliárias nos EUA.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Rider",
+    "definition": "Adendo contratual que adiciona ou altera cláusulas em um contrato de compra.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Roof Life",
+    "definition": "Expectativa de vida útil do telhado, verificada em inspeções e relatórios.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Roof Permit Date",
+    "definition": "Data da última permissão registrada para substituição ou reparo de telhado.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Save Our Homes Cap",
+    "definition": "Limite anual de aumento de imposto sobre imóveis residenciais principais na Flórida.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Secondary Market",
+    "definition": "Mercado onde bancos vendem hipotecas para Fannie Mae, Freddie Mac ou investidores.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Seller Concessions",
+    "definition": "Ajuda financeira que o vendedor oferece ao comprador, como contribuição para custos de fechamento.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Seller’s Disclosure",
+    "definition": "Documento em que o vendedor informa problemas conhecidos no imóvel.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Septic System",
+    "definition": "Sistema de fossa séptica usado em áreas sem rede de esgoto, comum em algumas partes da Flórida.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Short Sale",
+    "definition": "Venda em que o banco aceita receber menos do que o valor devido na hipoteca.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Special Assessment",
+    "definition": "Taxa extra cobrada por condomínio para cobrir projetos ou reparos específicos.",
+    "category": "Condomínio",
+    "videoUrl": null
+  },
+  {
+    "term": "Spec Home",
+    "definition": "Casa construída pela construtora sem comprador definido, vendida pronta.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "Survey",
+    "definition": "Mapa oficial que define os limites do terreno e construções no lote.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Sweat Equity",
+    "definition": "Valor agregado ao imóvel pelo trabalho manual do próprio proprietário.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Tax Proration",
+    "definition": "Divisão proporcional de impostos entre comprador e vendedor na data do fechamento.",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Title Commitment",
+    "definition": "Documento preliminar que lista condições para a emissão do seguro de título.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Title Insurance",
+    "definition": "Seguro que protege contra problemas de propriedade não descobertos em pesquisas anteriores.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Title Search",
+    "definition": "Pesquisa de registros para verificar a legalidade da propriedade.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "TRID",
+    "definition": "Regulamentação que integra TILA e RESPA, exigindo transparência nos documentos de financiamento.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Turnkey Property",
+    "definition": "Imóvel pronto para uso imediato, geralmente já mobiliado ou alugado.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "1031 Exchange",
+    "definition": "Mecanismo que permite adiar impostos sobre ganhos de capital reinvestindo em outro imóvel.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Tenant Screening",
+    "definition": "Processo de avaliar histórico de crédito, renda e antecedentes de inquilinos.",
+    "category": "Locação",
+    "videoUrl": null
+  },
+  {
+    "term": "Termite/WDO Inspection",
+    "definition": "Inspeção para verificar presença de cupins ou organismos que destroem madeira.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Transfer Taxes",
+    "definition": "Impostos cobrados na transferência de propriedade (na Flórida, Documentary Stamp Tax).",
+    "category": "Impostos",
+    "videoUrl": null
+  },
+  {
+    "term": "Underwriting",
+    "definition": "Processo de análise detalhada do banco para aprovar o financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Underwriting Conditions",
+    "definition": "Pendências que o comprador deve cumprir para finalizar a aprovação do financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Unimproved Land",
+    "definition": "Terreno sem construções, geralmente sem infraestrutura básica.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Unlawful Detainer",
+    "definition": "Ação legal para retomar posse de imóvel ocupado ilegalmente.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Utility Easement",
+    "definition": "Direito de concessionárias de usar parte do terreno para infraestrutura.",
+    "category": "Título",
+    "videoUrl": null
+  }
+[
+  {
+    "term": "USDA Loan",
+    "definition": "Programa de financiamento do governo para áreas rurais elegíveis, com entrada zero.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Use and Occupancy",
+    "definition": "Acordo temporário que permite ao comprador ocupar o imóvel antes do fechamento oficial.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Urethane Foam",
+    "definition": "Isolamento de espuma usado em telhados e paredes, avaliado em inspeções.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "VA Loan",
+    "definition": "Financiamento especial para veteranos militares, sem necessidade de entrada.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Vacancy Rate",
+    "definition": "Percentual de tempo em que imóveis de aluguel permanecem vagos.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Verification of Employment (VOE)",
+    "definition": "Confirmação de emprego do comprador, exigida pelo banco para aprovar financiamento.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Verification of Rent/Mortgage (VOR/VOM)",
+    "definition": "Confirmação de histórico de pagamento de aluguel ou hipoteca do comprador.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Vesting (Title)",
+    "definition": "Forma legal como a propriedade é registrada, individual, conjunta ou por empresa.",
+    "category": "Título",
+    "videoUrl": null
+  },
+  {
+    "term": "Vinyl Siding",
+    "definition": "Revestimento externo de PVC comum em casas, inspecionado para danos.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "VE Flood Zone",
+    "definition": "Zona costeira de alto risco de enchente na Flórida, exige seguro caro.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "Value-Add Strategy",
+    "definition": "Estratégia de investimento que busca aumentar valor do imóvel com reformas ou melhorias.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Walkthrough",
+    "definition": "Visita de inspeção final antes da assinatura do fechamento.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "Warranty (Builder 1-2-10)",
+    "definition": "Garantia dada por construtoras: 1 ano em acabamentos, 2 em sistemas e 10 na estrutura.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "Water Intrusion",
+    "definition": "Entrada de água por falhas em telhado, janelas ou fundação, problema comum em inspeções.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Wind Mitigation Inspection",
+    "definition": "Inspeção que pode reduzir o seguro residencial, avaliando resistência da casa a furacões.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "WDO Inspection",
+    "definition": "Inspeção contra organismos que destroem madeira, como cupins.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Whole-House Repipe",
+    "definition": "Troca completa da tubulação da casa, necessária em casas antigas.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Wraparound Mortgage",
+    "definition": "Tipo de financiamento em que a nova hipoteca inclui a anterior, usado em negociações criativas.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Writ of Possession",
+    "definition": "Ordem judicial para remover ocupantes de um imóvel após despejo.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "X Flood Zone",
+    "definition": "Área de baixo risco de enchentes, geralmente não exige seguro contra inundação.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "Xeriscaping",
+    "definition": "Paisagismo de baixo consumo de água, valorizado em áreas quentes da Flórida.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "X-Bracing",
+    "definition": "Reforço estrutural em formato de X usado para aumentar a estabilidade de construções.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "X-Out",
+    "definition": "Quando uma cláusula é invalidada em contrato, geralmente riscada manualmente.",
+    "category": "Contrato",
+    "videoUrl": null
+  },
+  {
+    "term": "X-Date",
+    "definition": "Data de renovação de uma apólice de seguro.",
+    "category": "Seguros",
+    "videoUrl": null
+  },
+  {
+    "term": "XML/RETS/IDX",
+    "definition": "Sistemas de integração de listagens usadas por corretores e sites como MLS e Zillow.",
+    "category": "Tecnologia",
+    "videoUrl": null
+  },
+  {
+    "term": "X-Cost",
+    "definition": "Custo extra não previsto em contrato de construção.",
+    "category": "Construção",
+    "videoUrl": null
+  },
+  {
+    "term": "X-Factor",
+    "definition": "Característica única que diferencia e valoriza um imóvel no mercado.",
+    "category": "Investimento",
+    "videoUrl": null
+  },
+  {
+    "term": "Year Built",
+    "definition": "Ano de construção da casa, importante em inspeções e seguros.",
+    "category": "Inspeções",
+    "videoUrl": null
+  },
+  {
+    "term": "Yield Maintenance",
+    "definition": "Multa aplicada em financiamentos comerciais quando o empréstimo é quitado antes do prazo.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Yearly Cap (ARM)",
+    "definition": "Limite anual de ajuste em hipotecas de taxa variável.",
+    "category": "Financiamento",
+    "videoUrl": null
+  },
+  {
+    "term": "Yard Setback",
+    "definition": "Recuo mínimo exigido pela lei de zoneamento entre a casa e os limites do terreno.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Zoning",
+    "definition": "Classificação de uso do solo determinada pela cidade ou condado.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Zoning Variance",
+    "definition": "Permissão especial para usar o imóvel de forma diferente da regra de zoneamento.",
+    "category": "Legislação",
+    "videoUrl": null
+  },
+  {
+    "term": "Zillow Zestimate",
+    "definition": "Estimativa de valor feita pelo algoritmo do site Zillow, não é uma avaliação oficial.",
+    "category": "Avaliação",
+    "videoUrl": null
+  },
+  {
+    "term": "Zinsco Panel",
+    "definition": "Quadro elétrico obsoleto encontrado em casas antigas, considerado risco de incêndio.",
+    "category": "Inspeções",
+    "videoUrl": null
+  }
 
-\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
-[\
-  \{\
-    "term": "Adjustable-Rate Mortgage (ARM)",\
-    "definition": "Financiamento em que a taxa de juros varia ap\'f3s um per\'edodo inicial fixo. Pode trazer risco ao comprador, pois a parcela pode subir.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Addendum",\
-    "definition": "Documento adicional que altera ou complementa um contrato existente.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Ad Valorem Tax",\
-    "definition": "Imposto baseado no valor do im\'f3vel, geralmente usado em taxas de propriedade.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "ALTA/NSPS Survey",\
-    "definition": "Levantamento t\'e9cnico detalhado do terreno e constru\'e7\'f5es, usado para financiamentos e seguros.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Amortization",\
-    "definition": "Processo de pagar o empr\'e9stimo ao longo do tempo, com parcelas que reduzem principal e juros.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Annual Percentage Rate (APR)",\
-    "definition": "Custo anual total do financiamento, incluindo juros e taxas, expresso em porcentagem.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Appraisal",\
-    "definition": "Avalia\'e7\'e3o oficial do valor de mercado de um im\'f3vel, geralmente exigida pelo banco.",\
-    "category": "Avalia\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Appraised Value",\
-    "definition": "Valor estimado do im\'f3vel ap\'f3s avalia\'e7\'e3o profissional.",\
-    "category": "Avalia\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "\'93As Is\'94 Residential Contract",\
-    "definition": "Contrato comum na Fl\'f3rida em que o im\'f3vel \'e9 vendido no estado atual, sem obriga\'e7\'e3o de reparos pelo vendedor.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Assessed Value",\
-    "definition": "Valor atribu\'eddo pelo condado para c\'e1lculo de impostos sobre propriedade.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Assignment (of Contract)",\
-    "definition": "Transfer\'eancia de direitos de um contrato de compra para outra pessoa antes do fechamento.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Asset Verification",\
-    "definition": "Comprova\'e7\'e3o de recursos financeiros do comprador, exigida pelo banco.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Balloon Mortgage",\
-    "definition": "Financiamento em que parcelas s\'e3o menores no in\'edcio, mas h\'e1 um pagamento grande (balloon) no final.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Base Flood Elevation (BFE)",\
-    "definition": "N\'edvel de refer\'eancia usado para determinar risco de enchente e necessidade de seguro.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Bill of Sale",\
-    "definition": "Documento que comprova a transfer\'eancia de bens m\'f3veis inclu\'eddos na venda da casa (ex: eletrodom\'e9sticos).",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Binder (Earnest Money)",\
-    "definition": "Dep\'f3sito inicial feito pelo comprador para mostrar boa f\'e9 na compra.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Build-to-Rent (BTR)",\
-    "definition": "Im\'f3veis constru\'eddos especialmente para aluguel de longo prazo.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Building Permit",\
-    "definition": "Autoriza\'e7\'e3o emitida pelo munic\'edpio para reformas ou constru\'e7\'f5es.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Buyer\'92s Agent",\
-    "definition": "Corretor que representa os interesses do comprador na transa\'e7\'e3o.",\
-    "category": "Profissionais",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Buydown",\
-    "definition": "Estrat\'e9gia em que o comprador ou vendedor paga para reduzir temporariamente a taxa de juros do financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Cap Rate",\
-    "definition": "Taxa de capitaliza\'e7\'e3o: mede a rentabilidade de um im\'f3vel de investimento.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Cash to Close",\
-    "definition": "Valor total que o comprador deve levar no fechamento, incluindo entrada e taxas.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Cash-on-Cash Return",\
-    "definition": "M\'e9trica de retorno sobre o dinheiro investido em um im\'f3vel de aluguel.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "CDD (Community Development District)",\
-    "definition": "Taxa extra cobrada em algumas comunidades para pagar infraestrutura local, como ruas e \'e1reas comuns.",\
-    "category": "Condom\'ednio",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Certificate of Occupancy (CO)",\
-    "definition": "Documento oficial que autoriza o uso de uma constru\'e7\'e3o nova ou reformada.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Clear to Close (CTC)",\
-    "definition": "Autoriza\'e7\'e3o final do banco para que o fechamento da compra ocorra.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Closing Costs",\
-    "definition": "Custos totais de fechamento, incluindo taxas de cart\'f3rio, impostos e seguros.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Closing Disclosure (CD)",\
-    "definition": "Documento detalhando todos os custos do financiamento, entregue antes do fechamento.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Cloud on Title",\
-    "definition": "Problema ou pend\'eancia legal que afeta a propriedade de um im\'f3vel.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Comparative Market Analysis (CMA)",\
-    "definition": "An\'e1lise feita pelo corretor para estimar o valor de mercado do im\'f3vel comparando com outros vendidos na regi\'e3o.",\
-    "category": "Avalia\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Debt Service",\
-    "definition": "Valor necess\'e1rio para pagar os juros e principal de um financiamento.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Debt-to-Income Ratio (DTI)",\
-    "definition": "Percentual da renda do comprador comprometido com d\'edvidas. Os bancos usam para aprovar financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Deed",\
-    "definition": "Documento legal que transfere a propriedade do im\'f3vel para o comprador.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Default",\
-    "definition": "Situa\'e7\'e3o em que o comprador deixa de pagar o financiamento conforme acordado.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Documentary Stamp Tax",\
-    "definition": "Imposto da Fl\'f3rida pago na transfer\'eancia de im\'f3veis e financiamentos.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Down Payment",\
-    "definition": "Valor de entrada pago pelo comprador no fechamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "DSCR Loan",\
-    "definition": "Empr\'e9stimo para investidores baseado na renda do im\'f3vel, n\'e3o na renda pessoal do comprador.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Due Diligence",\
-    "definition": "Per\'edodo de an\'e1lise do im\'f3vel, contratos e documentos antes de confirmar a compra.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Due-on-Sale Clause",\
-    "definition": "Cl\'e1usula que exige o pagamento total do financiamento se o im\'f3vel for vendido.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Earnest Money Deposit (EMD)",\
-    "definition": "Dep\'f3sito de garantia feito pelo comprador, geralmente 1% a 3% do pre\'e7o da casa.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Easement",\
-    "definition": "Direito de uso de parte de um terreno por terceiros, como companhias de energia.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Elevation Certificate",\
-    "definition": "Documento que mostra a altura do im\'f3vel em rela\'e7\'e3o ao n\'edvel do mar, usado para calcular seguro contra enchente.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Encroachment",\
-    "definition": "Quando parte de uma constru\'e7\'e3o invade o terreno vizinho.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Encumbrance",\
-    "definition": "Restri\'e7\'e3o ou \'f4nus sobre o im\'f3vel, como hipoteca ou penhora.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Equity",\
-    "definition": "Parte do im\'f3vel que j\'e1 pertence ao propriet\'e1rio, diferen\'e7a entre valor de mercado e saldo devedor.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Escrow Account",\
-    "definition": "Conta usada pelo banco para guardar valores de impostos e seguros, pagos junto com a parcela.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Estoppel Letter",\
-    "definition": "Documento emitido pelo condom\'ednio informando taxas e d\'e9bitos do im\'f3vel.",\
-    "category": "Condom\'ednio",\
-    "videoUrl": null\
-  \}\
-  \{\
-    "term": "Eviction",\
-    "definition": "Processo legal para remover inquilinos que n\'e3o pagam ou violam o contrato de aluguel.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "FHA Loan",\
-    "definition": "Financiamento apoiado pelo governo dos EUA, com entrada menor, usado por muitos compradores de primeira casa.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Final Walkthrough",\
-    "definition": "\'daltima visita do comprador antes do fechamento para verificar se o im\'f3vel est\'e1 nas condi\'e7\'f5es acordadas.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "FIRPTA",\
-    "definition": "Lei que exige reten\'e7\'e3o de imposto em vendas de im\'f3veis pertencentes a estrangeiros.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Fixed-Rate Mortgage",\
-    "definition": "Empr\'e9stimo com taxa de juros fixa durante todo o prazo do financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Flood Insurance",\
-    "definition": "Seguro obrigat\'f3rio em \'e1reas de risco de enchente na Fl\'f3rida.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Flood Zone",\
-    "definition": "Classifica\'e7\'e3o de risco de enchente (ex.: Zone AE, X, VE) que influencia seguro.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Foreclosure",\
-    "definition": "Processo em que o banco retoma o im\'f3vel por falta de pagamento do financiamento.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Foundation Settlement",\
-    "definition": "Problema estrutural quando a funda\'e7\'e3o da casa afunda ou racha.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Gift Funds",\
-    "definition": "Recursos de familiares que podem ser usados como entrada em um financiamento, mediante carta de doa\'e7\'e3o.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Good-Faith Estimate / Loan Estimate",\
-    "definition": "Documento do banco mostrando os custos estimados do financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Grantor / Grantee",\
-    "definition": "Grantor \'e9 quem transfere a propriedade; Grantee \'e9 quem a recebe.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Gross Operating Income (GOI)",\
-    "definition": "Renda bruta do im\'f3vel, incluindo aluguel e outras receitas antes de despesas.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Gross Rent Multiplier (GRM)",\
-    "definition": "C\'e1lculo r\'e1pido de valor do im\'f3vel de aluguel, pre\'e7o dividido pela renda anual.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Guaranteed Maximum Price (GMP)",\
-    "definition": "Valor m\'e1ximo garantido em contratos de constru\'e7\'e3o com construtoras.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Gutter & Soffit",\
-    "definition": "Partes do telhado inspecionadas quanto a vazamentos ou danos.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Gap Coverage",\
-    "definition": "Seguro de t\'edtulo que cobre lacunas entre a assinatura e o registro final.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Hard Money Loan",\
-    "definition": "Empr\'e9stimo de curto prazo baseado no valor do im\'f3vel, comum entre investidores.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Hazard Insurance",\
-    "definition": "Seguro residencial padr\'e3o que cobre danos como inc\'eandio, vento ou roubo.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "HOA (Homeowners Association)",\
-    "definition": "Associa\'e7\'e3o de moradores que administra regras e taxas de uma comunidade.",\
-    "category": "Condom\'ednio",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "HOA Approval",\
-    "definition": "Autoriza\'e7\'e3o necess\'e1ria do condom\'ednio para concluir a compra em algumas comunidades.",\
-    "category": "Condom\'ednio",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "HOA Disclosure",\
-    "definition": "Documento que informa regras, taxas e restri\'e7\'f5es do condom\'ednio ao comprador.",\
-    "category": "Condom\'ednio",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "HOA Estoppel",\
-    "definition": "Documento oficial mostrando valores em aberto do im\'f3vel junto ao condom\'ednio.",\
-    "category": "Condom\'ednio",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Homestead Exemption",\
-    "definition": "Benef\'edcio fiscal que reduz o imposto sobre a casa onde o dono reside na Fl\'f3rida.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Homestead Portability",\
-    "definition": "Permite transferir parte do benef\'edcio de isen\'e7\'e3o de uma casa para outra na Fl\'f3rida.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "House Hacking",\
-    "definition": "Estrat\'e9gia em que o comprador mora em uma parte do im\'f3vel e aluga o restante.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Impact Fees",\
-    "definition": "Taxas cobradas por cidades/condados para novas constru\'e7\'f5es, usadas para infraestrutura.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Included/Excluded Items",\
-    "definition": "Itens que ficam ou n\'e3o ficam no im\'f3vel ap\'f3s a venda (ex.: eletrodom\'e9sticos).",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Inspection Contingency",\
-    "definition": "Cl\'e1usula que permite cancelar a compra caso a inspe\'e7\'e3o mostre problemas s\'e9rios.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Inspection Period",\
-    "definition": "Prazo definido no contrato para o comprador realizar inspe\'e7\'f5es.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Insurance Binder",\
-    "definition": "Documento tempor\'e1rio que comprova cobertura de seguro antes da ap\'f3lice final.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Intangible Tax",\
-    "definition": "Imposto da Fl\'f3rida cobrado sobre hipotecas registradas.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Interest Rate Lock",\
-    "definition": "Garantia da taxa de juros oferecida pelo banco at\'e9 o fechamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Interest-Only Mortgage",\
-    "definition": "Empr\'e9stimo em que o comprador paga apenas juros por um per\'edodo inicial.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Joint Tenancy",\
-    "definition": "Forma de propriedade em que dois ou mais donos t\'eam direitos iguais sobre o im\'f3vel.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Joint Venture (JV)",\
-    "definition": "Acordo entre investidores para comprar ou desenvolver um im\'f3vel em conjunto.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Judgment Lien",\
-    "definition": "Penhora sobre o im\'f3vel por decis\'e3o judicial de d\'edvida n\'e3o paga.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Judicial Foreclosure",\
-    "definition": "Processo de retomada do im\'f3vel por ordem judicial na Fl\'f3rida.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Junior Lien",\
-    "definition": "Hipoteca ou penhora registrada depois da primeira, com menor prioridade.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Just Value",\
-    "definition": "Valor justo do im\'f3vel calculado para fins de impostos na Fl\'f3rida.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Jurisdiction",\
-    "definition": "\'c1rea de compet\'eancia legal de uma corte ou munic\'edpio sobre o im\'f3vel.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Job History",\
-    "definition": "Hist\'f3rico de emprego do comprador, usado pelo banco para avaliar estabilidade de renda.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Kick-Out Clause",\
-    "definition": "Cl\'e1usula contratual que permite ao vendedor aceitar nova oferta melhor, mesmo com contrato existente.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Kitec/Polybutylene Plumbing",\
-    "definition": "Tubula\'e7\'f5es problem\'e1ticas comuns em casas antigas da Fl\'f3rida, podem causar vazamentos.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Keybox / Lockbox",\
-    "definition": "Caixa com chave usada por corretores para mostrar im\'f3veis.",\
-    "category": "Profissionais",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Key Money",\
-    "definition": "Pagamento inicial exigido em alguns contratos de aluguel (pouco comum em residenciais).",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Knockdown Texture",\
-    "definition": "Acabamento popular de paredes/tetos na Fl\'f3rida, importante em inspe\'e7\'f5es.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \}\
-\{\
-    "term": "Known Defects Disclosure",\
-    "definition": "Obriga\'e7\'e3o do vendedor de informar defeitos conhecidos do im\'f3vel ao comprador.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Key Rate",\
-    "definition": "Taxa de refer\'eancia usada no mercado financeiro para precifica\'e7\'e3o de juros.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Kitchen Allowance",\
-    "definition": "Valor estipulado em contrato de construtora para acabamentos de cozinha.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Landlord-Tenant Act (Fla. Stat. 83)",\
-    "definition": "Lei da Fl\'f3rida que regula direitos e deveres de locadores e inquilinos.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Lender\'92s Title Policy",\
-    "definition": "Seguro de t\'edtulo pago pelo comprador para proteger o banco em caso de disputa sobre a propriedade.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Leased Equipment",\
-    "definition": "Equipamentos alugados, como pain\'e9is solares, que devem ser informados no contrato.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Leaseback",\
-    "definition": "Quando o vendedor permanece no im\'f3vel alugado ap\'f3s a venda.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Lease Application",\
-    "definition": "Formul\'e1rio que o inquilino preenche para alugar um im\'f3vel, incluindo hist\'f3rico e renda.",\
-    "category": "Loca\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Lease Renewal",\
-    "definition": "Extens\'e3o ou renova\'e7\'e3o de um contrato de aluguel.",\
-    "category": "Loca\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Lien",\
-    "definition": "\'d4nus ou direito de terceiros sobre o im\'f3vel como garantia de d\'edvida.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Lis Pendens",\
-    "definition": "Aviso legal de que o im\'f3vel est\'e1 envolvido em processo judicial.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Loan Estimate (LE)",\
-    "definition": "Documento que detalha custos e condi\'e7\'f5es preliminares do financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Lock Period",\
-    "definition": "Prazo durante o qual a taxa de juros negociada com o banco \'e9 garantida.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Market Value",\
-    "definition": "Valor de mercado de um im\'f3vel, baseado na oferta e demanda atual.",\
-    "category": "Avalia\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Material Defect",\
-    "definition": "Problema s\'e9rio que afeta o valor ou a seguran\'e7a do im\'f3vel.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Millage Rate",\
-    "definition": "Taxa usada pelos condados da Fl\'f3rida para calcular impostos de propriedade.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Mortgage Insurance (PMI/MIP)",\
-    "definition": "Seguro obrigat\'f3rio quando a entrada \'e9 menor que 20% do valor do im\'f3vel.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Mortgage Note",\
-    "definition": "Documento legal que estabelece as condi\'e7\'f5es de pagamento do empr\'e9stimo.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Multi-Offer / Multiple Offers",\
-    "definition": "Situa\'e7\'e3o em que v\'e1rios compradores fazem propostas pelo mesmo im\'f3vel.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Municipal Lien Search",\
-    "definition": "Pesquisa feita junto \'e0 cidade para verificar pend\'eancias de taxas ou servi\'e7os no im\'f3vel.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Mutual Release",\
-    "definition": "Documento que encerra um contrato de compra por acordo entre as partes.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Net Operating Income (NOI)",\
-    "definition": "Lucro l\'edquido de um im\'f3vel de investimento ap\'f3s despesas operacionais.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "New Construction Addendum",\
-    "definition": "Anexo contratual espec\'edfico para compras de im\'f3veis novos em construtoras.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Non-Agency / Non-QM Loan",\
-    "definition": "Tipo de financiamento alternativo que n\'e3o segue padr\'f5es tradicionais (ex.: sem comprova\'e7\'e3o de renda).",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Non-Warrantable Condo",\
-    "definition": "Condom\'ednio que n\'e3o atende exig\'eancias de Fannie Mae ou Freddie Mac, dificultando financiamento.",\
-    "category": "Condom\'ednio",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Notary Acknowledgment",\
-    "definition": "Reconhecimento oficial de assinaturas em documentos legais.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Notice of Commencement",\
-    "definition": "Documento registrado antes de iniciar obras na Fl\'f3rida, exigido em reformas.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Notice to Vacate",\
-    "definition": "Aviso formal para encerrar contrato de aluguel e desocupar o im\'f3vel.",\
-    "category": "Loca\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Novation",\
-    "definition": "Substitui\'e7\'e3o de uma obriga\'e7\'e3o contratual por outra, com consentimento das partes.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Occupancy Certificate (CO)",\
-    "definition": "Documento que confirma que uma casa nova ou reformada pode ser habitada.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Offer and Acceptance",\
-    "definition": "Momento em que a proposta do comprador \'e9 aceita pelo vendedor, formando contrato.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Origination Fee",\
-    "definition": "Taxa cobrada pelo banco na abertura do financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Owner\'92s Title Policy",\
-    "definition": "Seguro de t\'edtulo que protege o comprador contra disputas futuras de propriedade.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Owner-Occupied vs. Investment",\
-    "definition": "Diferen\'e7a entre im\'f3vel usado como resid\'eancia principal ou como investimento.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Option to Renew",\
-    "definition": "Cl\'e1usula em contratos de aluguel que d\'e1 direito de renovar o contrato.",\
-    "category": "Loca\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Open Permit",\
-    "definition": "Licen\'e7a de obra que n\'e3o foi encerrada oficialmente, podendo gerar problemas no fechamento.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Over-Improvement",\
-    "definition": "Melhorias que excedem o padr\'e3o da vizinhan\'e7a, sem retorno proporcional no valor do im\'f3vel.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "P&I / PITI",\
-    "definition": "Siglas para parcela do financiamento: Principal & Interest (P&I) e Principal, Interest, Taxes, Insurance (PITI).",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Paid Outside of Closing (POC)",\
-    "definition": "Custos pagos antes do fechamento, como taxas de avalia\'e7\'e3o ou inspe\'e7\'f5es.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "PACE Lien",\
-    "definition": "\'d4nus sobre im\'f3vel usado para financiar melhorias de efici\'eancia energ\'e9tica.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Per Diem",\
-    "definition": "Taxa di\'e1ria aplicada quando h\'e1 atraso no fechamento.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Permit Search",\
-    "definition": "Pesquisa junto \'e0 prefeitura sobre obras e reformas autorizadas no im\'f3vel.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Pet Deposit / Pet Fee",\
-    "definition": "Valor pago pelo inquilino por permitir animais de estima\'e7\'e3o no im\'f3vel.",\
-    "category": "Loca\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "PMI Removal",\
-    "definition": "Cancelamento do seguro hipotec\'e1rio ap\'f3s atingir 20% de equity no im\'f3vel.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Points",\
-    "definition": "Taxas pagas ao banco para reduzir a taxa de juros do financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \}\
-\{\
-    "term": "Pre-Approval",\
-    "definition": "Carta emitida pelo banco confirmando que o comprador j\'e1 foi avaliado e possui cr\'e9dito pr\'e9-aprovado para financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Pre-Qualification",\
-    "definition": "Etapa inicial em que o comprador fornece informa\'e7\'f5es b\'e1sicas e o banco d\'e1 uma estimativa de quanto ele pode financiar.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Prepayment Penalty",\
-    "definition": "Multa aplicada por alguns bancos se o comprador quitar o financiamento antes do prazo.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Qualification (DU/LP)",\
-    "definition": "Processo de aprova\'e7\'e3o automatizada usado pelos bancos (Desktop Underwriter e Loan Prospector).",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Quiet Enjoyment",\
-    "definition": "Direito do inquilino de usar o im\'f3vel sem interfer\'eancias indevidas.",\
-    "category": "Loca\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Quiet Title Action",\
-    "definition": "A\'e7\'e3o judicial para resolver disputas de propriedade e limpar o t\'edtulo.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Quitclaim Deed",\
-    "definition": "Documento de transfer\'eancia de propriedade sem garantias sobre o t\'edtulo.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Quadplex",\
-    "definition": "Im\'f3vel multifamiliar com quatro unidades independentes.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Qualifying Ratios",\
-    "definition": "Percentuais de d\'edvida em rela\'e7\'e3o \'e0 renda usados pelo banco para aprovar financiamentos.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Quantity Takeoff",\
-    "definition": "Lista de materiais e custos em contratos de constru\'e7\'e3o.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Quorum (HOA/COA)",\
-    "definition": "N\'famero m\'ednimo de membros presentes necess\'e1rio para validar reuni\'f5es de condom\'ednio.",\
-    "category": "Condom\'ednio",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Radon Test",\
-    "definition": "Exame para detectar g\'e1s radioativo natural que pode afetar a sa\'fade dentro de casas.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Rate Buydown",\
-    "definition": "Pagamento antecipado para reduzir a taxa de juros tempor\'e1ria ou permanentemente.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Rate Lock",\
-    "definition": "Garantia da taxa de juros do financiamento at\'e9 a data de fechamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Realtor\'ae",\
-    "definition": "Corretor de im\'f3veis que \'e9 membro da associa\'e7\'e3o nacional NAR e segue seu c\'f3digo de \'e9tica.",\
-    "category": "Profissionais",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Replacement Cost",\
-    "definition": "Valor estimado para reconstruir o im\'f3vel em caso de perda total.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Reserve Study",\
-    "definition": "Estudo que calcula os fundos necess\'e1rios para manuten\'e7\'e3o de longo prazo em condom\'ednios.",\
-    "category": "Condom\'ednio",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Reserves (Cash Reserves)",\
-    "definition": "Dinheiro extra que o comprador deve ter guardado ap\'f3s o fechamento, exigido pelos bancos.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "RESPA",\
-    "definition": "Lei federal que regula pr\'e1ticas de transpar\'eancia em transa\'e7\'f5es imobili\'e1rias nos EUA.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Rider",\
-    "definition": "Adendo contratual que adiciona ou altera cl\'e1usulas em um contrato de compra.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Roof Life",\
-    "definition": "Expectativa de vida \'fatil do telhado, verificada em inspe\'e7\'f5es e relat\'f3rios.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Roof Permit Date",\
-    "definition": "Data da \'faltima permiss\'e3o registrada para substitui\'e7\'e3o ou reparo de telhado.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Save Our Homes Cap",\
-    "definition": "Limite anual de aumento de imposto sobre im\'f3veis residenciais principais na Fl\'f3rida.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Secondary Market",\
-    "definition": "Mercado onde bancos vendem hipotecas para Fannie Mae, Freddie Mac ou investidores.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Seller Concessions",\
-    "definition": "Ajuda financeira que o vendedor oferece ao comprador, como contribui\'e7\'e3o para custos de fechamento.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Seller\'92s Disclosure",\
-    "definition": "Documento em que o vendedor informa problemas conhecidos no im\'f3vel.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Septic System",\
-    "definition": "Sistema de fossa s\'e9ptica usado em \'e1reas sem rede de esgoto, comum em algumas partes da Fl\'f3rida.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Short Sale",\
-    "definition": "Venda em que o banco aceita receber menos do que o valor devido na hipoteca.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Special Assessment",\
-    "definition": "Taxa extra cobrada por condom\'ednio para cobrir projetos ou reparos espec\'edficos.",\
-    "category": "Condom\'ednio",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Spec Home",\
-    "definition": "Casa constru\'edda pela construtora sem comprador definido, vendida pronta.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Survey",\
-    "definition": "Mapa oficial que define os limites do terreno e constru\'e7\'f5es no lote.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Sweat Equity",\
-    "definition": "Valor agregado ao im\'f3vel pelo trabalho manual do pr\'f3prio propriet\'e1rio.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Tax Proration",\
-    "definition": "Divis\'e3o proporcional de impostos entre comprador e vendedor na data do fechamento.",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Title Commitment",\
-    "definition": "Documento preliminar que lista condi\'e7\'f5es para a emiss\'e3o do seguro de t\'edtulo.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Title Insurance",\
-    "definition": "Seguro que protege contra problemas de propriedade n\'e3o descobertos em pesquisas anteriores.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Title Search",\
-    "definition": "Pesquisa de registros para verificar a legalidade da propriedade.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "TRID",\
-    "definition": "Regulamenta\'e7\'e3o que integra TILA e RESPA, exigindo transpar\'eancia nos documentos de financiamento.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Turnkey Property",\
-    "definition": "Im\'f3vel pronto para uso imediato, geralmente j\'e1 mobiliado ou alugado.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "1031 Exchange",\
-    "definition": "Mecanismo que permite adiar impostos sobre ganhos de capital reinvestindo em outro im\'f3vel.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Tenant Screening",\
-    "definition": "Processo de avaliar hist\'f3rico de cr\'e9dito, renda e antecedentes de inquilinos.",\
-    "category": "Loca\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Termite/WDO Inspection",\
-    "definition": "Inspe\'e7\'e3o para verificar presen\'e7a de cupins ou organismos que destroem madeira.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Transfer Taxes",\
-    "definition": "Impostos cobrados na transfer\'eancia de propriedade (na Fl\'f3rida, Documentary Stamp Tax).",\
-    "category": "Impostos",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Underwriting",\
-    "definition": "Processo de an\'e1lise detalhada do banco para aprovar o financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Underwriting Conditions",\
-    "definition": "Pend\'eancias que o comprador deve cumprir para finalizar a aprova\'e7\'e3o do financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Unimproved Land",\
-    "definition": "Terreno sem constru\'e7\'f5es, geralmente sem infraestrutura b\'e1sica.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Unlawful Detainer",\
-    "definition": "A\'e7\'e3o legal para retomar posse de im\'f3vel ocupado ilegalmente.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Utility Easement",\
-    "definition": "Direito de concession\'e1rias de usar parte do terreno para infraestrutura.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \}\
-[\
-  \{\
-    "term": "USDA Loan",\
-    "definition": "Programa de financiamento do governo para \'e1reas rurais eleg\'edveis, com entrada zero.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Use and Occupancy",\
-    "definition": "Acordo tempor\'e1rio que permite ao comprador ocupar o im\'f3vel antes do fechamento oficial.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Urethane Foam",\
-    "definition": "Isolamento de espuma usado em telhados e paredes, avaliado em inspe\'e7\'f5es.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "VA Loan",\
-    "definition": "Financiamento especial para veteranos militares, sem necessidade de entrada.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Vacancy Rate",\
-    "definition": "Percentual de tempo em que im\'f3veis de aluguel permanecem vagos.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Verification of Employment (VOE)",\
-    "definition": "Confirma\'e7\'e3o de emprego do comprador, exigida pelo banco para aprovar financiamento.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Verification of Rent/Mortgage (VOR/VOM)",\
-    "definition": "Confirma\'e7\'e3o de hist\'f3rico de pagamento de aluguel ou hipoteca do comprador.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Vesting (Title)",\
-    "definition": "Forma legal como a propriedade \'e9 registrada, individual, conjunta ou por empresa.",\
-    "category": "T\'edtulo",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Vinyl Siding",\
-    "definition": "Revestimento externo de PVC comum em casas, inspecionado para danos.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "VE Flood Zone",\
-    "definition": "Zona costeira de alto risco de enchente na Fl\'f3rida, exige seguro caro.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Value-Add Strategy",\
-    "definition": "Estrat\'e9gia de investimento que busca aumentar valor do im\'f3vel com reformas ou melhorias.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Walkthrough",\
-    "definition": "Visita de inspe\'e7\'e3o final antes da assinatura do fechamento.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Warranty (Builder 1-2-10)",\
-    "definition": "Garantia dada por construtoras: 1 ano em acabamentos, 2 em sistemas e 10 na estrutura.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Water Intrusion",\
-    "definition": "Entrada de \'e1gua por falhas em telhado, janelas ou funda\'e7\'e3o, problema comum em inspe\'e7\'f5es.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Wind Mitigation Inspection",\
-    "definition": "Inspe\'e7\'e3o que pode reduzir o seguro residencial, avaliando resist\'eancia da casa a furac\'f5es.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "WDO Inspection",\
-    "definition": "Inspe\'e7\'e3o contra organismos que destroem madeira, como cupins.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Whole-House Repipe",\
-    "definition": "Troca completa da tubula\'e7\'e3o da casa, necess\'e1ria em casas antigas.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Wraparound Mortgage",\
-    "definition": "Tipo de financiamento em que a nova hipoteca inclui a anterior, usado em negocia\'e7\'f5es criativas.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Writ of Possession",\
-    "definition": "Ordem judicial para remover ocupantes de um im\'f3vel ap\'f3s despejo.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "X Flood Zone",\
-    "definition": "\'c1rea de baixo risco de enchentes, geralmente n\'e3o exige seguro contra inunda\'e7\'e3o.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Xeriscaping",\
-    "definition": "Paisagismo de baixo consumo de \'e1gua, valorizado em \'e1reas quentes da Fl\'f3rida.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "X-Bracing",\
-    "definition": "Refor\'e7o estrutural em formato de X usado para aumentar a estabilidade de constru\'e7\'f5es.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "X-Out",\
-    "definition": "Quando uma cl\'e1usula \'e9 invalidada em contrato, geralmente riscada manualmente.",\
-    "category": "Contrato",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "X-Date",\
-    "definition": "Data de renova\'e7\'e3o de uma ap\'f3lice de seguro.",\
-    "category": "Seguros",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "XML/RETS/IDX",\
-    "definition": "Sistemas de integra\'e7\'e3o de listagens usadas por corretores e sites como MLS e Zillow.",\
-    "category": "Tecnologia",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "X-Cost",\
-    "definition": "Custo extra n\'e3o previsto em contrato de constru\'e7\'e3o.",\
-    "category": "Constru\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "X-Factor",\
-    "definition": "Caracter\'edstica \'fanica que diferencia e valoriza um im\'f3vel no mercado.",\
-    "category": "Investimento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Year Built",\
-    "definition": "Ano de constru\'e7\'e3o da casa, importante em inspe\'e7\'f5es e seguros.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Yield Maintenance",\
-    "definition": "Multa aplicada em financiamentos comerciais quando o empr\'e9stimo \'e9 quitado antes do prazo.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Yearly Cap (ARM)",\
-    "definition": "Limite anual de ajuste em hipotecas de taxa vari\'e1vel.",\
-    "category": "Financiamento",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Yard Setback",\
-    "definition": "Recuo m\'ednimo exigido pela lei de zoneamento entre a casa e os limites do terreno.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Zoning",\
-    "definition": "Classifica\'e7\'e3o de uso do solo determinada pela cidade ou condado.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Zoning Variance",\
-    "definition": "Permiss\'e3o especial para usar o im\'f3vel de forma diferente da regra de zoneamento.",\
-    "category": "Legisla\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Zillow Zestimate",\
-    "definition": "Estimativa de valor feita pelo algoritmo do site Zillow, n\'e3o \'e9 uma avalia\'e7\'e3o oficial.",\
-    "category": "Avalia\'e7\'e3o",\
-    "videoUrl": null\
-  \},\
-  \{\
-    "term": "Zinsco Panel",\
-    "definition": "Quadro el\'e9trico obsoleto encontrado em casas antigas, considerado risco de inc\'eandio.",\
-    "category": "Inspe\'e7\'f5es",\
-    "videoUrl": null\
-  \}\
-\
-\
-]\
-\pard\pardeftab720\sa240\partightenfactor0
 
-\f1\fs24 \cf0 \
-}
+]
+
