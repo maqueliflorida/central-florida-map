@@ -311,7 +311,7 @@
       "id": "orlando",
       "nome": "Orlando",
       "condado": "Orange County",
-      "foto": "orlando.jpg",
+      "foto": "winter13-2pqk.png",
       "zoom": 11.2,
       "area": [
         [
@@ -640,7 +640,7 @@
         }
       ],
       "pendente": false,
-      "corteFoto": 0.224,
+      "corteFoto": 1,
       "resumo": "",
       "escolas": [],
       "custos": [
