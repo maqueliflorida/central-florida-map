@@ -213,7 +213,7 @@ a.ctrl{text-decoration:none;}
    Foto no formato da caixa aparece inteira; foto mais alta aparece como uma faixa
    do meio dela. Sem número pra calibrar por foto — funciona pra qualquer formato. */
 .capa-corte img{position:absolute;inset:0;width:100%;height:100%;max-width:none;
-  object-fit:cover;object-position:center top;display:block;}
+  object-fit:cover;object-position:var(--pos-capa,center top);display:block;}
 .onda-fio{position:absolute;inset:0;z-index:2;pointer-events:none;}
 .onda-fio svg{width:100%;height:100%;display:block;}
 /* topo.png: colada ao topo do .grad-conteudo (= rodapé da foto), sobrepondo a
@@ -1207,7 +1207,7 @@ function ligaBarraRegiao(){
   olhoBarra.observe(alvo);
 }
 
-function ajustaCapa(r){
+function ajustaCapa(regiao){
   const capa = painelRegiao.querySelector('.capa-corte');
   const foto = capa && capa.querySelector('img');
   if(!foto) return;
@@ -1223,8 +1223,10 @@ function ajustaCapa(r){
          interessa — o resto é texto que não pode aparecer. 19% da altura
          é onde a foto termina em todos os cartões.
 
-       O encaixe em si é do object-fit:cover no CSS, ancorado no topo. */
+       O encaixe em si é do object-fit:cover no CSS. */
     capa.style.aspectRatio = String(r >= 1 ? r : r / CONFIG.faixaFotoCartao);
+    /* posFoto vem do admin (setas de enquadramento); sem ela, ancora no topo */
+    capa.style.setProperty('--pos-capa', regiao.posFoto || 'center top');
   };
   foto.complete ? aplica() : foto.addEventListener('load', aplica, {once:true});
 }
