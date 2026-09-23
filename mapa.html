@@ -112,6 +112,16 @@ h1,h2,h3,h4,p,li,span,a,button{overflow-wrap:anywhere;}
 }
 .ctrl:hover{transform:translateY(-1px);}
 .ctrl svg{width:14px;height:14px;fill:currentColor;flex:none;}
+a.ctrl{text-decoration:none;}
+
+/* selo de direitos: continua a barra de atribuição do Mapbox, no canto inferior
+   direito. A atribuição do Mapbox continua visível ao lado — é exigência da
+   licença deles e não pode ser escondida. */
+.mapboxgl-ctrl-bottom-right{display:flex;flex-direction:row;align-items:flex-end;}
+#selo-direitos{
+  background:var(--rosa); color:#fff; font-size:12.5px; line-height:1.25;
+  padding:3px 9px; margin:0; max-width:52vw;
+}
 .zoom{position:absolute;bottom:34px;right:14px;z-index:5;display:flex;flex-direction:column;
       border-radius:10px;overflow:hidden;box-shadow:var(--sombra-sm);background:var(--papel);}
 .zoom button{width:34px;height:34px;font-size:21.25px;font-weight:500;color:var(--tinta2);display:grid;place-items:center;}
@@ -669,6 +679,11 @@ h1,h2,h3,h4,p,li,span,a,button{overflow-wrap:anywhere;}
   .hero-corte img{margin-top:-2%;}
 }
 @media (max-width:420px){
+  /* espaço apertado: o botão novo fica só com o ícone, pra não empurrar o Reiniciar */
+  #btNovaJanela span{display:none;}
+  #btNovaJanela{padding:0 11px;}
+  /* e o selo de direitos encolhe pra cobrir menos mapa */
+  #selo-direitos{font-size:11px;padding:3px 7px;max-width:64vw;}
   .numeros{grid-template-columns:repeat(2,minmax(0,1fr));}
   .ficha{grid-template-columns:minmax(0,1fr);}
   .rodape{flex-wrap:wrap;}
@@ -707,6 +722,11 @@ h1,h2,h3,h4,p,li,span,a,button{overflow-wrap:anywhere;}
       <svg viewBox="0 0 24 24"><path d="M12 5V2L8 6l4 4V7a5 5 0 11-5 5H5a7 7 0 107-7z"/></svg>
       <span>Reiniciar</span>
     </button>
+    <a class="ctrl" id="btNovaJanela" target="_blank" rel="noopener"
+       title="Abrir o mapa em uma nova janela">
+      <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.4l-8.3 8.3-1.4-1.4L17.6 5H14V3zM5 5h5v2H7v10h10v-3h2v5H5V5z"/></svg>
+      <span>Abrir em nova janela</span>
+    </a>
   </div>
   <div class="zoom">
     <button id="btMais" aria-label="Aproximar">+</button>
@@ -1005,6 +1025,7 @@ function iniciaMapa(){
   });
   map.on('load', () => {
     desenhaParques();
+    poeSeloDireitos();
     /* no iframe, rolagem só dá zoom com Ctrl — senão a página trava */
     map.scrollZoom.disable();
     const cv = map.getCanvas();
@@ -1923,6 +1944,22 @@ $('#lightbox').addEventListener('click', e => { if(e.target.id === 'lightbox') f
    CONTROLES GERAIS
    ============================================================ */
 $('#btReset').addEventListener('click', () => { fecharVideo(); fecharRegiao(); $('#busca').value=''; $('#busca').dispatchEvent(new Event('input')); });
+
+/* Abrir em nova janela: aponta pro próprio endereço do mapa, então funciona
+   igual embutido em iframe (abre fora dele) ou aberto direto. */
+$('#btNovaJanela').href = location.href;
+
+/* Selo de direitos colado à esquerda da atribuição do Mapbox. Entra depois que
+   o mapa monta os controles; a atribuição do Mapbox continua intacta ao lado. */
+function poeSeloDireitos(){
+  const canto = document.querySelector('.mapboxgl-ctrl-bottom-right');
+  if(!canto || document.getElementById('selo-direitos')) return;
+  const selo = document.createElement('div');
+  selo.id = 'selo-direitos';
+  selo.textContent = 'Esse mapa é conteúdo registrado e exclusivo para uso de ' +
+                     'Maqueli Florida e seus licenciados.';
+  canto.insertBefore(selo, canto.firstChild);
+}
 $('#btMais').addEventListener('click',  () => map.zoomTo(map.getZoom()+.6, {duration:280}));
 $('#btMenos').addEventListener('click', () => map.zoomTo(map.getZoom()-.6, {duration:280}));
 document.addEventListener('keydown', e => {
