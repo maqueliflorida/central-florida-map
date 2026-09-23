@@ -3933,7 +3933,7 @@
       "id": "clermont",
       "nome": "Clermont",
       "condado": "Lake County",
-      "foto": "clermont_1.jpg",
+      "foto": "golden-hour-lakeside-promenade-p027.png",
       "zoom": 11,
       "area": [
         [
@@ -4596,7 +4596,7 @@
         }
       ],
       "pendente": false,
-      "corteFoto": 0.224,
+      "corteFoto": 0.75,
       "resumo": "",
       "escolas": [],
       "custos": [
@@ -4610,7 +4610,9 @@
       "aConfirmar": [
         "custos"
       ],
-      "fotos": [],
+      "fotos": [
+        "golden-hour-lakeside-promenade.png"
+      ],
       "videos": []
     },
     {
