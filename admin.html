@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administração · Mapa Central Flórida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rosa:#ff5f7e; --coral:#ff7f50; --verde:#25a05c; --ambar:#c98a0b;
+  --grad:linear-gradient(112deg,#ff7185 0%,#f6c68b 100%);
+  --tinta:#221d29; --tinta2:#5f5869; --tinta3:#938c9d;
+  --papel:#fff; --fundo:#f3f1f4; --linha:#e5e1e8; --linha2:#f1eef3;
+  --sombra:0 1px 2px rgba(34,29,41,.05),0 10px 30px rgba(34,29,41,.10);
+  --r:12px; --r-sm:9px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{height:100%;}
+body{margin:0;display:flex;flex-direction:column;overflow:hidden;
+  font-family:'Outfit','Segoe UI',system-ui,-apple-system,sans-serif;font-size:17.5px;
+  line-height:1.45;color:var(--tinta);background:var(--fundo);-webkit-font-smoothing:antialiased;}
+button{font:inherit;color:inherit;border:0;padding:0;background:none;cursor:pointer;}
+input,textarea,select{font:inherit;color:inherit;}
+h1,h2,h3,h4,p{margin:0;}
+ul{list-style:none;margin:0;padding:0;}
+h1,h2,h3,h4,p,span,label,button,li{overflow-wrap:anywhere;}
+:focus-visible{outline:2px solid var(--coral);outline-offset:2px;border-radius:4px;}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-thumb{background:#d6d0da;border-radius:9px;border:2px solid transparent;background-clip:content-box;}
+
+/* ── barra de topo ────────────────────────────────────────────── */
+#topo{flex:none;display:flex;align-items:center;gap:14px;min-width:0;
+  padding:11px 18px;background:var(--papel);border-bottom:1px solid var(--linha);z-index:5;}
+#topo h1{font-size:18.75px;font-weight:700;white-space:nowrap;}
+#topo h1 small{display:block;font-size:13.12px;font-weight:500;color:var(--tinta3);}
+#estado{flex:1;min-width:0;font-size:14.38px;color:var(--tinta3);}
+#estado b{color:var(--tinta2);font-weight:600;}
+.acoes{display:flex;gap:7px;flex:none;}
+.bt{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r-sm);
+  font-size:15.62px;font-weight:600;white-space:nowrap;transition:filter .15s,transform .15s;}
+.bt:hover{filter:brightness(1.06);transform:translateY(-1px);}
+.bt svg{width:14px;height:14px;flex:none;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;}
+.bt-claro{background:var(--fundo);color:var(--tinta2);}
+.bt-borda{background:var(--papel);color:var(--tinta2);box-shadow:inset 0 0 0 1px var(--linha);}
+.bt-rosa{background:var(--grad);color:#fff;}
+.bt-verde{background:var(--verde);color:#fff;}
+.bt-perigo{background:#fdeaec;color:#c23046;}
+.bt:disabled{opacity:.45;cursor:not-allowed;transform:none;filter:none;}
+
+/* ── corpo em duas colunas ────────────────────────────────────── */
+#corpo{flex:1;min-height:0;display:flex;}
+#regioes{flex:0 0 232px;min-width:0;background:var(--papel);border-right:1px solid var(--linha);
+  display:flex;flex-direction:column;}
+#regioes header{padding:13px 14px 9px;font-size:13.12px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--tinta3);}
+#listaRegioes{flex:1;min-height:0;overflow-y:auto;padding:0 9px 12px;}
+.rg{width:100%;text-align:left;padding:9px 10px;border-radius:var(--r-sm);margin-bottom:2px;
+  display:flex;align-items:center;gap:8px;min-width:0;transition:background .14s;}
+.rg:hover{background:var(--linha2);}
+.rg.on{background:var(--grad);color:#fff;}
+.rg-txt{flex:1;min-width:0;}
+.rg-nome{display:block;font-size:16.25px;font-weight:600;line-height:1.2;}
+.rg-sub{display:block;font-size:13.12px;color:var(--tinta3);margin-top:1px;}
+.rg.on .rg-sub{color:rgba(255,255,255,.86);}
+.rg-alerta{flex:none;width:7px;height:7px;border-radius:50%;background:var(--ambar);}
+
+#painel{flex:1;min-width:0;display:flex;flex-direction:column;}
+#abas{flex:none;display:flex;gap:2px;padding:0 20px;background:var(--papel);border-bottom:1px solid var(--linha);}
+.aba{padding:12px 15px;font-size:16.25px;font-weight:600;color:var(--tinta3);border-bottom:2px solid transparent;margin-bottom:-1px;}
+.aba.on{color:var(--tinta);border-bottom-color:var(--rosa);}
+#conteudo{flex:1;min-height:0;overflow-y:auto;padding:20px 24px 60px;}
+.max{max-width:760px;}
+
+/* ── campos ───────────────────────────────────────────────────── */
+.cartao{background:var(--papel);border-radius:var(--r);box-shadow:var(--sombra);
+  padding:18px 20px;margin-bottom:14px;min-width:0;}
+.cartao > h3{font-size:13.12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--tinta3);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.cartao > h3::after{content:"";flex:1;height:1px;background:var(--linha);min-width:8px;}
+.campo{margin-bottom:13px;min-width:0;}
+.campo:last-child{margin-bottom:0;}
+.campo > label{display:flex;align-items:center;gap:7px;font-size:14.38px;font-weight:600;
+  color:var(--tinta2);margin-bottom:5px;min-width:0;}
+.campo .dica{font-size:13.12px;font-weight:500;color:var(--tinta3);margin-top:4px;}
+.ent{width:100%;padding:9px 11px;border:1px solid var(--linha);border-radius:var(--r-sm);
+  background:var(--papel);font-size:16.25px;min-width:0;}
+.ent:focus{outline:0;border-color:var(--rosa);box-shadow:0 0 0 3px rgba(255,95,126,.13);}
+textarea.ent{min-height:96px;resize:vertical;line-height:1.55;}
+.grade{display:grid;gap:11px;min-width:0;}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr));}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr));}
+
+/* listas editáveis */
+.lista{display:flex;flex-direction:column;gap:7px;min-width:0;}
+.item-lista{display:flex;gap:7px;align-items:flex-start;min-width:0;}
+.item-lista .ent{flex:1;}
+.item-lista .grade{flex:1;}
+.rm{flex:none;width:32px;height:34px;border-radius:var(--r-sm);background:var(--fundo);
+  color:var(--tinta3);display:grid;place-items:center;transition:background .14s,color .14s;}
+.rm:hover{background:#fdeaec;color:#c23046;}
+.rm svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;}
+.add{align-self:flex-start;padding:7px 12px;border-radius:var(--r-sm);background:var(--fundo);
+  font-size:14.38px;font-weight:600;color:var(--tinta2);display:flex;align-items:center;gap:6px;}
+.add:hover{background:var(--linha2);}
+.add svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;}
+
+/* galeria de fotos: thumb + preview + reordenar + tratar com IA */
+.item-foto{display:flex;gap:9px;align-items:center;min-width:0;}
+.foto-mini-wrap{position:relative;flex:none;}
+.foto-mini{display:block;width:56px;height:42px;border-radius:8px;object-fit:cover;
+  background:var(--fundo);cursor:zoom-in;box-shadow:inset 0 0 0 1px var(--linha);}
+.foto-mini.vazia{opacity:.3;}
+.foto-selo{position:absolute;right:-5px;bottom:-5px;width:18px;height:18px;border-radius:50%;
+  display:none;align-items:center;justify-content:center;box-shadow:0 0 0 2px var(--papel);}
+.foto-selo svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.6;
+  stroke-linecap:round;stroke-linejoin:round;}
+.item-foto.processando .foto-selo{display:flex;background:var(--papel);color:var(--coral);}
+.item-foto.processando .foto-selo svg{animation:girarIA .8s linear infinite;}
+.item-foto.tratada .foto-selo{display:flex;background:var(--verde);color:#fff;}
+@keyframes girarIA{to{transform:rotate(360deg);}}
+.item-foto .ent{flex:1;min-width:0;}
+.item-foto-bt{flex:none;display:flex;gap:4px;}
+.fotos-rodape{display:flex;gap:8px;flex-wrap:wrap;}
+.resultado-ia img{width:100%;border-radius:10px;display:block;margin-bottom:12px;background:var(--fundo);}
+.zona-solta{margin-top:12px;border:2px dashed var(--linha);border-radius:var(--r);
+  padding:22px 16px;text-align:center;color:var(--tinta3);cursor:pointer;
+  transition:border-color .15s,background .15s,color .15s;}
+.zona-solta:hover{border-color:var(--tinta3);}
+.zona-solta.sobre{border-color:var(--rosa);background:#fff5f6;color:var(--rosa);}
+.zona-solta.enviando{opacity:.55;pointer-events:none;}
+.zona-solta svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;margin-bottom:6px;}
+.zona-solta p{font-size:14.38px;font-weight:600;margin:0;}
+
+/* marca de "a confirmar" */
+.selo-conf{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:20px;
+  background:#fdf3dc;color:var(--ambar);font-size:11.88px;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;white-space:nowrap;}
+.selo-conf button{color:var(--ambar);text-decoration:underline;font-size:11.88px;font-weight:700;}
+.campo.aconf .ent{background:#fffdf6;border-color:#f0dfb4;}
+.faixa-conf{display:flex;align-items:center;gap:12px;min-width:0;background:#fdf3dc;
+  border-radius:var(--r);padding:12px 16px;margin-bottom:14px;}
+.faixa-conf p{flex:1;min-width:0;font-size:15.62px;line-height:1.45;color:#7a5a08;}
+.faixa-conf p b{font-weight:700;}
+.faixa-conf .bt{flex:none;background:var(--ambar);color:#fff;}
+
+/* condomínios */
+.condo-bloco{background:var(--papel);border-radius:var(--r);box-shadow:var(--sombra);margin-bottom:12px;overflow:hidden;}
+.condo-topo{display:flex;align-items:center;gap:11px;padding:12px 14px;min-width:0;width:100%;text-align:left;}
+.condo-topo:hover{background:var(--linha2);}
+.condo-mini{flex:none;width:46px;height:46px;border-radius:var(--r-sm);object-fit:cover;background:var(--fundo);}
+.condo-info{flex:1;min-width:0;}
+.condo-info b{display:block;font-size:17.5px;font-weight:700;line-height:1.2;}
+.condo-info span{display:block;font-size:13.75px;color:var(--tinta3);margin-top:2px;}
+.condo-ferramentas{flex:none;display:flex;gap:4px;align-items:center;}
+.ferr{width:30px;height:30px;border-radius:8px;background:var(--fundo);color:var(--tinta3);display:grid;place-items:center;}
+.ferr:hover{background:var(--linha2);color:var(--tinta);}
+.ferr:disabled{opacity:.3;cursor:not-allowed;}
+.ferr svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.condo-corpo{padding:4px 16px 18px;border-top:1px solid var(--linha2);}
+.condo-corpo[hidden]{display:none;}
+
+/* diálogo */
+#veu{position:fixed;inset:0;background:rgba(24,18,28,.55);display:none;place-items:center;z-index:40;padding:20px;}
+#veu.on{display:grid;}
+.dialogo{width:min(520px,100%);background:var(--papel);border-radius:var(--r);padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:100%;overflow-y:auto;}
+.dialogo h2{font-size:21.25px;font-weight:700;margin-bottom:6px;}
+.dialogo > p{font-size:15.62px;color:var(--tinta2);line-height:1.5;margin-bottom:16px;}
+.dialogo .rodape{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;}
+.nota{background:#fdf3dc;border-radius:var(--r-sm);padding:11px 13px;font-size:14.38px;
+  line-height:1.5;color:#7a5a08;margin-bottom:14px;}
+
+#aviso{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(90px);
+  background:var(--tinta);color:#fff;padding:11px 18px;border-radius:30px;font-size:15.62px;
+  font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.28);z-index:60;transition:transform .3s cubic-bezier(.2,.8,.3,1);max-width:90vw;}
+#aviso.on{transform:translateX(-50%) translateY(0);}
+@media (max-width:820px){
+  #corpo{flex-direction:column;}
+  #regioes{flex:none;border-right:0;border-bottom:1px solid var(--linha);max-height:150px;}
+  .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr));}
+  #topo{flex-wrap:wrap;}
+  #estado{order:3;flex-basis:100%;}
+}
+</style>
+</head>
+<body>
+
+<div id="topo">
+  <h1>Mapa Central Flórida<small>Administração de conteúdo</small></h1>
+  <p id="estado">Carregando…</p>
+  <div class="acoes">
+    <button class="bt bt-borda" id="btPrever">
+      <svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+      Pré-visualizar
+    </button>
+    <button class="bt bt-claro" id="btBaixar">
+      <svg viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg>
+      Baixar dados.json
+    </button>
+    <button class="bt bt-verde" id="btPublicar">
+      <svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+      Publicar
+    </button>
+  </div>
+</div>
+
+<div id="corpo">
+  <aside id="regioes">
+    <header>Regiões</header>
+    <div id="listaRegioes"></div>
+  </aside>
+  <main id="painel">
+    <div id="abas">
+      <button class="aba on" data-aba="regiao">Dados da região</button>
+      <button class="aba" data-aba="condominios">Condomínios</button>
+    </div>
+    <div id="conteudo"><div class="max" id="max"></div></div>
+  </main>
+</div>
+
+<div id="veu"><div class="dialogo" id="dialogo"></div></div>
+<div id="aviso"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ═══════════════════════════════════════════════════════════════
+   CONFIGURAÇÃO
+   ═══════════════════════════════════════════════════════════════ */
+const CONFIG = {
+  dados:  'https://maqueliflorida.github.io/central-florida-map/dados.json',
+  base:   'https://maqueliflorida.github.io/central-florida-map/',
+  repo:   'maqueliflorida/central-florida-map',
+  arquivo:'dados.json',
+  ramo:   'main'
+};
+const CHAVE_RASCUNHO = 'mapaCF.rascunho';
+const CHAVE_TOKEN    = 'mapaCF.token';
+const CHAVE_REPO     = 'mapaCF.repo';
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITÁRIOS
+   ═══════════════════════════════════════════════════════════════ */
+const $  = s => document.querySelector(s);
+const el = (t,c) => { const n = document.createElement(t); if(c) n.className = c; return n; };
+const img = f => /^https?:/.test(f||'') ? f : CONFIG.base + (f||'');
+const guardar = (k,v) => { try{ localStorage.setItem(k,v); }catch(e){} };
+const ler     = k     => { try{ return localStorage.getItem(k); }catch(e){ return null; } };
+
+const ic = {
+  lixo:  '<svg viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M5 7l1 13h12l1-13M9 7V4h6v3"/></svg>',
+  x:     '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  mais:  '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>',
+  cima:  '<svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg>',
+  baixo: '<svg viewBox="0 0 24 24"><path d="M12 5v14M18 13l-6 6-6-6"/></svg>',
+  seta:  '<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>',
+  inverter: '<svg viewBox="0 0 24 24"><path d="M7 7h11M14 3l4 4-4 4M17 17H6M10 21l-4-4 4-4"/></svg>',
+  varinha:  '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l1.9 5.7L19.5 9.6l-5.6 1.9L12 17.2l-1.9-5.7L4.5 9.6l5.6-1.9L12 2z"/><path d="M19 14l.9 2.6L22.5 17.5l-2.6.9L19 21l-.9-2.6L15.5 17.5l2.6-.9L19 14z" opacity=".7"/></svg>',
+  carregando: '<svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/></svg>',
+  check:      '<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>',
+  upload:     '<svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>',
+  esquerda:   '<svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>',
+  direita:    '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  centro:     '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="1.6"/></svg>'
+};
+
+/* estado (só nesta sessão do navegador) de quais fotos estão sendo tratadas
+   pela IA ou já foram — por arquivo, sobrevive a redesenhos da tela */
+const iaEstado = new WeakMap();   // chaveEstado (arr da galeria, ou o objeto região/condo) -> Map<nomeArquivo, 'processando'|'tratada'>
+function estadoIA(chaveEstado, v){ const m = iaEstado.get(chaveEstado); return m ? m.get(v) : undefined; }
+function marcaIA(chaveEstado, v, status){
+  let m = iaEstado.get(chaveEstado);
+  if(!m){ m = new Map(); iaEstado.set(chaveEstado, m); }
+  if(status) m.set(v, status); else m.delete(v);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ADAPTADORES — deixam a galeria (lista de fotos) e a foto principal
+   (campo único) usarem exatamente as mesmas funções de tratar/subir foto.
+   ═══════════════════════════════════════════════════════════════ */
+function alvoLista(arr, i, redesenhar){
+  return {
+    valor: () => i == null ? undefined : arr[i],
+    chaveEstado: () => arr,
+    jaContem: nome => arr.includes(nome),
+    adicionar(nome){
+      if(arr.includes(nome)) return;
+      if(i != null) arr.splice(i+1, 0, nome); else arr.push(nome);
+    },
+    remover(){ if(i != null) arr.splice(i,1); },
+    redesenhar
+  };
+}
+function alvoUnico(obj, chave, redesenhar){
+  return {
+    valor: () => pegar(obj, chave) || '',
+    chaveEstado: () => obj,
+    jaContem: nome => (pegar(obj, chave) || '') === nome,
+    adicionar(nome){ por(obj, chave, nome); },
+    remover(){ por(obj, chave, null); },
+    redesenhar
+  };
+}
+
+let DADOS = null;
+let iRegiao = 0;
+let aba = 'regiao';
+let abertos = {};        // quais condomínios estão expandidos
+let sujo = false;
+
+function avisar(txt, ms){
+  const a = $('#aviso'); a.textContent = txt; a.classList.add('on');
+  clearTimeout(avisar._t);
+  avisar._t = setTimeout(() => a.classList.remove('on'), ms || 2600);
+}
+function marcarSujo(){
+  sujo = true;
+  guardar(CHAVE_RASCUNHO, JSON.stringify({quando:Date.now(), dados:DADOS}));
+  atualizaEstado();
+}
+function atualizaEstado(){
+  const n = DADOS ? DADOS.regioes.length : 0;
+  const c = DADOS ? DADOS.regioes.reduce((s,r)=>s+r.condominios.length,0) : 0;
+  $('#estado').innerHTML = '<b>'+n+'</b> regiões · <b>'+c+'</b> condomínios' +
+    (sujo ? ' · <b style="color:#c98a0b">alterações não publicadas</b>' : ' · tudo publicado');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ESQUEMA DOS FORMULÁRIOS
+   Acrescentar um campo novo ao mapa = acrescentar uma linha aqui.
+   ═══════════════════════════════════════════════════════════════ */
+const CAMPOS_REGIAO = [
+  {grupo:'Identificação', campos:[
+    {k:'nome',    r:'Nome da região', t:'texto', largura:2,
+     aoMudar:() => desenhaRegioes()},
+    {k:'condado', r:'Condado',        t:'texto'},
+    {k:'resumo',  r:'Linha de apoio', t:'texto', dica:'Aparece ao lado do condado. Ex: "15 min da Disney"'},
+    {k:'foto',    r:'Foto principal', t:'fotoCapa',
+     dica:'A foto que aparece no card da região no mapa — diferente da galeria abaixo, que só abre em tela cheia.'},
+    {k:'zoom',    r:'Zoom do mapa',   t:'numero',dica:'Maior = mais perto. Entre 10 e 14.'},
+  ]},
+  {grupo:'Galeria da região', campos:[
+    {k:'fotos',  r:'Fotos', t:'listaFotos',
+     dica:'Abrem em tela cheia ao clicar na foto do topo. Nome do arquivo no GitHub.'},
+    {k:'videos', r:'Vídeos', t:'listaTexto',
+     dica:'Links do YouTube — normal, youtu.be ou Shorts. Entram na mesma galeria.'}
+  ]},
+  {grupo:'Destaques', campos:[
+    {k:'destaques', r:'Lista de destaques', t:'listaTexto', semRotulo:true,
+     dica:'Um por linha, como no card antigo. Aparecem em caixa alta.'}
+  ]},
+  {grupo:'Raio-x da região', campos:[
+    {k:'numeros', r:'Números', t:'listaObj', semRotulo:true, colunas:'g2',
+     sub:[{k:'valor',r:'Valor',dica:'306k · 8,5 · 56%'},{k:'rotulo',r:'Rótulo'}]}
+  ]},
+  {grupo:'Escolas', confirmavel:'escolas', campos:[
+    {k:'escolas', r:'Escolas', t:'listaObj', semRotulo:true, colunas:'g3',
+     sub:[{k:'nome',r:'Nome'},{k:'nivel',r:'Nível'},{k:'nota',r:'Nota'}]}
+  ]},
+  {grupo:'Custos', confirmavel:'custos', campos:[
+    {k:'custos', r:'Custos', t:'listaObj', semRotulo:true, colunas:'g2',
+     sub:[{k:'item',r:'Item',dica:'Property tax, seguro…'},{k:'valor',r:'Valor'}]}
+  ]},
+  {grupo:'Por perto', confirmavel:'lugares', campos:[
+    {k:'lugares', r:'Lugares', t:'listaObj', semRotulo:true, colunas:'g3',
+     sub:[{k:'nome',r:'Nome'},{k:'tipo',r:'Tipo'},{k:'distancia',r:'Distância'}]}
+  ]},
+  {grupo:'Quem compra aqui', confirmavel:'perfil', campos:[
+    {k:'perfil', r:'Perfil do comprador', t:'textoLongo', semRotulo:true}
+  ]}
+];
+
+const CAMPOS_CONDO = [
+  {grupo:'Principal', campos:[
+    {k:'nome',      r:'Nome do condomínio', t:'texto', largura:2,
+     /* o cabeçalho do acordeão acompanha enquanto se digita */
+     aoMudar:(v,campo) => {
+       const bloco = campo.closest('.condo-bloco');
+       const titulo = bloco && bloco.querySelector('.condo-info b');
+       if(titulo) titulo.textContent = v || '(sem nome)';
+     }},
+    {k:'precoBase', r:'A partir de',        t:'texto', dica:'380k · 1.2M · 1.5M+'},
+    {k:'pin',       r:'Pin no mapa',        t:'coordenada',
+     dica:'Botão direito no Google Maps → clique nos números → cole aqui.'},
+  ]},
+  {grupo:'Chamadas e tipos', campos:[
+    {k:'chamadas', r:'Chamadas', t:'listaTexto', dica:'As duas frases curtas do card. Ex: "Excelente localização"'},
+    {k:'tipos',    r:'Tipos de imóvel', t:'listaTexto', dica:'Townhome · Bangalô · Single Family'}
+  ]},
+  {grupo:'Fotos, vídeo e descrição', campos:[
+    {k:'fotos', r:'Fotos', t:'listaFotos', dica:'Nome do arquivo no GitHub. A primeira vira a foto da lista.'},
+    {k:'video', r:'Vídeo no YouTube', t:'texto', confirmavel:'video', dica:'Link normal, youtu.be ou Shorts.'},
+    {k:'texto', r:'Descrição', t:'textoLongo'}
+  ]},
+  {grupo:'Opções de plantas', confirmavel:'plantas', campos:[
+    {k:'plantas', r:'Plantas', t:'listaObj', semRotulo:true, colunas:'g4',
+     sub:[{k:'nome',r:'Nome'},{k:'quartos',r:'Quartos',t:'numero'},
+          {k:'banheiros',r:'Banheiros',t:'numero'},{k:'garagem',r:'Garagem'},
+          {k:'sqft',r:'Sqft',t:'numero'},{k:'preco',r:'A partir de'}]}
+  ]},
+  {grupo:'Ficha técnica', campos:[
+    {k:'ficha.construtora', r:'Construtora', t:'texto', confirmavel:'ficha.construtora'},
+    {k:'ficha.entrega',     r:'Entrega',     t:'texto', confirmavel:'ficha.entrega'},
+    {k:'ficha.status',      r:'Status',      t:'texto', confirmavel:'ficha.status', dica:'Lançamento · Em obras · Pronto'},
+    {k:'ficha.hoa',         r:'HOA por mês', t:'texto', confirmavel:'ficha.hoa'},
+    {k:'ficha.cdd',         r:'CDD',         t:'texto', confirmavel:'ficha.cdd'},
+    {k:'ficha.lotes',       r:'Lotes',       t:'texto', confirmavel:'ficha.lotes'},
+    {k:'ficha.aluguelCurtaTemporada', r:'Aluguel de temporada', t:'tri', confirmavel:'ficha.aluguelCurtaTemporada'},
+    {k:'ficha.endereco',    r:'Endereço',    t:'texto', largura:2, confirmavel:'ficha.endereco'}
+  ]},
+  {grupo:'Comodidades', confirmavel:'comodidades', campos:[
+    {k:'comodidades', r:'Comodidades', t:'listaTexto', semRotulo:true,
+     dica:'Clubhouse, Piscina, Academia, Playground…'}
+  ]},
+  {grupo:'Lojas mais próximas', confirmavel:'lojas', campos:[
+    {k:'lojas', r:'Lojas', t:'listaObj', semRotulo:true, colunas:'g3',
+     sub:[{k:'marca',r:'Marca',dica:'Walmart · Publix · Farmácia'},
+          {k:'nome',r:'Loja',dica:'Escolhe o logo: Walgreens ou CVS'},
+          {k:'minutos',r:'Minutos',t:'numero'}],
+     dica:'O logo sai do nome da loja. Marca fora dessas três aparece como texto.'}
+  ]}
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   LER E ESCREVER CAMPOS ANINHADOS ("ficha.hoa")
+   ═══════════════════════════════════════════════════════════════ */
+function pegar(obj, caminho){
+  return caminho.split('.').reduce((o,k) => (o == null ? undefined : o[k]), obj);
+}
+function por(obj, caminho, valor){
+  const p = caminho.split('.');
+  const ultimo = p.pop();
+  const alvo = p.reduce((o,k) => (o[k] = o[k] || {}), obj);
+  alvo[ultimo] = valor;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONSTRUÇÃO DOS CAMPOS
+   ═══════════════════════════════════════════════════════════════ */
+function estaAConfirmar(obj, chave){
+  return Array.isArray(obj.aConfirmar) && obj.aConfirmar.indexOf(chave) >= 0;
+}
+function confirmar(obj, chave){
+  obj.aConfirmar = (obj.aConfirmar || []).filter(c => c !== chave);
+}
+function seloConfirmar(obj, chave, redesenhar){
+  if(!estaAConfirmar(obj, chave)) return null;
+  const s = el('span','selo-conf');
+  s.innerHTML = 'a confirmar · ';
+  const b = el('button'); b.type = 'button'; b.textContent = 'confirmar';
+  b.onclick = e => { e.preventDefault(); confirmar(obj, chave); marcarSujo(); redesenhar(); };
+  s.appendChild(b);
+  return s;
+}
+
+function entrada(tipo, valor, aoMudar, dica){
+  let n;
+  if(tipo === 'textoLongo'){
+    n = el('textarea','ent'); n.value = valor == null ? '' : valor;
+    n.addEventListener('input', () => aoMudar(n.value));
+  } else if(tipo === 'tri'){
+    n = el('select','ent');
+    [['','—'],['sim','Permitido'],['nao','Não permitido']].forEach(([v,r]) => {
+      const o = el('option'); o.value = v; o.textContent = r; n.appendChild(o);
+    });
+    n.value = valor === true ? 'sim' : valor === false ? 'nao' : '';
+    n.addEventListener('change', () => aoMudar(n.value === '' ? null : n.value === 'sim'));
+  } else {
+    n = el('input','ent');
+    n.type = tipo === 'numero' ? 'number' : 'text';
+    if(tipo === 'numero') n.step = 'any';
+    n.value = valor == null ? '' : valor;
+    n.addEventListener('input', () => {
+      if(tipo === 'numero'){
+        aoMudar(n.value === '' ? null : Number(n.value));
+      } else aoMudar(n.value);
+    });
+  }
+  if(dica) n.placeholder = dica;
+  return n;
+}
+
+function campoSimples(def, obj, redesenhar){
+  const c = el('div','campo');
+  const chaveConf = def.confirmavel;
+  if(chaveConf && estaAConfirmar(obj, chaveConf)) c.classList.add('aconf');
+  if(!def.semRotulo){
+    const l = el('label');
+    l.appendChild(document.createTextNode(def.r));
+    const s = chaveConf && seloConfirmar(obj, chaveConf, redesenhar);
+    if(s) l.appendChild(s);
+    c.appendChild(l);
+  }
+  if(def.t === 'coordenada'){
+    c.appendChild(campoCoordenada(obj, def));
+  } else {
+    const ent = entrada(def.t, pegar(obj, def.k), v => {
+      por(obj, def.k, v); marcarSujo();
+      if(def.aoMudar) def.aoMudar(v, c);
+    });
+    c.appendChild(ent);
+  }
+  if(def.dica){ const d = el('p','dica'); d.textContent = def.dica; c.appendChild(d); }
+  return c;
+}
+
+/* aceita "28.46926, -81.70076" (ordem do Google Maps) e guarda [lng, lat] */
+function campoCoordenada(obj, def){
+  const n = el('input','ent');
+  n.type = 'text';
+  n.placeholder = '28.46926, -81.70076';
+  const p = obj.pin;
+  n.value = Array.isArray(p) && p.length === 2 ? p[1] + ', ' + p[0] : '';
+  const erro = el('p','dica');
+  n.addEventListener('input', () => {
+    const t = n.value.trim();
+    if(!t){ obj.pin = null; erro.textContent = 'Sem pin: o condomínio aparece na lista, mas não no mapa.'; marcarSujo(); return; }
+    const m = t.match(/^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$/);
+    if(!m){ erro.textContent = 'Formato inválido. Cole os dois números como o Google Maps copia.'; return; }
+    const lat = parseFloat(m[1]), lng = parseFloat(m[2]);
+    if(Math.abs(lat) > 90 || Math.abs(lng) > 180){ erro.textContent = 'Fora do intervalo.'; return; }
+    erro.textContent = 'OK — guardado como [' + lng + ', ' + lat + '].';
+    obj.pin = [lng, lat];
+    marcarSujo();
+  });
+  const caixa = el('div');
+  caixa.appendChild(n); caixa.appendChild(erro);
+  return caixa;
+}
+
+function campoListaTexto(def, obj, redesenhar){
+  const c = el('div','campo');
+  const chaveConf = def.confirmavel || (def.semRotulo ? null : null);
+  if(!def.semRotulo || def.r){
+    const l = el('label'); l.appendChild(document.createTextNode(def.r));
+    c.appendChild(l);
+  }
+  const lista = el('div','lista');
+  const arr = pegar(obj, def.k) || [];
+  por(obj, def.k, arr);
+  arr.forEach((v,i) => {
+    const linha = el('div','item-lista');
+    linha.appendChild(entrada('texto', v, nv => { arr[i] = nv; marcarSujo(); }));
+    const rm = el('button','rm'); rm.type = 'button'; rm.innerHTML = ic.lixo; rm.title = 'Remover';
+    rm.onclick = () => { arr.splice(i,1); marcarSujo(); redesenhar(); };
+    linha.appendChild(rm);
+    lista.appendChild(linha);
+  });
+  const add = el('button','add'); add.type = 'button';
+  add.innerHTML = ic.mais + '<span>Acrescentar</span>';
+  add.onclick = () => { arr.push(''); marcarSujo(); redesenhar(); };
+  lista.appendChild(add);
+  c.appendChild(lista);
+  if(def.dica){ const d = el('p','dica'); d.textContent = def.dica; c.appendChild(d); }
+  return c;
+}
+
+function campoListaFotos(def, obj, redesenhar){
+  const c = el('div','campo');
+  if(!def.semRotulo || def.r){
+    const l = el('label'); l.appendChild(document.createTextNode(def.r));
+    c.appendChild(l);
+  }
+  const lista = el('div','lista');
+  const arr = pegar(obj, def.k) || [];
+  por(obj, def.k, arr);
+
+  const mkBt = (html, titulo, acao, desativado) => {
+    const b = el('button','ferr'); b.type = 'button'; b.innerHTML = html; b.title = titulo;
+    b.disabled = !!desativado;
+    b.onclick = () => acao();
+    return b;
+  };
+
+  arr.forEach((v,i) => {
+    const estado = estadoIA(arr, v);
+    const linha = el('div','item-foto' + (estado ? ' ' + estado : ''));
+
+    const mw = el('div','foto-mini-wrap');
+    const mini = el('img','foto-mini'); mini.alt = '';
+    const atualiza = () => { const val = arr[i]; mini.src = val ? img(val) : ''; mini.classList.toggle('vazia', !val); };
+    atualiza();
+    mini.onerror = () => mini.classList.add('vazia');
+    mini.onload  = () => mini.classList.remove('vazia');
+    mini.onclick = () => previaFoto(arr[i]);
+    mw.appendChild(mini);
+    const selo = el('span','foto-selo');
+    selo.title = estado === 'processando' ? 'Sendo tratada pela IA…' : estado === 'tratada' ? 'Já tratada pela IA nesta sessão' : '';
+    selo.innerHTML = estado === 'processando' ? ic.carregando : estado === 'tratada' ? ic.check : '';
+    mw.appendChild(selo);
+    linha.appendChild(mw);
+
+    const ent = entrada('texto', v, nv => { arr[i] = nv; marcarSujo(); atualiza(); });
+    ent.placeholder = 'nome-do-arquivo.jpg';
+    linha.appendChild(ent);
+
+    const ferr = el('div','item-foto-bt');
+    ferr.appendChild(mkBt(ic.cima, 'Subir', () => {
+      if(i>0){ const t=arr[i-1]; arr[i-1]=arr[i]; arr[i]=t; marcarSujo(); redesenhar(); }
+    }, i===0));
+    ferr.appendChild(mkBt(ic.baixo, 'Descer', () => {
+      if(i<arr.length-1){ const t=arr[i+1]; arr[i+1]=arr[i]; arr[i]=t; marcarSujo(); redesenhar(); }
+    }, i===arr.length-1));
+    ferr.appendChild(mkBt(
+      ic.varinha,
+      estado === 'processando' ? 'Processando…' : 'Tratar com IA',
+      () => tratarFotoIA(alvoLista(arr, i, redesenhar)),
+      estado === 'processando'
+    ));
+    ferr.appendChild(mkBt(ic.lixo, 'Remover', () => { arr.splice(i,1); marcarSujo(); redesenhar(); }));
+    linha.appendChild(ferr);
+
+    lista.appendChild(linha);
+  });
+
+  const rodape = el('div','fotos-rodape');
+  const add = el('button','add'); add.type = 'button';
+  add.innerHTML = ic.mais + '<span>Acrescentar</span>';
+  add.onclick = () => { arr.push(''); marcarSujo(); redesenhar(); };
+  rodape.appendChild(add);
+  if(arr.length > 1){
+    const inv = el('button','add'); inv.type = 'button';
+    inv.innerHTML = ic.inverter + '<span>Inverter ordem</span>';
+    inv.onclick = () => { arr.reverse(); marcarSujo(); redesenhar(); };
+    rodape.appendChild(inv);
+  }
+  lista.appendChild(rodape);
+  c.appendChild(lista);
+  if(def.dica){ const d = el('p','dica'); d.textContent = def.dica; c.appendChild(d); }
+
+  const zona = el('div','zona-solta');
+  const inputArq = el('input'); inputArq.type = 'file'; inputArq.accept = 'image/*'; inputArq.multiple = true;
+  inputArq.style.display = 'none';
+  zona.innerHTML = ic.upload + '<p>Arraste fotos aqui, ou clique pra escolher — sobem direto pro GitHub</p>';
+  zona.appendChild(inputArq);
+  zona.onclick = () => inputArq.click();
+  inputArq.onchange = () => { if(inputArq.files.length) subirFotos(alvoLista(arr, null, redesenhar), Array.from(inputArq.files), zona); inputArq.value = ''; };
+  zona.ondragover = e => { e.preventDefault(); zona.classList.add('sobre'); };
+  zona.ondragleave = () => zona.classList.remove('sobre');
+  zona.ondrop = e => {
+    e.preventDefault(); zona.classList.remove('sobre');
+    const arquivos = Array.from((e.dataTransfer && e.dataTransfer.files) || []).filter(f => /^image\//.test(f.type));
+    if(arquivos.length) subirFotos(alvoLista(arr, null, redesenhar), arquivos, zona);
+  };
+  c.appendChild(zona);
+
+  return c;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOTO ÚNICA (foto principal da região) — mesma ideia da galeria
+   acima, só que sem reordenar e sem acrescentar: cabe uma só.
+   ═══════════════════════════════════════════════════════════════ */
+function campoFotoCapa(def, obj, redesenhar){
+  const c = el('div','campo');
+  const l = el('label'); l.appendChild(document.createTextNode(def.r));
+  c.appendChild(l);
+
+  const alvo = alvoUnico(obj, def.k, redesenhar);
+  const v = alvo.valor();
+  const estado = estadoIA(alvo.chaveEstado(), v);
+
+  const mkBt = (html, titulo, acao, desativado) => {
+    const b = el('button','ferr'); b.type = 'button'; b.innerHTML = html; b.title = titulo;
+    b.disabled = !!desativado;
+    b.onclick = () => acao();
+    return b;
+  };
+
+  const lista = el('div','lista');
+  const linha = el('div','item-foto' + (estado ? ' ' + estado : ''));
+
+  const mw = el('div','foto-mini-wrap');
+  const mini = el('img','foto-mini'); mini.alt = '';
+  const atualiza = () => { const val = alvo.valor(); mini.src = val ? img(val) : ''; mini.classList.toggle('vazia', !val); };
+  atualiza();
+  mini.onerror = () => mini.classList.add('vazia');
+  mini.onload  = () => mini.classList.remove('vazia');
+  mini.onclick = () => previaFoto(alvo.valor());
+  mw.appendChild(mini);
+  const selo = el('span','foto-selo');
+  selo.title = estado === 'processando' ? 'Sendo tratada pela IA…' : estado === 'tratada' ? 'Já tratada pela IA nesta sessão' : '';
+  selo.innerHTML = estado === 'processando' ? ic.carregando : estado === 'tratada' ? ic.check : '';
+  mw.appendChild(selo);
+  linha.appendChild(mw);
+
+  const ent = entrada('texto', v, nv => { por(obj, def.k, nv || null); marcarSujo(); atualiza(); });
+  ent.placeholder = 'nome-do-arquivo.jpg';
+  linha.appendChild(ent);
+
+  const ferr = el('div','item-foto-bt');
+  ferr.appendChild(mkBt(
+    ic.varinha,
+    estado === 'processando' ? 'Processando…' : 'Tratar com IA',
+    () => tratarFotoIA(alvo),
+    estado === 'processando'
+  ));
+  ferr.appendChild(mkBt(ic.lixo, 'Remover', () => { alvo.remover(); marcarSujo(); redesenhar(); }));
+  linha.appendChild(ferr);
+  lista.appendChild(linha);
+  c.appendChild(lista);
+  if(def.dica){ const d = el('p','dica'); d.textContent = def.dica; c.appendChild(d); }
+
+  /* enquadramento (corteFoto): cada foto tem um tamanho e proporção diferentes — o mesmo
+     zoom que ficava perfeito numa foto vertical estreita mostra só um pedacinho de uma
+     foto larga. Prévia aproximada aqui (o "Pré-visualizar" lá em cima é o valor exato). */
+  if(v){
+    /* mesmas regras do mapa: a caixa da região tem a mesma ALTURA da foto do
+       condomínio, e como a coluna é mais estreita (397 contra 420), a proporção
+       dela fica em 16/9 × 397/420. Cartão antigo (imagem em pé) é aproximado
+       o bastante pra mostrar só a faixa de foto do topo. */
+    const FAIXA_FOTO_CARTAO = 0.19;
+    const PROP_CAIXA_REGIAO = (16/9) * (397/420);
+    const boxCorte = el('div'); boxCorte.style.cssText = 'margin-top:10px;';
+    const rotuloCorte = el('label');
+    rotuloCorte.style.cssText = 'display:block;font-size:13.12px;font-weight:600;color:var(--tinta2);margin-bottom:6px;';
+    rotuloCorte.textContent = 'Enquadramento no card da região';
+    boxCorte.appendChild(rotuloCorte);
+
+    /* a prévia usa a MESMA regra do mapa: foto deitada aparece inteira,
+       cartão em pé mostra só a faixa de foto do topo (19% da altura) */
+    const caixa = el('div');
+    caixa.style.cssText = 'overflow:hidden;border-radius:10px;background:var(--fundo);position:relative;';
+    const imgCorte = el('img'); imgCorte.alt = '';
+    imgCorte.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;max-width:none;' +
+                             'object-fit:cover;display:block;';
+    caixa.appendChild(imgCorte);
+    boxCorte.appendChild(caixa);
+
+    /* posição guardada como "x% y%", igual ao object-position do CSS */
+    const lerPos = () => {
+      const p = String(pegar(obj,'posFoto') || '50% 0%').match(/(-?\d+(?:\.\d+)?)%\s+(-?\d+(?:\.\d+)?)%/);
+      return p ? {x:parseFloat(p[1]), y:parseFloat(p[2])} : {x:50, y:0};
+    };
+    let pos  = lerPos();
+    const limita = n => Math.max(0, Math.min(100, n));
+    /* zoom que o mapa aplica sozinho pra esconder o texto do cartão antigo */
+    const zoomAutomatico = () => {
+      if(!imgCorte.naturalWidth) return 1;
+      const r = imgCorte.naturalWidth / imgCorte.naturalHeight;
+      return r < 1 ? Math.max(1, (r / PROP_CAIXA_REGIAO) / FAIXA_FOTO_CARTAO) : 1;
+    };
+    let zoom = parseFloat(pegar(obj,'zoomFoto')) || null;   // null = usar o automático
+
+    const pintaPrevia = () => {
+      const ancora = pos.x + '% ' + pos.y + '%';
+      const zoomEfetivo = zoom || zoomAutomatico();
+      imgCorte.style.objectPosition  = ancora;
+      imgCorte.style.transform       = 'scale(' + zoomEfetivo + ')';
+      imgCorte.style.transformOrigin = ancora;
+      /* caixa de tamanho fixo, igual à do condomínio — não depende da foto */
+      caixa.style.aspectRatio = String(PROP_CAIXA_REGIAO);
+      if(imgCorte.naturalWidth){
+        const r = imgCorte.naturalWidth / imgCorte.naturalHeight;
+        /* Só faz sentido mover no eixo em que a foto sobra da caixa. Com
+           object-fit:cover: se a foto é mais "deitada" que a caixa, ela sobra
+           na largura; se é mais "em pé", sobra na altura. Com zoom, sobra nos dois. */
+        const temZoom = zoomEfetivo > 1.001;
+        const sobraHorizontal = r > PROP_CAIXA_REGIAO + 0.01 || temZoom;
+        const sobraVertical   = r < PROP_CAIXA_REGIAO - 0.01 || temZoom;
+        btCima.disabled = btBaixo.disabled = !sobraVertical;
+        btEsq.disabled  = btDir.disabled   = !sobraHorizontal;
+        aviso.textContent = (!sobraVertical && !sobraHorizontal)
+          ? 'Esta foto já preenche o card sem sobra. Dê zoom se quiser aproximar.'
+          : '';
+        rotuloZoom.textContent = 'Zoom: ' + zoomEfetivo.toFixed(2) + '×' +
+          (zoom ? '' : ' (automático)');
+        if(sliderZoom.value !== String(zoomEfetivo)) sliderZoom.value = zoomEfetivo;
+      }
+    };
+    const mover = (dx, dy) => {
+      pos = {x: limita(pos.x + dx), y: limita(pos.y + dy)};
+      por(obj, 'posFoto', pos.x + '% ' + pos.y + '%');
+      marcarSujo();
+      pintaPrevia();
+    };
+
+    const setinha = (icone, titulo, acao) => {
+      const b = el('button','ferr'); b.type = 'button'; b.innerHTML = icone; b.title = titulo;
+      b.onclick = () => acao();
+      return b;
+    };
+    const btCima  = setinha(ic.cima,     'Subir a foto',    () => mover(0, -5));
+    const btBaixo = setinha(ic.baixo,    'Descer a foto',   () => mover(0,  5));
+    const btEsq   = setinha(ic.esquerda, 'Mover pra esquerda', () => mover(-5, 0));
+    const btDir   = setinha(ic.direita,  'Mover pra direita',  () => mover( 5, 0));
+    const btCentro= setinha(ic.centro,   'Voltar ao padrão', () => {
+      pos = {x:50, y:0}; zoom = null;          /* volta pro zoom automático */
+      por(obj,'posFoto', null); por(obj,'zoomFoto', null);
+      marcarSujo(); pintaPrevia();
+    });
+
+    /* zoom: 1 = foto preenchendo a área inteira (padrão). Acima disso, aproxima. */
+    const rotuloZoom = el('label');
+    rotuloZoom.style.cssText = 'display:block;font-size:13.12px;font-weight:600;color:var(--tinta2);margin:12px 0 4px;';
+    const sliderZoom = el('input');
+    sliderZoom.type = 'range'; sliderZoom.min = '1'; sliderZoom.max = '3'; sliderZoom.step = '0.02';
+    sliderZoom.style.cssText = 'width:100%;';
+    sliderZoom.addEventListener('input', () => {
+      zoom = parseFloat(sliderZoom.value);
+      por(obj, 'zoomFoto', zoom);
+      marcarSujo();
+      pintaPrevia();
+    });
+
+    const cruz = el('div');
+    cruz.style.cssText = 'display:grid;grid-template-columns:repeat(3,30px);grid-auto-rows:30px;' +
+                         'gap:4px;justify-content:start;margin-top:10px;';
+    const vazio = () => { const d = el('div'); return d; };
+    cruz.append(vazio(), btCima, vazio(), btEsq, btCentro, btDir, vazio(), btBaixo, vazio());
+
+    const btSalvar = el('button','bt bt-verde'); btSalvar.type = 'button';
+    btSalvar.textContent = 'Salvar';
+    btSalvar.style.cssText = 'height:34px;padding:0 18px;';
+    btSalvar.onclick = () => {
+      const repo  = ler(CHAVE_REPO)  || CONFIG.repo;
+      const token = ler(CHAVE_TOKEN) || '';
+      if(!token){ $('#btPublicar').click(); return; }   /* sem token: cai no fluxo normal */
+      publicar(repo, token, 'Ajusta enquadramento da foto de ' + (obj.nome || 'uma região'));
+    };
+
+    const linhaControles = el('div');
+    linhaControles.style.cssText = 'display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;';
+    linhaControles.append(cruz, btSalvar);
+    boxCorte.appendChild(linhaControles);
+    boxCorte.appendChild(rotuloZoom);
+    boxCorte.appendChild(sliderZoom);
+
+    const aviso = el('p','dica'); aviso.style.marginTop = '6px';
+    boxCorte.appendChild(aviso);
+
+    const dicaCorte = el('p','dica');
+    dicaCorte.textContent = 'A foto já entra preenchendo a área toda, sem deformar. O zoom aproxima ' +
+      'a partir daí, e as setas escolhem que parte aparece (5% por clique). O botão do meio volta ' +
+      'ao padrão e "Salvar" publica a mudança.';
+    boxCorte.appendChild(dicaCorte);
+
+    imgCorte.addEventListener('load', pintaPrevia);
+    imgCorte.src = img(v);
+    if(imgCorte.complete) pintaPrevia();
+
+    c.appendChild(boxCorte);
+  }
+
+  const zona = el('div','zona-solta');
+  const inputArq = el('input'); inputArq.type = 'file'; inputArq.accept = 'image/*';
+  inputArq.style.display = 'none';
+  zona.innerHTML = ic.upload + '<p>Arraste uma foto aqui, ou clique pra escolher — sobe direto pro GitHub' +
+    (v ? ' e substitui a atual' : '') + '</p>';
+  zona.appendChild(inputArq);
+  zona.onclick = () => inputArq.click();
+  const subirUmaFoto = arquivos => {
+    if(!arquivos.length) return;
+    if(arquivos.length > 1) avisar('Esse campo aceita uma foto só — usei a primeira.', 4200);
+    subirFotos(alvo, [arquivos[0]], zona);
+  };
+  inputArq.onchange = () => { subirUmaFoto(Array.from(inputArq.files)); inputArq.value = ''; };
+  zona.ondragover = e => { e.preventDefault(); zona.classList.add('sobre'); };
+  zona.ondragleave = () => zona.classList.remove('sobre');
+  zona.ondrop = e => {
+    e.preventDefault(); zona.classList.remove('sobre');
+    const arquivos = Array.from((e.dataTransfer && e.dataTransfer.files) || []).filter(f => /^image\//.test(f.type));
+    subirUmaFoto(arquivos);
+  };
+  c.appendChild(zona);
+
+  return c;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TRATAR FOTO COM IA (OpenAI gpt-image-2 — mesma chave do portal
+   e do gerador de vídeos Maqueli Flórida)
+   ═══════════════════════════════════════════════════════════════ */
+const CHAVE_OPENAI = 'mapaCF.openaiKey';
+const PROMPT_IA_FOTO = 'Recrie essa imagem mudando ligeiramente seu ângulo e fazendo um charmoso toque de ' +
+  'golden hour sem escurecer a fachada do prédio. Faça um pouco de zoom out deixando um pouco mais de borda ' +
+  'na imagem. Apague qualquer pessoa na foto. O resultado deve ser uma foto linda e deslumbrante pra uma revista.';
+
+/* tamanho suportado pelo gpt-image-2 mais parecido com a orientação da foto original
+   ('auto' deixa o modelo escolher e ele às vezes devolve retrato pra uma foto paisagem) */
+function tamanhoParaImagem(blob){
+  return new Promise(resolve => {
+    const url = URL.createObjectURL(blob);
+    const im = new Image();
+    const acabou = tam => { URL.revokeObjectURL(url); resolve(tam); };
+    im.onload = () => {
+      const r = im.naturalWidth / (im.naturalHeight || 1);
+      acabou(r > 1.15 ? '1536x1024' : r < 0.87 ? '1024x1536' : '1024x1024');
+    };
+    im.onerror = () => acabou('1536x1024'); // a maioria das fotos de fachada é paisagem
+    im.src = url;
+  });
+}
+
+function previaFoto(v){
+  if(!v) return;
+  const corpo = el('div');
+  const im = el('img'); im.alt = '';
+  im.style.cssText = 'width:100%;border-radius:10px;display:block;background:var(--fundo);min-height:120px;';
+  im.onerror = () => {
+    corpo.textContent = '';
+    const p = el('p'); p.textContent = 'Não consegui carregar esta imagem. Confira se o arquivo já está no GitHub.';
+    corpo.appendChild(p);
+  };
+  im.src = img(v);
+  corpo.appendChild(im);
+  dialogo({titulo:v, corpo:corpo, confirmar:'Fechar', semCancelar:true});
+}
+
+function tratarFotoIA(alvo){
+  const v = alvo.valor();
+  if(!v){ avisar('Essa foto ainda não tem um arquivo definido.'); return; }
+  if(estadoIA(alvo.chaveEstado(), v) === 'processando'){ avisar('Essa foto já está sendo tratada.'); return; }
+  const corpo = el('div');
+  corpo.innerHTML =
+    '<div class="nota">Chave da OpenAI — a mesma usada no portal e no gerador de vídeos Maqueli Flórida. ' +
+    'Fica guardada só neste navegador, nunca é enviada pra mim nem pra outro lugar — só direto pra OpenAI.</div>' +
+    '<div class="campo"><label>Chave da OpenAI</label>' +
+    '<input class="ent" id="dChaveIA" type="password" placeholder="sk-…" autocomplete="off"></div>' +
+    '<div class="campo"><label>O que você quer pedir</label>' +
+    '<textarea class="ent" id="dPromptIA" rows="5"></textarea>' +
+    '<p class="dica">O gpt-4o olha a foto de verdade e escreve um prompt específico pra ela a partir ' +
+    'disso — só depois esse prompt mais detalhado vai pro gerador de imagem. Pode ajustar o texto abaixo.</p></div>';
+  dialogo({
+    titulo:'Tratar "' + v + '" com IA',
+    texto:'Duas chamadas: o gpt-4o olha a foto e escreve um prompt específico, e o gpt-image-2 gera a versão nova a partir dele.',
+    confirmar:'Tratar agora',
+    corpo:corpo,
+    aoConfirmar:() => {
+      const chave  = ($('#dChaveIA')  || {}).value || '';
+      const prompt = ($('#dPromptIA') || {}).value || PROMPT_IA_FOTO;
+      if(!chave){ avisar('Cole a chave da OpenAI primeiro.', 4200); return; }
+      guardar(CHAVE_OPENAI, chave);
+      executarTratamentoIA(alvo, chave, prompt);
+    }
+  });
+  setTimeout(() => {
+    const k = $('#dChaveIA');  if(k) k.value = ler(CHAVE_OPENAI) || '';
+    const p = $('#dPromptIA'); if(p) p.value = PROMPT_IA_FOTO;
+  }, 0);
+}
+
+function blobParaDataURL(blob){
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload  = () => resolve(String(r.result));
+    r.onerror = () => reject(new Error('não consegui ler a foto'));
+    r.readAsDataURL(blob);
+  });
+}
+
+/* olha a foto de verdade e escreve um prompt específico pra ela — é o passo que falta
+   pra chegar perto do resultado de tratar a foto direto no ChatGPT */
+async function escreverPromptRico(chave, dataUrl, objetivo){
+  const r = await fetch('https://api.openai.com/v1/chat/completions', {
+    method:'POST',
+    headers:{'Authorization':'Bearer ' + chave, 'Content-Type':'application/json'},
+    body: JSON.stringify({
+      model:'gpt-4o',
+      max_tokens: 400,
+      messages: [{
+        role:'user',
+        content:[
+          {type:'text', text:'Você é diretor de arte de fotografia imobiliária. Olhe a foto anexada e escreva, ' +
+            'em português, um prompt de edição de imagem específico e detalhado — cite o que você realmente vê ' +
+            'nela (elementos, cores, ângulo, luz atual) — pra um editor de imagens atingir este objetivo: "' +
+            objetivo + '". Devolva só o prompt final, direto, sem explicação nem aspas.'},
+          {type:'image_url', image_url:{url:dataUrl}}
+        ]
+      }]
+    })
+  });
+  const j = await r.json().catch(() => null);
+  if(!r.ok || !j || !j.choices || !j.choices[0]){
+    throw new Error((j && j.error && j.error.message) || ('erro ' + r.status));
+  }
+  return j.choices[0].message.content.trim();
+}
+
+async function executarTratamentoIA(alvo, chave, objetivo){
+  const v = alvo.valor();
+  const chaveEstado = alvo.chaveEstado();
+  marcaIA(chaveEstado, v, 'processando');
+  alvo.redesenhar();
+  try{
+    avisar('Baixando "' + v + '"…', 15000);
+    const origem = await fetch(img(v));
+    if(!origem.ok) throw new Error('não consegui baixar a foto original (' + origem.status + ')');
+    const blob = await origem.blob();
+
+    avisar('O gpt-4o está olhando a foto e escrevendo um prompt específico pra ela…', 30000);
+    const promptRico = await escreverPromptRico(chave, await blobParaDataURL(blob), objetivo);
+
+    avisar('Gerando a imagem tratada… mais uns 20 a 40 segundos.', 45000);
+    const fd = new FormData();
+    fd.append('model', 'gpt-image-2');
+    fd.append('image', blob, v);
+    fd.append('prompt', promptRico);
+    fd.append('size', await tamanhoParaImagem(blob));
+    fd.append('quality', 'high');
+    const r = await fetch('https://api.openai.com/v1/images/edits', {
+      method:'POST',
+      headers:{'Authorization':'Bearer ' + chave},
+      body:fd
+    });
+    const j = await r.json().catch(() => null);
+    if(!r.ok || !j || !j.data || !j.data[0]){
+      throw new Error((j && j.error && j.error.message) || ('erro ' + r.status));
+    }
+    marcaIA(chaveEstado, v, 'tratada');
+    mostraResultadoIA(alvo, j.data[0].b64_json, promptRico);
+    avisar('Pronto! Confira o resultado.', 3000);
+  }catch(e){
+    marcaIA(chaveEstado, v, null);
+    avisar('Não deu: ' + e.message, 7000);
+  }finally{
+    alvo.redesenhar();
+  }
+}
+
+function mostraResultadoIA(alvo, b64, promptUsado){
+  const vOriginal = alvo.valor();
+  const src = 'data:image/png;base64,' + b64;
+  const nomeNovo = (vOriginal.replace(/\.[a-zA-Z0-9]+$/, '') || 'foto') + '-ia.png';
+  const corpo = el('div','resultado-ia');
+  const im = el('img'); im.src = src; im.alt = '';
+  corpo.appendChild(im);
+
+  const linhaBt = el('div'); linhaBt.style.cssText = 'display:flex;gap:8px;';
+  const salvar = el('button','bt bt-verde'); salvar.type = 'button';
+  salvar.style.cssText = 'flex:1;justify-content:center;';
+  salvar.textContent = 'Salvar no GitHub';
+  salvar.onclick = async () => {
+    let repo = ler(CHAVE_REPO) || CONFIG.repo, token = ler(CHAVE_TOKEN) || '';
+    if(!token){
+      const cred = await pedirTokenGitHub();
+      if(!cred) return;
+      repo = cred.repo; token = cred.token;
+    }
+    salvar.disabled = true; salvar.textContent = 'Salvando…';
+    try{
+      await salvarFotoNoGitHub(repo, token, nomeNovo, b64, alvo.jaContem(nomeNovo));
+      alvo.adicionar(nomeNovo);
+      marcarSujo();
+      fecharDialogo();
+      alvo.redesenhar();
+      avisar('Salvo como "' + nomeNovo + '". Falta só "Publicar" pra ela aparecer no mapa no ar.', 6000);
+    }catch(e){
+      avisar('Não salvei no GitHub: ' + e.message, 7000);
+      salvar.disabled = false; salvar.textContent = 'Salvar no GitHub';
+    }
+  };
+  linhaBt.appendChild(salvar);
+
+  const baixar = el('button','bt bt-claro'); baixar.type = 'button';
+  baixar.style.cssText = 'flex:1;justify-content:center;';
+  baixar.textContent = 'Baixar';
+  baixar.onclick = () => { const a = el('a'); a.href = src; a.download = nomeNovo; a.click(); };
+  linhaBt.appendChild(baixar);
+  corpo.appendChild(linhaBt);
+
+  const nota = el('p','dica'); nota.style.marginTop = '10px';
+  nota.textContent = '"Salvar no GitHub" sobe como um arquivo novo (não mexe na foto original) e já entra na galeria dessa foto.';
+  corpo.appendChild(nota);
+
+  if(promptUsado){
+    const rotulo = el('p'); rotulo.style.cssText = 'font-size:13.12px;font-weight:600;color:var(--tinta2);margin:14px 0 4px;';
+    rotulo.textContent = 'Prompt que o gpt-4o escreveu pra essa foto:';
+    corpo.appendChild(rotulo);
+    const pr = el('p'); pr.style.cssText = 'background:var(--fundo);border-radius:var(--r-sm);padding:10px 12px;' +
+      'font-size:13.12px;line-height:1.5;color:var(--tinta2);white-space:pre-wrap;';
+    pr.textContent = promptUsado;
+    corpo.appendChild(pr);
+  }
+
+  dialogo({titulo:'Resultado da IA', corpo:corpo, confirmar:'Fechar', semCancelar:true});
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SUBIR FOTOS PRO GITHUB — usado pelo resultado da IA e pela
+   zona de arrastar-e-soltar no fim da galeria
+   ═══════════════════════════════════════════════════════════════ */
+function pedirTokenGitHub(){
+  return new Promise(resolve => {
+    const corpo = el('div');
+    corpo.innerHTML =
+      '<div class="nota">Mesmo token usado em "Publicar" — fica só neste navegador.</div>' +
+      '<div class="campo"><label>Repositório</label>' +
+      '<input class="ent" id="dRepo2" placeholder="usuario/repositorio"></div>' +
+      '<div class="campo"><label>Token do GitHub</label>' +
+      '<input class="ent" id="dToken2" type="password" placeholder="github_pat_…" autocomplete="off"></div>';
+    dialogo({
+      titulo:'Token do GitHub',
+      texto:'Preciso de um token com permissão de escrita nesse repositório pra subir a foto.',
+      confirmar:'Salvar e continuar',
+      corpo:corpo,
+      aoConfirmar:() => {
+        const repo  = ($('#dRepo2')  || {}).value || CONFIG.repo;
+        const token = ($('#dToken2') || {}).value || '';
+        if(!token){ avisar('Sem token não dá pra subir a foto.', 4200); resolve(null); return; }
+        guardar(CHAVE_REPO, repo);
+        guardar(CHAVE_TOKEN, token);
+        resolve({repo, token});
+      },
+      aoCancelar:() => resolve(null)
+    });
+    setTimeout(() => {
+      const r = $('#dRepo2'), t = $('#dToken2');
+      if(r) r.value = ler(CHAVE_REPO) || CONFIG.repo;
+      if(t) t.value = ler(CHAVE_TOKEN) || '';
+    }, 0);
+  });
+}
+
+/* base64 (sem o prefixo data:) — é o formato que a API de conteúdo do GitHub espera */
+function arquivoParaBase64(file){
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload  = () => resolve(String(r.result).split(',')[1] || '');
+    r.onerror = () => reject(new Error('não consegui ler o arquivo'));
+    r.readAsDataURL(file);
+  });
+}
+
+function sanitizaNomeArquivo(nome){
+  const pt = nome.lastIndexOf('.');
+  const baseCrua = pt > 0 ? nome.slice(0, pt) : nome;
+  const ext = (pt > 0 ? nome.slice(pt+1) : 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+  const base = baseCrua.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return (base || 'foto') + '.' + ext;
+}
+function nomeUnicoGitHub(nome){
+  const pt = nome.lastIndexOf('.');
+  const sufixo = Math.random().toString(36).slice(2, 6);
+  return pt > 0 ? nome.slice(0, pt) + '-' + sufixo + nome.slice(pt) : nome + '-' + sufixo;
+}
+
+/* sobe um arquivo (base64) pro repositório. Se já existir um arquivo com esse nome e
+   permiteSobrescrever for falso, não escreve — devolve {colisao:true} pro chamador escolher outro nome.
+   Isso evita que a foto de um condomínio apague sem querer a de outro só por coincidência de nome. */
+async function salvarFotoNoGitHub(repo, token, nomeArquivo, base64, permiteSobrescrever){
+  const url = 'https://api.github.com/repos/' + repo + '/contents/' + nomeArquivo;
+  const cab = {'Authorization':'Bearer ' + token, 'Accept':'application/vnd.github+json'};
+  const atual = await fetch(url + '?ref=' + CONFIG.ramo, {headers:cab, cache:'no-cache'});
+  let sha = null;
+  if(atual.ok){
+    if(!permiteSobrescrever) return {colisao:true};
+    sha = (await atual.json()).sha;
+  } else if(atual.status === 401 || atual.status === 403){
+    throw new Error('token recusado (' + atual.status + ')');
+  }
+  const corpo = {message:'admin: foto ' + nomeArquivo, branch:CONFIG.ramo, content:base64};
+  if(sha) corpo.sha = sha;
+  const r = await fetch(url, {method:'PUT', headers:cab, body:JSON.stringify(corpo)});
+  if(!r.ok){
+    const e = await r.json().catch(() => ({}));
+    throw new Error(e.message || ('erro ' + r.status));
+  }
+  return {colisao:false};
+}
+
+async function subirFotos(alvo, arquivos, zona){
+  let repo = ler(CHAVE_REPO) || CONFIG.repo, token = ler(CHAVE_TOKEN) || '';
+  if(!token){
+    const cred = await pedirTokenGitHub();
+    if(!cred) return;
+    repo = cred.repo; token = cred.token;
+  }
+  zona.classList.add('enviando');
+  let ok = 0;
+  for(let idx = 0; idx < arquivos.length; idx++){
+    const file = arquivos[idx];
+    avisar('Subindo ' + (idx+1) + ' de ' + arquivos.length + ': ' + file.name + '…', 20000);
+    try{
+      const base64 = await arquivoParaBase64(file);
+      let nome = sanitizaNomeArquivo(file.name);
+      let res = await salvarFotoNoGitHub(repo, token, nome, base64, alvo.jaContem(nome));
+      if(res.colisao){
+        nome = nomeUnicoGitHub(nome);
+        await salvarFotoNoGitHub(repo, token, nome, base64, false);
+      }
+      alvo.adicionar(nome);
+      ok++;
+    }catch(e){
+      avisar('Falhou "' + file.name + '": ' + e.message, 6000);
+    }
+  }
+  zona.classList.remove('enviando');
+  marcarSujo();
+  alvo.redesenhar();
+  avisar(ok + ' de ' + arquivos.length + ' foto(s) enviada(s) pro GitHub.', 5000);
+}
+
+function campoListaObj(def, obj, redesenhar){
+  const c = el('div','campo');
+  if(!def.semRotulo){ const l = el('label'); l.textContent = def.r; c.appendChild(l); }
+  const lista = el('div','lista');
+  const arr = pegar(obj, def.k) || [];
+  por(obj, def.k, arr);
+  arr.forEach((linhaObj,i) => {
+    const linha = el('div','item-lista');
+    const g = el('div','grade ' + (def.colunas || 'g2'));
+    def.sub.forEach(s => {
+      const cel = el('div');
+      const lb = el('label'); lb.textContent = s.r; lb.style.fontSize = '13.12px'; lb.style.marginBottom = '3px';
+      cel.appendChild(lb);
+      cel.appendChild(entrada(s.t || 'texto', linhaObj[s.k], v => { linhaObj[s.k] = v; marcarSujo(); }, s.dica));
+      g.appendChild(cel);
+    });
+    linha.appendChild(g);
+    const rm = el('button','rm'); rm.type = 'button'; rm.innerHTML = ic.lixo; rm.title = 'Remover';
+    rm.style.marginTop = '18px';
+    rm.onclick = () => { arr.splice(i,1); marcarSujo(); redesenhar(); };
+    linha.appendChild(rm);
+    lista.appendChild(linha);
+  });
+  const add = el('button','add'); add.type = 'button';
+  add.innerHTML = ic.mais + '<span>Acrescentar</span>';
+  add.onclick = () => { const novo = {}; def.sub.forEach(s => novo[s.k] = ''); arr.push(novo); marcarSujo(); redesenhar(); };
+  lista.appendChild(add);
+  c.appendChild(lista);
+  if(def.dica){ const d = el('p','dica'); d.textContent = def.dica; c.appendChild(d); }
+  return c;
+}
+
+function montaGrupos(defs, obj, redesenhar){
+  const frag = document.createDocumentFragment();
+  defs.forEach(g => {
+    const cartao = el('div','cartao');
+    const h = el('h3');
+    h.appendChild(document.createTextNode(g.grupo));
+    const s = g.confirmavel && seloConfirmar(obj, g.confirmavel, redesenhar);
+    if(s) h.appendChild(s);
+    cartao.appendChild(h);
+    const tiposLista = ['listaTexto','listaObj','listaFotos','fotoCapa'];
+    const simples = g.campos.filter(f => tiposLista.indexOf(f.t) < 0);
+    const listas  = g.campos.filter(f => tiposLista.indexOf(f.t) >= 0);
+    if(simples.length){
+      const grade = el('div','grade g2');
+      simples.forEach(f => {
+        const cel = campoSimples(f, obj, redesenhar);
+        if(f.largura === 2) cel.style.gridColumn = '1 / -1';
+        grade.appendChild(cel);
+      });
+      cartao.appendChild(grade);
+    }
+    listas.forEach(f => cartao.appendChild(
+      f.t === 'listaTexto' ? campoListaTexto(f, obj, redesenhar) :
+      f.t === 'listaFotos' ? campoListaFotos(f, obj, redesenhar) :
+      f.t === 'fotoCapa'   ? campoFotoCapa(f, obj, redesenhar) :
+      campoListaObj(f, obj, redesenhar)));
+    frag.appendChild(cartao);
+  });
+  return frag;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TELAS
+   ═══════════════════════════════════════════════════════════════ */
+function desenhaRegioes(){
+  const lista = $('#listaRegioes');
+  lista.textContent = '';
+  DADOS.regioes.forEach((r,i) => {
+    const pendencias = contaPendencias(r);
+    const b = el('button', 'rg' + (i === iRegiao ? ' on' : ''));
+    b.type = 'button';
+    b.innerHTML = '<span class="rg-txt"><span class="rg-nome"></span><span class="rg-sub"></span></span>';
+    b.querySelector('.rg-nome').textContent = r.nome;
+    b.querySelector('.rg-sub').textContent =
+      r.condominios.length + (r.condominios.length === 1 ? ' condomínio' : ' condomínios');
+    if(pendencias){ const p = el('span','rg-alerta'); p.title = pendencias + ' campo(s) a confirmar'; b.appendChild(p); }
+    b.onclick = () => { iRegiao = i; abertos = {}; desenha(); };
+    lista.appendChild(b);
+  });
+}
+
+function todasAsChaves(o){ return (o.aConfirmar||[]).slice(); }
+function confirmarTudo(r){
+  r.aConfirmar = [];
+  r.condominios.forEach(c => c.aConfirmar = []);
+  marcarSujo(); desenha();
+  avisar('Tudo confirmado nesta região. Já aparece no mapa.');
+}
+function faixaPendencias(r){
+  const n = contaPendencias(r);
+  if(!n) return null;
+  const f = el('div','faixa-conf');
+  const p = el('p');
+  p.innerHTML = '<b>' + n + (n === 1 ? ' campo pesquisado' : ' campos pesquisados') + '</b> ' +
+    (n === 1 ? 'está' : 'estão') + ' aguardando sua conferência. ' +
+    'Enquanto isso, não ' + (n === 1 ? 'aparece' : 'aparecem') + ' no mapa público.';
+  const b = el('button','bt'); b.type = 'button';
+  b.textContent = 'Confirmar todos';
+  b.onclick = () => dialogo({
+    titulo:'Confirmar os ' + n + ' campos de ' + r.nome + '?',
+    texto:'Eles passam a aparecer no mapa assim que você publicar. Confira antes: são estimativas, não medições oficiais.',
+    confirmar:'Confirmar todos',
+    aoConfirmar:() => confirmarTudo(r)
+  });
+  f.appendChild(p); f.appendChild(b);
+  return f;
+}
+
+function contaPendencias(r){
+  let n = (r.aConfirmar||[]).length;
+  r.condominios.forEach(c => n += (c.aConfirmar||[]).length);
+  return n;
+}
+
+function desenha(){
+  desenhaRegioes();
+  document.querySelectorAll('.aba').forEach(a => a.classList.toggle('on', a.dataset.aba === aba));
+  const alvo = $('#max');
+  alvo.textContent = '';
+  const r = DADOS.regioes[iRegiao];
+  if(!r) return;
+  const faixa = faixaPendencias(r);
+  if(faixa) alvo.appendChild(faixa);
+  if(aba === 'regiao'){
+    alvo.appendChild(montaGrupos(CAMPOS_REGIAO, r, desenha));
+  } else {
+    alvo.appendChild(telaCondominios(r));
+  }
+  atualizaEstado();
+}
+
+function telaCondominios(r){
+  const frag = document.createDocumentFragment();
+  r.condominios.forEach((c,i) => {
+    const bloco = el('div','condo-bloco');
+
+    const topo = el('button','condo-topo'); topo.type = 'button';
+    const mini = el('img','condo-mini');
+    mini.src = c.fotos && c.fotos[0] ? img(c.fotos[0]) : '';
+    mini.alt = '';
+    mini.onerror = () => { mini.style.visibility = 'hidden'; };
+    const info = el('div','condo-info');
+    const nb = el('b'); nb.textContent = c.nome || '(sem nome)';
+    const ns = el('span');
+    ns.textContent = [c.precoBase ? 'a partir de ' + c.precoBase : null,
+                      c.pin ? 'com pin' : 'sem pin',
+                      (c.aConfirmar||[]).length ? (c.aConfirmar.length + ' a confirmar') : null]
+                     .filter(Boolean).join(' · ');
+    info.appendChild(nb); info.appendChild(ns);
+    topo.appendChild(mini); topo.appendChild(info);
+    topo.onclick = () => { abertos[i] = !abertos[i]; desenha(); };
+
+    const ferr = el('div','condo-ferramentas');
+    const mkBt = (html, titulo, acao, desativado) => {
+      const b = el('button','ferr'); b.type = 'button'; b.innerHTML = html; b.title = titulo;
+      b.disabled = !!desativado;
+      b.onclick = e => { e.stopPropagation(); acao(); };
+      return b;
+    };
+    ferr.appendChild(mkBt(ic.cima, 'Subir', () => mover(r,i,-1), i === 0));
+    ferr.appendChild(mkBt(ic.baixo,'Descer',() => mover(r,i, 1), i === r.condominios.length-1));
+    ferr.appendChild(mkBt(ic.lixo, 'Excluir', () => excluirCondo(r,i)));
+
+    const cabeca = el('div');
+    cabeca.style.cssText = 'display:flex;align-items:center;min-width:0;';
+    cabeca.appendChild(topo); cabeca.appendChild(ferr);
+    cabeca.style.paddingRight = '12px';
+    bloco.appendChild(cabeca);
+
+    const corpo = el('div','condo-corpo');
+    corpo.hidden = !abertos[i];
+    if(abertos[i]) corpo.appendChild(montaGrupos(CAMPOS_CONDO, c, desenha));
+    bloco.appendChild(corpo);
+    frag.appendChild(bloco);
+  });
+
+  const add = el('button','bt bt-rosa');
+  add.type = 'button';
+  add.innerHTML = ic.mais + '<span>Adicionar condomínio</span>';
+  add.style.marginTop = '4px';
+  add.onclick = () => {
+    r.condominios.push(condoVazio());
+    abertos = {}; abertos[r.condominios.length-1] = true;
+    marcarSujo(); desenha();
+    avisar('Condomínio adicionado. Preencha os campos abaixo.');
+  };
+  frag.appendChild(add);
+  return frag;
+}
+
+function condoVazio(){
+  return {nome:'Novo condomínio', pin:null, precoBase:'', chamadas:[], tipos:[],
+          fotos:[], video:null, texto:'', plantas:[], comodidades:[], distancias:[],
+          ficha:{construtora:'',entrega:'',hoa:'',cdd:'',lotes:'',
+                 aluguelCurtaTemporada:null,endereco:'',status:''},
+          aConfirmar:[]};
+}
+function mover(r, i, d){
+  const j = i + d;
+  if(j < 0 || j >= r.condominios.length) return;
+  const t = r.condominios[i]; r.condominios[i] = r.condominios[j]; r.condominios[j] = t;
+  abertos = {}; marcarSujo(); desenha();
+}
+function excluirCondo(r, i){
+  const c = r.condominios[i];
+  dialogo({
+    titulo: 'Excluir ' + (c.nome || 'este condomínio') + '?',
+    texto:  'Ele some da lista e do mapa. Isso só vale de verdade quando você publicar — até lá dá pra recarregar a página e recuperar.',
+    confirmar: 'Excluir',
+    perigo: true,
+    aoConfirmar: () => { r.condominios.splice(i,1); abertos = {}; marcarSujo(); desenha(); avisar('Condomínio excluído.'); }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DIÁLOGO
+   ═══════════════════════════════════════════════════════════════ */
+function dialogo(o){
+  const d = $('#dialogo');
+  d.textContent = '';
+  const h = el('h2'); h.textContent = o.titulo; d.appendChild(h);
+  if(o.texto){ const p = el('p'); p.textContent = o.texto; d.appendChild(p); }
+  if(o.corpo) d.appendChild(o.corpo);
+  const rod = el('div','rodape');
+  if(!o.semCancelar){
+    const cancelar = el('button','bt bt-claro'); cancelar.textContent = 'Cancelar';
+    cancelar.onclick = () => { fecharDialogo(); o.aoCancelar && o.aoCancelar(); };
+    rod.appendChild(cancelar);
+  }
+  const ok = el('button','bt ' + (o.perigo ? 'bt-perigo' : 'bt-rosa'));
+  ok.textContent = o.confirmar || 'Confirmar';
+  ok.onclick = () => { fecharDialogo(); o.aoConfirmar && o.aoConfirmar(); };
+  rod.appendChild(ok);
+  d.appendChild(rod);
+  $('#veu').classList.add('on');
+}
+function fecharDialogo(){ $('#veu').classList.remove('on'); }
+$('#veu').addEventListener('click', e => { if(e.target.id === 'veu') fecharDialogo(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') fecharDialogo(); });
+
+/* ═══════════════════════════════════════════════════════════════
+   SAÍDA: baixar, pré-visualizar, publicar
+   ═══════════════════════════════════════════════════════════════ */
+function jsonBonito(){ return JSON.stringify(DADOS, null, 2); }
+
+$('#btBaixar').onclick = () => {
+  const a = el('a');
+  a.href = URL.createObjectURL(new Blob([jsonBonito()], {type:'application/json'}));
+  a.download = 'dados.json';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  avisar('dados.json baixado. Agora suba no GitHub.');
+};
+
+$('#btPrever').onclick = () => {
+  try{
+    sessionStorage.setItem('mapaCF.previa', JSON.stringify(DADOS));
+    window.open('mapa.html?dados=previa', '_blank');
+  }catch(e){
+    avisar('Não consegui abrir a prévia: ' + e.message, 4200);
+  }
+};
+
+$('#btPublicar').onclick = () => {
+  const corpo = el('div');
+  corpo.innerHTML =
+    '<div class="nota"><b>Como funciona:</b> o token é um crachá que o GitHub te dá pra ' +
+    'este site poder salvar o arquivo por você. Ele fica guardado só neste navegador, ' +
+    'nunca é enviado pra mim nem pra outro lugar — só pro próprio GitHub. ' +
+    'Crie um em <b>github.com → Settings → Developer settings → Personal access tokens ' +
+    '→ Fine-grained</b>, dando permissão de <b>Contents: Read and write</b> apenas neste repositório.</div>' +
+    '<div class="campo"><label>Repositório</label>' +
+    '<input class="ent" id="dRepo" placeholder="usuario/repositorio"></div>' +
+    '<div class="campo"><label>Token do GitHub</label>' +
+    '<input class="ent" id="dToken" type="password" placeholder="github_pat_…" autocomplete="off"></div>' +
+    '<div class="campo"><label>Descrição da alteração</label>' +
+    '<input class="ent" id="dMsg" placeholder="Ex: atualizei os preços de Clermont"></div>';
+  dialogo({
+    titulo:'Publicar no GitHub',
+    texto:'Isso substitui o dados.json no repositório e o mapa no ar passa a usar a versão nova em um ou dois minutos.',
+    confirmar:'Publicar agora',
+    corpo:corpo,
+    aoConfirmar:() => {
+      const repo  = ($('#dRepo')  || {}).value || CONFIG.repo;
+      const token = ($('#dToken') || {}).value || '';
+      const msg   = ($('#dMsg')   || {}).value || 'Atualiza dados do mapa';
+      if(!token){ avisar('Sem token não dá pra publicar. Use "Baixar dados.json".', 4200); return; }
+      guardar(CHAVE_REPO, repo);
+      guardar(CHAVE_TOKEN, token);
+      publicar(repo, token, msg);
+    }
+  });
+  setTimeout(() => {
+    const r = $('#dRepo'), t = $('#dToken');
+    if(r) r.value = ler(CHAVE_REPO) || CONFIG.repo;
+    if(t) t.value = ler(CHAVE_TOKEN) || '';
+  }, 0);
+};
+
+async function publicar(repo, token, mensagem){
+  const url = 'https://api.github.com/repos/' + repo + '/contents/' + CONFIG.arquivo;
+  const cab = {'Authorization':'Bearer ' + token, 'Accept':'application/vnd.github+json'};
+  avisar('Publicando…', 12000);
+  try{
+    /* até 2 tentativas: se o arquivo mudou no GitHub entre o admin carregar e você publicar
+       (outra aba, outra pessoa, upload de foto que também mexeu aqui), o sha fica velho e o
+       GitHub recusa com 409 — refaz pegando o sha mais novo em vez de te devolver o erro cru */
+    for(let tentativa = 1; tentativa <= 2; tentativa++){
+      let sha = null;
+      const atual = await fetch(url + '?ref=' + CONFIG.ramo, {headers:cab, cache:'no-cache'});
+      if(atual.ok) sha = (await atual.json()).sha;
+      else if(atual.status === 401 || atual.status === 403){
+        avisar('O GitHub recusou o token (' + atual.status + '). Confira as permissões.', 6000); return;
+      }
+      const corpo = {message:mensagem, branch:CONFIG.ramo,
+                     content:btoa(unescape(encodeURIComponent(jsonBonito())))};
+      if(sha) corpo.sha = sha;
+      const r = await fetch(url, {method:'PUT', headers:cab, body:JSON.stringify(corpo)});
+      if(r.ok){
+        sujo = false;
+        try{ localStorage.removeItem(CHAVE_RASCUNHO); }catch(e){}
+        atualizaEstado();
+        avisar('Publicado. O mapa no ar atualiza em 1 a 2 minutos.', 5000);
+        return;
+      }
+      const e = await r.json().catch(() => ({}));
+      if(r.status === 409 && tentativa === 1){
+        avisar('O arquivo mudou no meio do caminho — tentando de novo com a versão mais nova…', 4000);
+        continue;
+      }
+      avisar('Não publicou (' + r.status + '): ' + (e.message || 'erro desconhecido'), 7000);
+      return;
+    }
+  }catch(e){
+    avisar('Falhou: ' + e.message, 6000);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ABAS E PARTIDA
+   ═══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('.aba').forEach(a =>
+  a.onclick = () => { aba = a.dataset.aba; desenha(); $('#conteudo').scrollTop = 0; });
+
+window.addEventListener('beforeunload', e => {
+  if(sujo){ e.preventDefault(); e.returnValue = ''; }
+});
+
+async function iniciar(){
+  const rascunho = ler(CHAVE_RASCUNHO);
+  let doServidor = null;
+  try{
+    const r = await fetch(CONFIG.dados, {cache:'no-cache'});
+    if(r.ok) doServidor = await r.json();
+  }catch(e){}
+  if(!doServidor){
+    try{
+      const r = await fetch('dados.json', {cache:'no-cache'});
+      if(r.ok) doServidor = await r.json();
+    }catch(e){}
+  }
+
+  if(rascunho){
+    let d = null;
+    try{ d = JSON.parse(rascunho); }catch(e){}
+    if(d && d.dados){
+      const quando = new Date(d.quando).toLocaleString('pt-BR');
+      DADOS = doServidor || d.dados;
+      desenha();
+      dialogo({
+        titulo:'Você tem alterações não publicadas',
+        texto:'Feitas em ' + quando + ' neste navegador. Quer continuar de onde parou ou começar da versão que está no ar?',
+        confirmar:'Continuar de onde parei',
+        aoConfirmar:() => { DADOS = d.dados; sujo = true; desenha(); },
+      });
+      const cancelar = $('#dialogo').querySelector('.bt-claro');
+      cancelar.textContent = 'Descartar e usar a do ar';
+      cancelar.onclick = () => {
+        fecharDialogo();
+        try{ localStorage.removeItem(CHAVE_RASCUNHO); }catch(e){}
+        sujo = false; atualizaEstado();
+      };
+      return;
+    }
+  }
+
+  if(!doServidor){
+    $('#estado').innerHTML = '<b style="color:#c23046">Não consegui carregar o dados.json.</b> ' +
+      'Confira se ele já está no GitHub.';
+    return;
+  }
+  DADOS = doServidor;
+  desenha();
+}
+iniciar();
+
+})();
+</script>
+</body>
+</html>
