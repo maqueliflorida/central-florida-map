@@ -582,9 +582,9 @@ function campoListaFotos(def, obj, redesenhar){
 
     const mw = el('div','foto-mini-wrap');
     const mini = el('img','foto-mini'); mini.alt = '';
-    const atualiza = () => { const val = arr[i]; mini.src = val ? img(val) : ''; mini.classList.toggle('vazia', !val); };
+    const atualiza = () => { const val = arr[i]; mini.dataset.tentativas = 0; mini.src = val ? img(val) : ''; mini.classList.toggle('vazia', !val); };
     atualiza();
-    mini.onerror = () => mini.classList.add('vazia');
+    mini.onerror = () => { mini.classList.add('vazia'); insisteNaImagem(mini, img(arr[i])); };
     mini.onload  = () => mini.classList.remove('vazia');
     mini.onclick = () => previaFoto(arr[i]);
     mw.appendChild(mini);
@@ -676,9 +676,9 @@ function campoFotoCapa(def, obj, redesenhar){
 
   const mw = el('div','foto-mini-wrap');
   const mini = el('img','foto-mini'); mini.alt = '';
-  const atualiza = () => { const val = alvo.valor(); mini.src = val ? img(val) : ''; mini.classList.toggle('vazia', !val); };
+  const atualiza = () => { const val = alvo.valor(); mini.dataset.tentativas = 0; mini.src = val ? img(val) : ''; mini.classList.toggle('vazia', !val); };
   atualiza();
-  mini.onerror = () => mini.classList.add('vazia');
+  mini.onerror = () => { mini.classList.add('vazia'); insisteNaImagem(mini, img(alvo.valor())); };
   mini.onload  = () => mini.classList.remove('vazia');
   mini.onclick = () => previaFoto(alvo.valor());
   mw.appendChild(mini);
@@ -896,6 +896,19 @@ function tamanhoParaImagem(blob){
   });
 }
 
+/* O GitHub aceita o arquivo na hora, mas o site que serve as imagens (Pages)
+   leva cerca de 1 minuto pra publicar. Nesse intervalo a miniatura daria erro.
+   Em vez de deixá-la quebrada — o que faz parecer que o envio falhou e leva a
+   subir tudo de novo — insistimos algumas vezes, com cache furado. */
+function insisteNaImagem(im, url){
+  const n = parseInt(im.dataset.tentativas || '0', 10) + 1;
+  im.dataset.tentativas = n;
+  if(n > 5) return;
+  setTimeout(() => {
+    im.src = url + (url.indexOf('?') < 0 ? '?' : '&') + 'r=' + Date.now();
+  }, 15000);
+}
+
 function previaFoto(v){
   if(!v) return;
   const corpo = el('div');
@@ -903,7 +916,7 @@ function previaFoto(v){
   im.style.cssText = 'width:100%;border-radius:10px;display:block;background:var(--fundo);min-height:120px;';
   im.onerror = () => {
     corpo.textContent = '';
-    const p = el('p'); p.textContent = 'Não consegui carregar esta imagem. Confira se o arquivo já está no GitHub.';
+    const p = el('p'); p.textContent = 'Ainda não consegui carregar esta imagem. Se você acabou de enviá-la, o GitHub leva cerca de um minuto pra publicar — espere e abra de novo. Se já faz tempo, confira o nome do arquivo.';
     corpo.appendChild(p);
   };
   im.src = img(v);
@@ -1193,7 +1206,7 @@ async function subirFotos(alvo, arquivos, zona){
   zona.classList.remove('enviando');
   marcarSujo();
   alvo.redesenhar();
-  avisar(ok + ' de ' + arquivos.length + ' foto(s) enviada(s) pro GitHub.', 5000);
+  avisar(ok + ' de ' + arquivos.length + ' foto(s) no GitHub. O site leva ~1 min pra publicar — a miniatura pode demorar a aparecer.', 8000);
 }
 
 function campoListaObj(def, obj, redesenhar){
