@@ -1218,20 +1218,26 @@ function ajustaCapa(regiao){
   const aplica = () => {
     if(!foto.naturalWidth || !foto.naturalHeight) return;
     const r = foto.naturalWidth / foto.naturalHeight;
-    /* Duas situações, decididas pelo formato da própria imagem:
 
-       • Foto de verdade (deitada): a caixa fica na proporção dela, então
-         aparece inteira, sem corte.
-       • Cartão antigo da região (imagem em pé, 668×1705, com o nome e os
-         números desenhados embaixo da foto): só a faixa de foto do topo
-         interessa — o resto é texto que não pode aparecer. 19% da altura
-         é onde a foto termina em todos os cartões.
+    /* A caixa tem tamanho FIXO: a mesma altura da foto do condomínio, para os
+       dois cabeçalhos ficarem iguais. Como as colunas têm larguras diferentes,
+       a proporção da caixa da região sai dessa conta. Medimos a largura real da
+       coluna do condomínio em vez de ler --painel: em telas estreitas essa
+       variável vale "100%", e parseFloat devolveria 100 (px), achatando a caixa. */
+    const lReg  = capa.clientWidth || painelRegiao.offsetWidth;
+    const lCon  = painelCondo.offsetWidth || lReg;
+    const rCaixa = CONFIG.propFoto * (lReg / lCon);
+    capa.style.aspectRatio = String(rCaixa);
 
-       O encaixe em si é do object-fit:cover no CSS. */
-    capa.style.aspectRatio = String(r >= 1 ? r : r / CONFIG.faixaFotoCartao);
-    /* posFoto e zoomFoto vêm do admin; sem eles, ancora no topo e sem zoom */
+    /* Cartão antigo da região (imagem em pé, 668×1705, com nome e números
+       desenhados abaixo da foto): numa caixa desse formato apareceria também o
+       texto da arte. Aproximamos o necessário para mostrar só a faixa de foto
+       do topo (19% da altura). Foto comum não precisa de nada disso. */
+    const autoZoom = r < 1 ? Math.max(1, (r / rCaixa) / CONFIG.faixaFotoCartao) : 1;
+
+    /* posFoto e zoomFoto vêm do admin e mandam mais que o automático */
     capa.style.setProperty('--pos-capa', regiao.posFoto || 'center top');
-    capa.style.setProperty('--zoom-capa', regiao.zoomFoto || 1);
+    capa.style.setProperty('--zoom-capa', regiao.zoomFoto || autoZoom);
   };
   foto.complete ? aplica() : foto.addEventListener('load', aplica, {once:true});
 }
