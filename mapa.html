@@ -206,7 +206,18 @@ a.ctrl{text-decoration:none;}
 .capa{position:relative;flex:none;margin:0 calc(var(--respiro) * -1);}
 /* o recorte vai na CAIXA visível, não na <img>: objectBoundingBox usa a caixa
    do elemento, e a imagem é muito mais alta do que a janela que mostramos dela */
-.capa-corte{overflow:hidden;position:relative;}
+/* fundo branco: a caixa já ocupa o lugar certo antes da foto chegar, em vez de
+   deixar o gradiente aparecendo e "pulando" quando a imagem entra */
+.capa-corte{overflow:hidden;position:relative;background:#fff;}
+/* indicador de carregamento: anel girando no meio da área branca. A classe sai
+   quando a imagem termina — ou falha, pra não ficar girando pra sempre. */
+.capa-corte.carregando::after{
+  content:"";position:absolute;z-index:1;
+  top:50%;left:50%;width:28px;height:28px;margin:-14px 0 0 -14px;
+  border:3px solid #eceaef;border-top-color:var(--rosa);border-radius:50%;
+  animation:giraCapa .7s linear infinite;
+}
+@keyframes giraCapa{to{transform:rotate(360deg);}}
 .capa.com-onda .capa-corte{clip-path:url(#ondaCorte);}
 /* object-fit:cover faz nativamente o que o cálculo de zoom fazia na mão: encaixa a
    foto na caixa sem deixar buraco e sem deformar, centralizada nos dois eixos.
@@ -1219,7 +1230,12 @@ function ajustaCapa(regiao){
   const capa = painelRegiao.querySelector('.capa-corte');
   const foto = capa && capa.querySelector('img');
   if(!foto) return;
+  /* some com o esqueleto assim que a foto resolve, de um jeito ou de outro */
+  const paraDeCarregar = () => capa.classList.remove('carregando');
+  foto.addEventListener('error', paraDeCarregar, {once:true});
+
   const aplica = () => {
+    paraDeCarregar();
     if(!foto.naturalWidth || !foto.naturalHeight) return;
     const r = foto.naturalWidth / foto.naturalHeight;
 
@@ -1377,7 +1393,7 @@ function htmlRegiao(r){
          uma imagem que não existe e mostrar o ícone de quebrado */
       (r.foto
         ? '<header class="capa'+(CONFIG.onda ? ' com-onda' : '')+'">'+
-            '<div class="capa-corte"><img src="'+esc(img(r.foto))+'" alt="'+esc(r.nome)+'"></div>'+
+            '<div class="capa-corte carregando"><img src="'+esc(img(r.foto))+'" alt="'+esc(r.nome)+'"></div>'+
             (CONFIG.onda ? '<div class="onda-fio">'+tracoDaOnda()+'</div>' : '')+
             /* topo.png é a onda nova; se CONFIG.onda voltar a ligar, quem manda
                é o clip-path antigo — as duas juntas dariam onda dupla. */
