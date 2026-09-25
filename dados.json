@@ -2752,7 +2752,9 @@
             "pin"
           ]
         }
-      ]
+      ],
+      "zoomFoto": 1.08,
+      "posFoto": "50% 100%"
     },
     {
       "id": "wintergarden",
