@@ -1228,7 +1228,25 @@ function ligaBarraRegiao(){
 
 function ajustaCapa(regiao){
   const capa = painelRegiao.querySelector('.capa-corte');
-  const foto = capa && capa.querySelector('img');
+  if(!capa) return;
+  const foto = capa.querySelector('img');
+
+  /* A caixa tem tamanho FIXO: a mesma altura da foto do condomínio, para os dois
+     cabeçalhos ficarem iguais. Como as colunas têm larguras diferentes, a
+     proporção da caixa da região sai dessa conta. Medimos a largura real da
+     coluna do condomínio em vez de ler --painel: em telas estreitas essa
+     variável vale "100%", e parseFloat devolveria 100 (px), achatando a caixa.
+
+     Isto roda ANTES de a foto chegar, e é o que evita o painel carregar em duas
+     etapas: o tamanho não depende da imagem, então reservar o espaço já aqui
+     impede que a onda e todo o conteúdo abaixo pulem quando a foto entra. */
+  const lReg  = capa.clientWidth || painelRegiao.offsetWidth;
+  const lCon  = painelCondo.offsetWidth || lReg;
+  const rCaixa = CONFIG.propFoto * (lReg / lCon);
+  capa.style.aspectRatio = String(rCaixa);
+  capa.style.setProperty('--pos-capa',  regiao.posFoto  || 'center top');
+  capa.style.setProperty('--zoom-capa', regiao.zoomFoto || 1);
+
   if(!foto) return;
   /* some com o esqueleto assim que a foto resolve, de um jeito ou de outro */
   const paraDeCarregar = () => capa.classList.remove('carregando');
@@ -1236,28 +1254,17 @@ function ajustaCapa(regiao){
 
   const aplica = () => {
     paraDeCarregar();
+    if(regiao.zoomFoto) return;                 /* zoom escolhido no admin manda */
     if(!foto.naturalWidth || !foto.naturalHeight) return;
     const r = foto.naturalWidth / foto.naturalHeight;
-
-    /* A caixa tem tamanho FIXO: a mesma altura da foto do condomínio, para os
-       dois cabeçalhos ficarem iguais. Como as colunas têm larguras diferentes,
-       a proporção da caixa da região sai dessa conta. Medimos a largura real da
-       coluna do condomínio em vez de ler --painel: em telas estreitas essa
-       variável vale "100%", e parseFloat devolveria 100 (px), achatando a caixa. */
-    const lReg  = capa.clientWidth || painelRegiao.offsetWidth;
-    const lCon  = painelCondo.offsetWidth || lReg;
-    const rCaixa = CONFIG.propFoto * (lReg / lCon);
-    capa.style.aspectRatio = String(rCaixa);
-
     /* Cartão antigo da região (imagem em pé, 668×1705, com nome e números
        desenhados abaixo da foto): numa caixa desse formato apareceria também o
        texto da arte. Aproximamos o necessário para mostrar só a faixa de foto
        do topo (19% da altura). Foto comum não precisa de nada disso. */
-    const autoZoom = r < 1 ? Math.max(1, (r / rCaixa) / CONFIG.faixaFotoCartao) : 1;
-
-    /* posFoto e zoomFoto vêm do admin e mandam mais que o automático */
-    capa.style.setProperty('--pos-capa', regiao.posFoto || 'center top');
-    capa.style.setProperty('--zoom-capa', regiao.zoomFoto || autoZoom);
+    if(r < 1){
+      capa.style.setProperty('--zoom-capa',
+        Math.max(1, (r / rCaixa) / CONFIG.faixaFotoCartao));
+    }
   };
   foto.complete ? aplica() : foto.addEventListener('load', aplica, {once:true});
 }
