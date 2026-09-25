@@ -661,7 +661,7 @@
       "id": "kissimmee",
       "nome": "Kissimmee",
       "condado": "Osceola County",
-      "foto": "kissimmee_ok1.jpg",
+      "foto": "chatgpt-image-sep-23-2026-02-33-49-am.png",
       "zoom": 10.6,
       "area": [
         [
@@ -1583,7 +1583,7 @@
       "id": "stcloud",
       "nome": "St. Cloud",
       "condado": "Osceola County",
-      "foto": "",
+      "foto": "chatgpt-image-sep-24-2026-02-33-13-am.png",
       "corteFoto": 0.224,
       "zoom": 10.9,
       "area": [
@@ -3927,7 +3927,9 @@
       "fotos": [
         "winter13.png"
       ],
-      "videos": []
+      "videos": [],
+      "zoomFoto": 1.26,
+      "posFoto": "50% 100%"
     },
     {
       "id": "clermont",
