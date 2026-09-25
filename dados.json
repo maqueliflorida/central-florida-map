@@ -6066,7 +6066,9 @@
         "custos"
       ],
       "fotos": [],
-      "videos": []
+      "videos": [],
+      "zoomFoto": 1.04,
+      "posFoto": "50% 100%"
     },
     {
       "id": "winterpark",
