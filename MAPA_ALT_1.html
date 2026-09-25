@@ -23,9 +23,9 @@
   --sombra:0 1px 2px rgba(34,29,41,.05), 0 14px 38px rgba(34,29,41,.11);
   --sombra-sm:0 1px 2px rgba(34,29,41,.06), 0 4px 12px rgba(34,29,41,.07);
   --r:14px; --r-sm:10px;
-  --menu:210px; --painel:420px; --respiro:28px;
+  --menu:168px; --painel:357px; --respiro:28px;
   /* a coluna da região é 14% mais estreita que a do condomínio */
-  --painel-reg:397px;
+  --painel-reg:337px;
   /* proporção da foto do condomínio; a da região é calculada pra dar a MESMA
      altura, já que as duas colunas têm larguras diferentes */
   --prop-foto:16/9;
@@ -86,9 +86,10 @@ h1,h2,h3,h4,p,li,span,a,button{overflow-wrap:anywhere;}
 .item-sub{display:block;font-size:13.12px;color:var(--tinta3);line-height:1.3;margin-top:1px;}
 .item[aria-current="true"] .item-sub{color:rgba(255,255,255,.85);}
 .item-vazio{font-size:13.75px;color:var(--tinta3);padding:10px 9px;}
-#menu-rodape{padding:8px 10px 12px;border-top:1px solid var(--linha);display:flex;gap:6px;}
+#menu-rodape{padding:8px 7px 12px;border-top:1px solid var(--linha);display:flex;gap:4px;}
 .parque{
-  flex:1; min-width:0; padding:8px 6px; border-radius:9px; font-size:13.75px; font-weight:600;
+  flex:1; min-width:0; padding:8px 4px; border-radius:9px; font-size:13.75px; font-weight:600;
+  white-space:nowrap;
   color:#fff; display:flex; align-items:center; justify-content:center; gap:5px;
   transition:filter .14s,transform .14s;
 }
@@ -110,7 +111,8 @@ body.modo3d #map{visibility:hidden;}
 body.modo3d .zoom{display:none;}
 #bt3d.ligado{background:var(--rosa);color:#fff;border-color:var(--rosa);}
 /* controles do 3D: so aparecem no modo 3D. A inclinacao ja vem do proprio mapa3d. */
-.ctrl3d{position:absolute;left:14px;bottom:34px;z-index:5;display:none;gap:6px;}
+.ctrl3d{position:absolute;left:calc(var(--folga-esq,14px) + 4px);bottom:34px;
+  z-index:5;display:none;gap:6px;transition:left .18s;}
 body.modo3d .ctrl3d{display:flex;}
 .ctrl3d button{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 11px;
   border:1px solid var(--linha);border-radius:8px;background:#fff;color:#2b3242;
@@ -1195,6 +1197,8 @@ function desenhaPins(r){
 function sinalizaPaineis(){
   document.body.classList.toggle('painel-aberto',
     painelRegiao.classList.contains('aberto') || painelCondo.classList.contains('aberto'));
+  /* os controles do 3D flutuam sobre o MAPA, não sobre os painéis */
+  document.documentElement.style.setProperty('--folga-esq', folga().left + 'px');
 }
 
 /* quanto do mapa está tapado pelos painéis */
