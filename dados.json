@@ -8181,7 +8181,9 @@
         "custos"
       ],
       "fotos": [],
-      "videos": []
+      "videos": [],
+      "zoomFoto": 1.08,
+      "posFoto": "50% 100%"
     },
     {
       "id": "minneola",
