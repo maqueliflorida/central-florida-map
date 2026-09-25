@@ -1061,7 +1061,8 @@ function mostraResultadoIA(alvo, b64, promptUsado){
       marcarSujo();
       fecharDialogo();
       alvo.redesenhar();
-      avisar('Salvo como "' + nomeNovo + '". Falta só "Publicar" pra ela aparecer no mapa no ar.', 6000);
+      avisar('Salvo como "' + nomeNovo + '". Publicando a lista…', 12000);
+      await publicar(repo, token, 'Sobe foto tratada pela IA: ' + nomeNovo);
     }catch(e){
       avisar('Não salvei no GitHub: ' + e.message, 7000);
       salvar.disabled = false; salvar.textContent = 'Salvar no GitHub';
@@ -1194,8 +1195,11 @@ async function subirFotos(alvo, arquivos, zona){
       let nome = sanitizaNomeArquivo(file.name);
       let res = await salvarFotoNoGitHub(repo, token, nome, base64, alvo.jaContem(nome));
       if(res.colisao){
+        /* nome novo, gerado agora: pode gravar direto. Sem o "true" aqui, uma
+           segunda colisão devolveria {colisao} de novo e o arquivo não subiria,
+           mas o nome entraria na lista — foto quebrada no mapa. */
         nome = nomeUnicoGitHub(nome);
-        await salvarFotoNoGitHub(repo, token, nome, base64, false);
+        await salvarFotoNoGitHub(repo, token, nome, base64, true);
       }
       alvo.adicionar(nome);
       ok++;
@@ -1206,7 +1210,13 @@ async function subirFotos(alvo, arquivos, zona){
   zona.classList.remove('enviando');
   marcarSujo();
   alvo.redesenhar();
-  avisar(ok + ' de ' + arquivos.length + ' foto(s) no GitHub. O site leva ~1 min pra publicar — a miniatura pode demorar a aparecer.', 8000);
+  if(!ok){ avisar('Nenhuma foto foi enviada.', 5000); return; }
+
+  /* O arquivo e a referência a ele andam juntos: subir a foto sem publicar a
+     lista deixa o mapa sem saber que ela existe. Então publica na sequência —
+     igual ao botão Publicar, ou seja, leva junto o que mais estiver pendente. */
+  avisar(ok + ' de ' + arquivos.length + ' foto(s) no GitHub. Publicando a lista…', 12000);
+  await publicar(repo, token, 'Sobe ' + ok + ' foto(s) pelo admin');
 }
 
 function campoListaObj(def, obj, redesenhar){
@@ -1563,7 +1573,11 @@ async function iniciar(){
   const rascunho = ler(CHAVE_RASCUNHO);
   let doServidor = null;
   try{
-    const r = await fetch(CONFIG.dados, {cache:'no-cache'});
+    /* O GitHub Pages manda guardar o dados.json por 10 minutos. Sem furar esse
+       cache, uma publicação recém-feita não aparece — e parece que o publicar
+       falhou. O carimbo de tempo faz o navegador tratar como endereço novo. */
+    const enderecoDados = CONFIG.dados + (CONFIG.dados.indexOf('?') < 0 ? '?' : '&') + 'v=' + Date.now();
+    const r = await fetch(enderecoDados, {cache:'no-cache'});
     if(r.ok) doServidor = await r.json();
   }catch(e){}
   if(!doServidor){
