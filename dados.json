@@ -8482,7 +8482,7 @@
       "id": "oviedo",
       "nome": "Oviedo",
       "condado": "Seminole County",
-      "foto": "oviedo.jpg",
+      "foto": "chatgpt-image-sep-24-2026-09-56-58-pm.png",
       "zoom": 12.3,
       "area": [
         [
@@ -8760,7 +8760,8 @@
         "custos"
       ],
       "fotos": [],
-      "videos": []
+      "videos": [],
+      "posFoto": "50% 35%"
     },
     {
       "id": "montverde",
