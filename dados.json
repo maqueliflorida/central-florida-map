@@ -8767,7 +8767,7 @@
       "id": "montverde",
       "nome": "Montverde",
       "condado": "Lake County",
-      "foto": "montverde.jpg",
+      "foto": "chatgpt-image-sep-24-2026-09-57-47-pm.png",
       "zoom": 13.3,
       "area": [
         [
@@ -9075,7 +9075,8 @@
         "custos"
       ],
       "fotos": [],
-      "videos": []
+      "videos": [],
+      "posFoto": "50% 25%"
     }
   ],
   "rotulosDistancia": [
