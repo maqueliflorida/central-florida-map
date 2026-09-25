@@ -7071,7 +7071,7 @@
       "id": "winterhaven",
       "nome": "Winter Haven",
       "condado": "Polk County",
-      "foto": "winterhavenok2.jpg",
+      "foto": "chatgpt-image-sep-24-2026-09-51-16-pm.png",
       "zoom": 11,
       "area": [
         [
@@ -7422,7 +7422,8 @@
         "custos"
       ],
       "fotos": [],
-      "videos": []
+      "videos": [],
+      "posFoto": "50% 0%"
     },
     {
       "id": "drphillips",
