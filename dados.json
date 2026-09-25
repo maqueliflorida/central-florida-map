@@ -1577,7 +1577,8 @@
         "custos"
       ],
       "fotos": [],
-      "videos": []
+      "videos": [],
+      "posFoto": "50% 60%"
     },
     {
       "id": "stcloud",
