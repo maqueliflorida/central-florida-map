@@ -6645,7 +6645,7 @@
       "id": "apopka",
       "nome": "Apopka",
       "condado": "Orange County",
-      "foto": "apopkaok.jpg",
+      "foto": "chatgpt-image-sep-24-2026-09-46-40-pm.png",
       "zoom": 11,
       "area": [
         [
@@ -7064,7 +7064,8 @@
         "custos"
       ],
       "fotos": [],
-      "videos": []
+      "videos": [],
+      "posFoto": "50% 0%"
     },
     {
       "id": "winterhaven",
@@ -7702,7 +7703,8 @@
         "custos"
       ],
       "fotos": [],
-      "videos": []
+      "videos": [],
+      "posFoto": "50% 60%"
     },
     {
       "id": "windermere",
