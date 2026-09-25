@@ -4615,7 +4615,8 @@
       "fotos": [
         "golden-hour-lakeside-promenade.png"
       ],
-      "videos": []
+      "videos": [],
+      "posFoto": "50% 75%"
     },
     {
       "id": "davenport",
@@ -6345,7 +6346,7 @@
       "id": "ocoee",
       "nome": "Ocoee",
       "condado": "Orange County",
-      "foto": "ocoeeok.jpg",
+      "foto": "chatgpt-image-sep-24-2026-09-35-17-pm.png",
       "zoom": 12,
       "area": [
         [
