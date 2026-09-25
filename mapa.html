@@ -920,7 +920,11 @@ async function carregarDados(){
     }catch(e){ console.warn('prévia indisponível:', e.message); }
   }
   try{
-    const r = await fetch(CONFIG.dados, {cache:'no-cache'});
+    /* O GitHub Pages manda guardar o dados.json por 10 minutos. Sem furar esse
+       cache, uma publicação recém-feita não aparece — e parece que o publicar
+       falhou. O carimbo de tempo faz o navegador tratar como endereço novo. */
+    const enderecoDados = CONFIG.dados + (CONFIG.dados.indexOf('?') < 0 ? '?' : '&') + 'v=' + Date.now();
+    const r = await fetch(enderecoDados, {cache:'no-cache'});
     if(r.ok){
       const j = await r.json();
       if(j && Array.isArray(j.regioes) && j.regioes.length) return j;
