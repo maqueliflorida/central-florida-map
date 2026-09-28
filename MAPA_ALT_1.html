@@ -24,6 +24,8 @@
   --sombra-sm:0 1px 2px rgba(34,29,41,.06), 0 4px 12px rgba(34,29,41,.07);
   --r:14px; --r-sm:10px;
   --menu:168px; --painel:357px; --respiro:28px;
+  /* largura da coluna recolhida: cabe o botao e o nome na vertical */
+  --trilho:34px;
   /* a coluna da região é 14% mais estreita que a do condomínio */
   --painel-reg:337px;
   /* proporção da foto do condomínio; a da região é calculada pra dar a MESMA
@@ -214,7 +216,8 @@ a.ctrl{text-decoration:none;}
   background:var(--papel); box-shadow:var(--sombra);
   display:flex; flex-direction:column; min-width:0;
   transform:translateX(-102%); opacity:0; visibility:hidden;
-  transition:transform .42s var(--ease), opacity .3s, visibility .42s;
+  transition:transform .42s var(--ease), opacity .3s, visibility .42s,
+             width .34s var(--ease), left .34s var(--ease);
 }
 .painel.aberto{transform:none;opacity:1;visibility:visible;}
 #painelRegiao{left:0;width:var(--painel-reg);}
@@ -237,6 +240,54 @@ a.ctrl{text-decoration:none;}
 }
 .fechar:hover{transform:scale(1.09);background:#fff;}
 .fechar svg{width:13px;height:13px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;}
+
+/* --- recolher a coluna ------------------------------------------------------
+   Recolher nao e fechar: a selecao continua de pe e o mapa nao volta pra visao
+   geral — a coluna so sai da frente. Quem desmarca de vez e o "Reiniciar" ali em
+   cima, que ja chamava a mesma funcao do X. Por isso no desktop a seta ocupa o
+   lugar do X; no celular a coluna e tela cheia, recolher nao faz sentido, e o X
+   (e o "Voltar" do condominio) ficam como estao. --- */
+.dobra{
+  position:absolute; top:12px; right:12px; z-index:7; width:32px; height:32px;
+  border-radius:50%; background:rgba(255,255,255,.92); color:var(--tinta);
+  display:none; place-items:center; box-shadow:var(--sombra-sm);
+  transition:transform .16s, background .16s, right .34s var(--ease);
+}
+.dobra:hover{transform:scale(1.09);background:#fff;}
+.dobra svg{width:14px;height:14px;stroke:currentColor;stroke-width:2.4;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .34s var(--ease);}
+/* o nome na vertical: recolhida, a coluna ainda diz o que esta selecionado */
+.trilho{
+  display:none; position:absolute; inset:52px 0 14px; align-items:flex-start;
+  justify-content:center; overflow:hidden; pointer-events:none;
+}
+.trilho span{
+  writing-mode:vertical-rl; font-size:12.5px; font-weight:600; letter-spacing:.04em;
+  color:var(--tinta3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  max-height:100%;
+}
+
+@media (min-width:901px){
+  .painel > .fechar{display:none;}
+  .dobra{display:grid;}
+  /* uma variavel por coluna: a largura muda e o resto vem junto — a coluna do
+     condominio e posicionada por --painel-reg, entao ela desliza sozinha, e o
+     folga() mede offsetWidth, entao as duas cameras se recentralizam sozinhas */
+  body.reg-recolhida{--painel-reg:var(--trilho);}
+  body.condo-recolhido{--painel:var(--trilho);}
+  body.reg-recolhida   #painelRegiao > .corpo,
+  body.reg-recolhida   #painelRegiao > .barra-reg,
+  body.condo-recolhido #painelCondo  > .corpo,
+  body.condo-recolhido #painelCondo  > .rodape,
+  body.condo-recolhido #painelCondo  > .voltar{display:none;}
+  body.reg-recolhida   #painelRegiao > .trilho,
+  body.condo-recolhido #painelCondo  > .trilho{display:flex;}
+  /* na faixa de 34px o botao ocupa quase tudo e a seta aponta pra fora */
+  body.reg-recolhida   #painelRegiao > .dobra,
+  body.condo-recolhido #painelCondo  > .dobra{right:1px;}
+  body.reg-recolhida   #painelRegiao > .dobra svg,
+  body.condo-recolhido #painelCondo  > .dobra svg{transform:rotate(180deg);}
+}
 
 /* --- capa: a foto + a onda branca recortadas do próprio JPEG que já está no ar.
    A fração do recorte vem de dados.json (corteFoto), medida imagem por imagem. --- */
@@ -1225,6 +1276,41 @@ function folga(){
   return {top:20, bottom:20, left:esquerda+24, right:24};
 }
 
+/* Recolher uma coluna e so mexer numa variavel: a largura vem de --painel-reg /
+   --painel, o folga() mede a largura renderizada, e o sinalizaPaineis() ja leva
+   isso pro mapa 3D e pros controles flutuantes. Espero o fim da animacao pra
+   medir, senao o offsetWidth devolve a largura do meio do caminho. */
+function dobra(qual, recolher){
+  const painel = qual === 'reg' ? painelRegiao : painelCondo;
+  const classe = qual === 'reg' ? 'reg-recolhida' : 'condo-recolhido';
+  if(recolher === undefined) recolher = !document.body.classList.contains(classe);
+  if(recolher === document.body.classList.contains(classe)) return;
+  document.body.classList.toggle(classe, recolher);
+  const bt = painel.querySelector('.dobra');
+  if(bt){
+    bt.setAttribute('aria-expanded', String(!recolher));
+    bt.setAttribute('aria-label', (recolher ? 'Abrir' : 'Recolher') +
+      (qual === 'reg' ? ' a coluna da região' : ' a coluna do condomínio'));
+  }
+}
+
+/* uma coluna que encolhe muda a largura dela e a posição da outra: qualquer uma
+   das duas transições serve de gatilho, e o guard evita rodar duas vezes */
+let dobraPendente = null;
+[painelRegiao, painelCondo].forEach(p => p.addEventListener('transitionend', ev => {
+  if(ev.propertyName !== 'width' && ev.propertyName !== 'left') return;
+  if(dobraPendente) return;
+  dobraPendente = requestAnimationFrame(() => {
+    dobraPendente = null;
+    sinalizaPaineis();
+    /* a caixa da capa sai da razão entre as larguras das duas colunas, então só
+       dá pra recalcular com a animação terminada — no clique o offsetWidth ainda
+       devolve a largura antiga */
+    if(regiaoAtual) ajustaCapa(regiaoAtual);
+    if(map) map.easeTo({padding:folga(), duration:320, essential:true});
+  });
+}));
+
 function voaPara(centro, zoom){
   map.flyTo({center:centro, zoom:zoom, padding:folga(), duration:900, essential:true});
 }
@@ -1245,12 +1331,15 @@ function abrirRegiao(id){
     .setLngLat(centroDe(r.area)).addTo(map);
   desenhaPins(r);
 
+  /* pedir pra ver uma região e nada aparecer seria confuso: abrir sempre expande */
+  dobra('reg', false);
   painelRegiao.innerHTML = htmlRegiao(r);
   painelRegiao.classList.add('aberto');
   painelRegiao.setAttribute('aria-hidden','false');
   sinalizaPaineis();
   painelRegiao.querySelector('.corpo').scrollTop = 0;
   painelRegiao.querySelector('.fechar').addEventListener('click', fecharRegiao);
+  painelRegiao.querySelector('.dobra').addEventListener('click', () => dobra('reg'));
   painelRegiao.querySelectorAll('.linha').forEach(b =>
     b.addEventListener('click', () => abrirCondo(r.id, +b.dataset.i)));
   ajustaCapa(r);
@@ -1315,7 +1404,9 @@ function ajustaCapa(regiao){
      etapas: o tamanho não depende da imagem, então reservar o espaço já aqui
      impede que a onda e todo o conteúdo abaixo pulem quando a foto entra. */
   const lReg  = capa.clientWidth || painelRegiao.offsetWidth;
-  const lCon  = painelCondo.offsetWidth || lReg;
+  /* coluna do condominio recolhida: nao da pra medir 34px e achatar a caixa */
+  const lCon  = document.body.classList.contains('condo-recolhido')
+    ? lReg : (painelCondo.offsetWidth || lReg);
   const rCaixa = CONFIG.propFoto * (lReg / lCon);
   capa.style.aspectRatio = String(rCaixa);
   capa.style.setProperty('--pos-capa',  regiao.posFoto  || 'center top');
@@ -1464,6 +1555,8 @@ function htmlRegiao(r){
 
   return ''+
   '<button class="fechar" aria-label="Fechar região">'+icone.x+'</button>'+
+  '<button class="dobra" aria-label="Recolher a coluna da região" aria-expanded="true">'+icone.seta2+'</button>'+
+  '<div class="trilho" aria-hidden="true"><span>'+esc(r.nome)+'</span></div>'+
   '<div class="barra-reg" aria-hidden="true"><b>'+esc(r.nome)+'</b>'+
     (r.condado ? '<span>'+esc(r.condado)+'</span>' : '')+'</div>'+
   '<div class="corpo">'+
@@ -1502,6 +1595,7 @@ function htmlRegiao(r){
 
 function fecharRegiao(){
   fecharCondo(true);
+  dobra('reg', false);
   painelRegiao.classList.remove('aberto');
   painelRegiao.setAttribute('aria-hidden','true');
   sinalizaPaineis();
@@ -1540,6 +1634,7 @@ function abrirCondo(regiaoId, i){
   destacaCondo(condoAtual, false);
   condoAtual = i;
 
+  dobra('condo', false);
   painelCondo.innerHTML = htmlCondo(r, c);
   painelCondo.classList.add('aberto');
   painelCondo.setAttribute('aria-hidden','false');
@@ -1547,6 +1642,7 @@ function abrirCondo(regiaoId, i){
   painelCondo.querySelector('.corpo').scrollTop = 0;
   painelCondo.querySelector('.fechar').addEventListener('click', () => fecharCondo());
   painelCondo.querySelector('.voltar').addEventListener('click', () => fecharCondo());
+  painelCondo.querySelector('.dobra').addEventListener('click', () => dobra('condo'));
   const bv = painelCondo.querySelector('.btn-video');
   if(bv) bv.addEventListener('click', () => abrirVideo(bv.dataset.video));
   limpaLojasDoMapa();
@@ -1663,6 +1759,8 @@ function htmlCondo(r, c){
   return ''+
   '<button class="voltar">'+icone.seta2+'<span>Voltar</span></button>'+
   '<button class="fechar" aria-label="Fechar condomínio">'+icone.x+'</button>'+
+  '<button class="dobra" aria-label="Recolher a coluna do condomínio" aria-expanded="true">'+icone.seta2+'</button>'+
+  '<div class="trilho" aria-hidden="true"><span>'+esc(c.nome)+'</span></div>'+
   '<div class="corpo">'+
     (temFoto
       ? '<header class="galeria">'+fotos+pontos+botaoExpandir+'</header>'
@@ -1694,6 +1792,7 @@ function htmlCondo(r, c){
 }
 
 function fecharCondo(silencioso){
+  dobra('condo', false);
   if(slideTimer){ clearInterval(slideTimer); slideTimer = null; }
   limpaLojasDoMapa();
   destacaCondo(condoAtual, false);
@@ -1895,7 +1994,7 @@ function abreRaioX(r){
      assim o que sai no PDF é o que a pessoa viu, sem segunda versão pra manter */
   const folha = el('div','rx-folha');
   folha.innerHTML = htmlRegiao(r);
-  folha.querySelectorAll('.fechar, .chip-raiox, .gc-abrir, .barra-reg').forEach(n => n.remove());
+  folha.querySelectorAll('.fechar, .dobra, .trilho, .chip-raiox, .gc-abrir, .barra-reg').forEach(n => n.remove());
   const corpo = folha.querySelector('.corpo');
   if(corpo){ corpo.style.overflow = 'visible'; corpo.style.flex = 'none'; }
   $('#rxCorpo').textContent = '';
