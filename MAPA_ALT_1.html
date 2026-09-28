@@ -130,7 +130,7 @@ body.modo3d.carregando3d #carga3d{display:grid;}
   border-top-color:var(--rosa);border-radius:50%;animation:gira3d .7s linear infinite;}
 @keyframes gira3d{to{transform:rotate(360deg);}}
 /* locais a ate 10 min, dentro da coluna do condominio */
-.locais3d{margin:14px 0 0;}
+.locais3d{margin:14px 12px 0;}
 .locais3d h4{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a93a5;}
 .locais3d ul{list-style:none;margin:0;padding:0;display:grid;gap:5px;}
 .locais3d li{display:flex;align-items:center;gap:9px;padding:8px 10px;border:1px solid var(--linha);
@@ -375,15 +375,16 @@ a.ctrl{text-decoration:none;}
 .linha-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 /* altura do card 15% menor: o corte sai dos respiros e do entrelinhas.
    Os corpos de texto ficam como estão — foram calibrados em +25%. */
-.linha-txt{flex:1;min-width:0;padding:5px 17px;display:flex;flex-direction:column;justify-content:center;gap:1px;}
+.linha-txt{flex:1;min-width:0;padding:2px 13px 5px;display:flex;flex-direction:column;justify-content:center;gap:1px;}
 .linha-nome{font-size:18.7px;font-weight:600;line-height:1;color:#f89b7f;text-wrap:balance;margin-bottom:0;}
 .linha-chamadas{
   font-size:12.65px; font-weight:500; letter-spacing:.015em; line-height:1.15;
   color:#2b2b2b;
 }
-/* "A partir de" e o valor na mesma linha, encostados a direita */
+/* "A partir de" e o valor na mesma linha, encostados a direita e um degrau
+   abaixo do nome — o bloco e centrado, entao o nome sobe o mesmo tanto */
 .linha-preco{
-  margin-top:0; min-width:0; display:flex; flex-wrap:wrap;
+  margin-top:10px; min-width:0; display:flex; flex-wrap:wrap;
   align-items:baseline; justify-content:flex-end; gap:6px;
 }
 .linha-preco small{
@@ -763,7 +764,7 @@ a.ctrl{text-decoration:none;}
   </div>
   <div class="busca">
     <svg viewBox="0 0 24 24"><path d="M11 3a8 8 0 105.3 14l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0011 3zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
-    <input id="busca" type="search" placeholder="Buscar região…" autocomplete="off" aria-label="Buscar região">
+    <input id="busca" type="search" placeholder="Buscar" autocomplete="off" aria-label="Buscar região">
   </div>
   <nav id="lista" aria-label="Regiões"></nav>
   <div id="menu-rodape">
@@ -1071,7 +1072,7 @@ function montaMenu(){
       '<span class="item-txt">' +
         '<span class="item-nome">'+esc(r.nome)+'</span>' +
         '<span class="item-sub">'+ (precos.length
-            ? r.condominios.length+' '+(r.condominios.length>1?'condomínios':'condomínio')+' · desde '+formataK(Math.min.apply(null,precos))
+            ? r.condominios.length+' '+(r.condominios.length>1?'condomínios':'condomínio')+' · A partir de '+formataK(Math.min.apply(null,precos))
             : esc(r.condado||'')) +'</span>' +
       '</span>';
     b.addEventListener('click', () => abrirRegiao(r.id));
