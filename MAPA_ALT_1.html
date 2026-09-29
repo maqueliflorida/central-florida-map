@@ -23,11 +23,14 @@
   --sombra:0 1px 2px rgba(34,29,41,.05), 0 14px 38px rgba(34,29,41,.11);
   --sombra-sm:0 1px 2px rgba(34,29,41,.06), 0 4px 12px rgba(34,29,41,.07);
   --r:14px; --r-sm:10px;
-  --menu:168px; --painel:357px; --respiro:28px;
-  /* largura da coluna recolhida: cabe o botao e o nome na vertical */
+  --faixa:80px; --respiro:28px;
+  /* Largura de projeto das colunas (a da região é 14% mais estreita). --painel e
+     --painel-reg encolhem quando a coluna é recolhida; a faixa lá em cima se
+     mede pelas "cheias", senão ela encolheria junto e o título não caberia. */
+  --painel-cheio:357px; --painel-reg-cheio:337px;
+  --painel:var(--painel-cheio); --painel-reg:var(--painel-reg-cheio);
+  /* largura da coluna recolhida: cabe o botão e o nome na vertical */
   --trilho:34px;
-  /* a coluna da região é 14% mais estreita que a do condomínio */
-  --painel-reg:337px;
   /* proporção da foto do condomínio; a da região é calculada pra dar a MESMA
      altura, já que as duas colunas têm larguras diferentes */
   --prop-foto:16/9;
@@ -60,22 +63,58 @@ h1,h2,h3,h4,p,li,span,a,button{overflow-wrap:anywhere;}
 /* ============================================================
    MENU DE REGIÕES
    ============================================================ */
-#menu{
-  width:var(--menu); flex:0 0 var(--menu); min-width:0;
-  background:var(--papel); border-right:1px solid var(--linha);
-  display:flex; flex-direction:column; z-index:6;
+/* A coluna de 168px que listava as regiões saiu: virou esta faixa em cima das
+   duas colunas, com a lista numa gaveta que desce por cima do mapa. São 168px
+   de largura que voltaram pro mapa, e a lista ganhou o dobro de espaço. */
+#faixa-reg{
+  position:absolute; top:0; left:0; z-index:7;
+  width:calc(var(--painel-reg-cheio) + var(--painel-cheio)); height:var(--faixa);
+  background:#fff; border-bottom:1px solid var(--linha); box-shadow:var(--sombra-sm);
+  display:flex; align-items:center; padding-right:14px; min-width:0;
 }
-#menu-topo{padding:16px 14px 10px;}
-#menu-topo h1{font-size:18.75px;font-weight:700;letter-spacing:-.01em;line-height:1.2;}
-#menu-topo p{font-size:14.38px;color:var(--tinta3);margin-top:2px;}
-.busca{position:relative;margin:10px 14px 8px;}
+.so-leitor{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
+#btFaixa{
+  flex:1; min-width:0; align-self:stretch; display:flex; align-items:center; gap:12px;
+  padding:0 12px 0 22px; text-align:left; border-radius:0;
+  transition:background .14s;
+}
+#btFaixa:hover{background:var(--linha2);}
+/* a seta anda junto do texto: solta na ponta do botao ela fica boiando */
+.faixa-txt{flex:0 1 auto;min-width:0;}
+.faixa-marca{
+  display:block; font-size:11.5px; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--tinta3); line-height:1;
+}
+.faixa-tit{
+  display:block; font-size:22px; font-weight:700; letter-spacing:-.015em;
+  line-height:1.2; margin-top:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+#btFaixa .seta{
+  width:19px; height:19px; flex:none; stroke:var(--tinta3); stroke-width:2.4; fill:none;
+  stroke-linecap:round; stroke-linejoin:round; transition:transform .22s var(--ease);
+}
+#btFaixa[aria-expanded="true"] .seta{transform:rotate(180deg);}
+
+/* a gaveta: desce colada na faixa, mesma largura, e rola por dentro */
+#gaveta{
+  position:absolute; top:var(--faixa); left:0; z-index:8;
+  width:calc(var(--painel-reg-cheio) + var(--painel-cheio));
+  max-height:min(62vh,540px); display:flex; flex-direction:column; min-height:0;
+  background:var(--papel); border-bottom:1px solid var(--linha); box-shadow:var(--sombra);
+}
+#gaveta[hidden]{display:none;}
+.busca{position:relative;margin:12px 16px 8px;}
 .busca input{
   width:100%; padding:8px 10px 8px 30px; font:inherit; font-size:15.62px;
   border:1px solid var(--linha); border-radius:9px; background:var(--fundo); color:var(--tinta);
 }
 .busca input::placeholder{color:var(--tinta3);}
 .busca svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:14px;height:14px;fill:var(--tinta3);pointer-events:none;}
-#lista{flex:1;min-height:0;overflow-y:auto;padding:2px 10px 10px;}
+/* duas colunas: com 694px de largura, uma coluna só deixaria a lista comprida
+   e obrigaria a rolar por 18 regiões. O #lista segue sendo quem rola, então a
+   rolagem automática pela borda continua valendo. */
+#lista{flex:1;min-height:0;overflow-y:auto;padding:2px 12px 14px;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 10px;align-content:start;}
 .item{
   width:100%; display:flex; align-items:center; gap:8px; min-width:0;
   padding:8px 9px; margin-bottom:2px; border-radius:9px; text-align:left;
@@ -88,9 +127,12 @@ h1,h2,h3,h4,p,li,span,a,button{overflow-wrap:anywhere;}
 .item-sub{display:block;font-size:13.12px;color:var(--tinta3);line-height:1.3;margin-top:1px;}
 .item[aria-current="true"] .item-sub{color:rgba(255,255,255,.85);}
 .item-vazio{font-size:13.75px;color:var(--tinta3);padding:10px 9px;}
-#menu-rodape{padding:8px 7px 12px;border-top:1px solid var(--linha);display:flex;gap:4px;}
+/* Disney e Universal são camadas do mapa: foram pro lado direito da faixa,
+   que sobrava vazio, em vez de flutuarem por cima do mapa disputando canto
+   com os controles do 3D. */
+.parques{flex:none;display:flex;gap:6px;}
 .parque{
-  flex:1; min-width:0; padding:8px 4px; border-radius:9px; font-size:13.75px; font-weight:600;
+  flex:none; min-width:0; padding:8px 12px; border-radius:9px; font-size:13.75px; font-weight:600;
   white-space:nowrap;
   color:#fff; display:flex; align-items:center; justify-content:center; gap:5px;
   transition:filter .14s,transform .14s;
@@ -212,7 +254,7 @@ a.ctrl{text-decoration:none;}
    PAINÉIS — a regra de ouro: cabeçalho fixo + corpo com rolagem
    ============================================================ */
 .painel{
-  position:absolute; top:0; bottom:0; width:var(--painel); z-index:4;
+  position:absolute; top:var(--faixa); bottom:0; width:var(--painel); z-index:4;
   background:var(--papel); box-shadow:var(--sombra);
   display:flex; flex-direction:column; min-width:0;
   transform:translateX(-102%); opacity:0; visibility:hidden;
@@ -767,23 +809,28 @@ a.ctrl{text-decoration:none;}
   #painelCondo .voltar{display:flex;}
   #painelCondo .fechar{display:none;}
 }
+/* A faixa ocupa 694px do topo à esquerda. Abaixo de ~1140px de janela os botões
+   do canto não cabem mais ao lado dela, então descem pra baixo da faixa. */
+@media (min-width:901px) and (max-width:1140px){
+  .controles{top:calc(var(--faixa) + 14px);}
+}
 /* COMPACTO — celular e iframe estreito */
 @media (max-width:900px){
-  :root{--painel:100%;--painel-reg:100%;}
+  :root{--painel:100%;--painel-reg:100%;--faixa:66px;}
   body{flex-direction:column;}
-  #menu{width:100%;flex:none;border-right:0;border-bottom:1px solid var(--linha);}
-  #menu-topo{padding:12px 14px 8px;}
-  .busca{margin:0 14px 8px;}
-  #lista{flex:none;display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;padding:0 14px 10px;scrollbar-width:none;}
-  #lista::-webkit-scrollbar{display:none;}
-  .item{width:auto;flex:none;margin:0;padding:7px 13px;}
-  .item-sub{display:none;}
-  #menu-rodape{padding:0 14px 10px;border-top:0;}
+  /* --painel vale 100% aqui, então o calc() da faixa daria 200% */
+  #faixa-reg,#gaveta{width:100%;}
+  #btFaixa{padding:0 8px 0 14px;}
+  .faixa-tit{font-size:18px;}
+  .parque{padding:7px 9px;font-size:12.5px;}
+  .busca{margin:10px 14px 8px;}
+  #lista{grid-template-columns:minmax(0,1fr);padding:0 14px 12px;}
+  #gaveta{max-height:min(70vh,520px);}
   #palco{flex:1;min-height:0;}
   #painelCondo{left:0;z-index:5;}
   .painel .voltar{display:flex;}
   #painelCondo .fechar{display:none;}
-  .controles{top:10px;right:10px;}
+  .controles{top:calc(var(--faixa) + 10px);right:10px;}
   /* no celular o painel ocupa a tela toda: o Reiniciar bateria no ✕ do painel */
   body.painel-aberto .controles{display:none;}
   .zoom{display:none;}
@@ -808,29 +855,36 @@ a.ctrl{text-decoration:none;}
 </head>
 <body>
 
-<aside id="menu">
-  <div id="menu-topo">
-    <h1>Central Flórida</h1>
-    <p>Escolha uma região no mapa</p>
-  </div>
-  <div class="busca">
-    <svg viewBox="0 0 24 24"><path d="M11 3a8 8 0 105.3 14l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0011 3zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
-    <input id="busca" type="search" placeholder="Buscar" autocomplete="off" aria-label="Buscar região">
-  </div>
-  <nav id="lista" aria-label="Regiões"></nav>
-  <div id="menu-rodape">
-    <button class="parque p-disney" data-parque="disney">
-      <img src="" alt="" id="icone-mickey"><span>Disney</span>
-    </button>
-    <button class="parque p-universal" data-parque="universal">Universal</button>
-  </div>
-</aside>
 
 <div id="palco">
   <div id="map"></div>
   <iframe id="map3d" title="Mapa 3D do entorno" loading="lazy"
           allow="fullscreen" referrerpolicy="no-referrer"></iframe>
   <div id="carga3d"><div><i></i>Carregando o mapa 3D…</div></div>
+
+  <header id="faixa-reg">
+    <h1 class="so-leitor">Mapa interativo da Central Flórida</h1>
+    <button id="btFaixa" aria-expanded="false" aria-controls="gaveta">
+      <span class="faixa-txt">
+        <span class="faixa-marca">Central Flórida</span>
+        <span class="faixa-tit" id="faixaTitulo">Escolha a região</span>
+      </span>
+      <svg class="seta" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="parques">
+      <button class="parque p-disney" data-parque="disney">
+        <img src="" alt="" id="icone-mickey"><span>Disney</span>
+      </button>
+      <button class="parque p-universal" data-parque="universal">Universal</button>
+    </div>
+  </header>
+  <div id="gaveta" hidden>
+    <div class="busca">
+      <svg viewBox="0 0 24 24"><path d="M11 3a8 8 0 105.3 14l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0011 3zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+      <input id="busca" type="search" placeholder="Buscar" autocomplete="off" aria-label="Buscar região">
+    </div>
+    <nav id="lista" aria-label="Regiões"></nav>
+  </div>
 
   <div class="controles">
     <button class="ctrl" id="btReset">
@@ -1126,7 +1180,7 @@ function montaMenu(){
             ? r.condominios.length+' '+(r.condominios.length>1?'condomínios':'condomínio')+' · A partir de '+formataK(Math.min.apply(null,precos))
             : esc(r.condado||'')) +'</span>' +
       '</span>';
-    b.addEventListener('click', () => abrirRegiao(r.id));
+    b.addEventListener('click', () => { abrirRegiao(r.id); abreGaveta(false); });
     lista.appendChild(b);
   });
   $('#icone-mickey').src = CONFIG.base + 'mickey2.png';
@@ -1149,9 +1203,40 @@ $('#busca').addEventListener('input', e => {
   } else if(vazio) vazio.remove();
 });
 
+/* ============================================================
+   FAIXA DA REGIÃO
+   A lista virou uma gaveta que desce da faixa. Quem rola continua sendo o
+   #lista, então a rolagem automática pela borda segue valendo sem mudança.
+   ============================================================ */
+const gaveta = $('#gaveta'), btFaixa = $('#btFaixa');
+
+function abreGaveta(abrir){
+  if(abrir === undefined) abrir = gaveta.hidden;
+  if(abrir === !gaveta.hidden) return;
+  gaveta.hidden = !abrir;
+  btFaixa.setAttribute('aria-expanded', String(abrir));
+  if(!abrir) return;
+  const atual = $('#lista .item[aria-current="true"]');
+  if(atual) atual.scrollIntoView({block:'nearest'});
+  /* no celular isso abriria o teclado por cima da lista */
+  if(!window.matchMedia('(max-width:900px)').matches) $('#busca').focus({preventScroll:true});
+}
+
+btFaixa.addEventListener('click', () => abreGaveta());
+document.addEventListener('click', ev => {
+  if(gaveta.hidden || gaveta.contains(ev.target) || btFaixa.contains(ev.target)) return;
+  abreGaveta(false);
+});
+document.addEventListener('keydown', ev => {
+  if(ev.key === 'Escape' && !gaveta.hidden){ abreGaveta(false); btFaixa.focus(); }
+});
+
 function marcarMenu(id){
   document.querySelectorAll('#lista .item').forEach(b =>
     b.setAttribute('aria-current', String(b.dataset.regiao === id)));
+  /* a faixa é o campo do seletor: fechada, mostra o que está escolhido */
+  const r = id && DADOS.regioes.find(x => x.id === id);
+  $('#faixaTitulo').textContent = r ? r.nome : 'Escolha a região';
 }
 
 /* ============================================================
