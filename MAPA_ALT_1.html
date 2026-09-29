@@ -27,7 +27,7 @@
   /* Largura de projeto das colunas (a da região é 14% mais estreita). --painel e
      --painel-reg encolhem quando a coluna é recolhida; a faixa lá em cima se
      mede pelas "cheias", senão ela encolheria junto e o título não caberia. */
-  --painel-cheio:357px; --painel-reg-cheio:337px;
+  --painel-cheio:571px; --painel-reg-cheio:539px;   /* 60% mais largas */
   --painel:var(--painel-cheio); --painel-reg:var(--painel-reg-cheio);
   /* largura da coluna recolhida: cabe o botão e o nome na vertical */
   --trilho:34px;
@@ -68,9 +68,9 @@ h1,h2,h3,h4,p,li,span,a,button{overflow-wrap:anywhere;}
    de largura que voltaram pro mapa, e a lista ganhou o dobro de espaço. */
 #faixa-reg{
   position:absolute; top:0; left:0; z-index:7;
-  /* a faixa nunca é mais larga que as colunas embaixo dela: lê as larguras
-     correntes, que já encolhem quando a coluna é recolhida */
-  width:var(--painel-reg); height:var(--faixa);
+  /* nunca mais larga que as colunas embaixo (lê as larguras correntes, que já
+     encolhem no recolher) e nunca mais estreita que uma coluna de região */
+  width:max(var(--painel-reg-cheio), var(--painel-reg)); height:var(--faixa);
   transition:width .34s var(--ease);
   background:#fff; border-bottom:1px solid var(--linha); box-shadow:var(--sombra-sm);
   display:flex; align-items:center; padding-right:14px; min-width:0;
@@ -99,14 +99,11 @@ h1,h2,h3,h4,p,li,span,a,button{overflow-wrap:anywhere;}
 #btFaixa[aria-expanded="true"] .seta{transform:rotate(180deg);}
 
 /* a gaveta: desce colada na faixa, mesma largura, e rola por dentro */
-body.condo-aberto #faixa-reg{width:calc(var(--painel-reg) + var(--painel));}
-/* faixa estreita (só o trilho da região embaixo): sobra espaço só pra seta */
-body.reg-recolhida:not(.condo-aberto) .faixa-txt{display:none;}
-body.reg-recolhida:not(.condo-aberto) #btFaixa{padding:0;justify-content:center;}
+body.condo-aberto #faixa-reg{width:max(var(--painel-reg-cheio), calc(var(--painel-reg) + var(--painel)));}
 
 #gaveta{
   position:absolute; top:var(--faixa); left:0; z-index:8;
-  width:calc(var(--painel-reg-cheio) + var(--painel-cheio));
+  width:var(--painel-reg-cheio);
   max-height:min(62vh,540px); display:flex; flex-direction:column; min-height:0;
   background:var(--papel); border-bottom:1px solid var(--linha); box-shadow:var(--sombra);
 }
@@ -173,7 +170,8 @@ body.modo3d.carregando3d #carga3d{display:grid;}
 /* locais a ate 10 min, dentro da coluna do condominio */
 .locais3d{margin:14px 12px 0;}
 .locais3d h4{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8a93a5;}
-.locais3d ul{list-style:none;margin:0;padding:0;display:grid;gap:5px;}
+.locais3d ul{list-style:none;margin:0;padding:0;display:grid;gap:5px 10px;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));}
 .locais3d li{display:flex;align-items:center;gap:9px;padding:8px 10px;border:1px solid var(--linha);
   border-radius:9px;cursor:pointer;background:#fff;}
 .locais3d li:hover{border-color:#c3cad6;}
@@ -191,6 +189,7 @@ body.modo3d.carregando3d #carga3d{display:grid;}
   height:34px; padding:0 14px; border-radius:10px; background:var(--papel);
   box-shadow:var(--sombra-sm); font-size:15.62px; font-weight:600; color:var(--tinta);
   display:flex; align-items:center; gap:6px; transition:transform .14s;
+  white-space:nowrap;   /* cinco botões no canto: rótulo quebrado fica ilegível */
 }
 .ctrl:hover{transform:translateY(-1px);}
 .ctrl svg{width:14px;height:14px;fill:currentColor;flex:none;}
@@ -417,7 +416,9 @@ a.ctrl{text-decoration:none;}
 .risca{height:1px;background:rgba(255,255,255,.28);margin:6px 0;border:0;}
 
 /* destaques */
-.bullets{display:flex;flex-direction:column;gap:1px;margin-top:17px;}
+/* destaques curtos numa coluna de 539px deixavam metade da linha vazia */
+.bullets{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:1px 22px;margin-top:17px;}
 .bullets li{
   display:flex; gap:9px; align-items:baseline; min-width:0;
   font-size:16.88px; font-weight:500; line-height:1.2; color:rgba(255,255,255,.97);
@@ -461,7 +462,8 @@ a.ctrl{text-decoration:none;}
 .linha.ativo{box-shadow:inset 4px 0 0 var(--rosa);}
 /* a foto é absoluta: assim a altura da linha vem SÓ do texto. Antes ela
    entrava no cálculo pela proporção natural e segurava linhas curtas. */
-.linha-foto{flex:none;width:46.4%;align-self:stretch;overflow:hidden;background:var(--fundo);position:relative;}
+/* coluna mais larga: a foto cede espaço pro texto em vez de crescer junto */
+.linha-foto{flex:none;width:38%;align-self:stretch;overflow:hidden;background:var(--fundo);position:relative;}
 .linha-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 /* altura do card 15% menor: o corte sai dos respiros e do entrelinhas.
    Os corpos de texto ficam como estão — foram calibrados em +25%. */
@@ -492,7 +494,7 @@ a.ctrl{text-decoration:none;}
 .linha-meta svg{width:11px;height:11px;flex:none;stroke:#bdb6c5;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
 
 /* --- seções brancas (extras da região e painel do condomínio) --- */
-.secao{padding:18px 22px;border-bottom:1px solid var(--linha2);min-width:0;}
+.secao{padding:20px 28px;border-bottom:1px solid var(--linha2);min-width:0;}
 .secao:last-child{border-bottom:0;}
 .secao-tit{
   font-size:13.12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
@@ -508,7 +510,8 @@ a.ctrl{text-decoration:none;}
 .chip{font-size:11.88px;font-weight:600;padding:3px 8px;border-radius:20px;background:var(--linha2);color:var(--tinta2);white-space:nowrap;}
 
 /* escolas / custos / lugares — listas de duas colunas */
-.pares{display:flex;flex-direction:column;gap:7px;}
+/* com a coluna mais larga, os pares entram em duas colunas sozinhos */
+.pares{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:7px 24px;}
 .par{display:flex;align-items:center;gap:9px;min-width:0;font-size:15.62px;}
 .par > span:first-child{flex:1;min-width:0;color:var(--tinta2);font-weight:500;}
 .par > span:last-child{flex:none;font-weight:700;color:var(--tinta);white-space:nowrap;}
@@ -622,7 +625,7 @@ a.ctrl{text-decoration:none;}
 .planta-preco{flex:none;font-size:15px;font-weight:700;color:var(--rosa);white-space:nowrap;}
 
 /* ficha técnica */
-.ficha{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+.ficha{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px 18px;}
 .ficha div{min-width:0;padding:10px 12px;border-radius:var(--r-sm);background:var(--fundo);}
 .ficha dt{font-size:11.88px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--tinta3);}
 .ficha dd{margin:3px 0 0;font-size:16.25px;font-weight:600;line-height:1.3;}
@@ -806,11 +809,10 @@ a.ctrl{text-decoration:none;}
   #painelCondo .voltar{display:flex;}
   #painelCondo .fechar{display:none;}
 }
-/* Aberta a coluna do condomínio a faixa chega a 694px, e os cinco botões do canto
-   medem 599. Abaixo de 1320px de janela eles não cabem mais ao lado dela: descem
-   pra baixo da faixa e ficam lá — mudar de lugar a cada condomínio aberto seria
-   pior do que ficar um degrau mais baixo. */
-@media (min-width:901px) and (max-width:1320px){
+/* O acordeão nunca deixa as duas colunas abertas ao mesmo tempo, então a faixa
+   vai no máximo a 34 + 571 = 605px. Com os cinco botões do canto medindo 599,
+   abaixo de 1240px eles não cabem mais ao lado dela e descem um degrau. */
+@media (min-width:901px) and (max-width:1240px){
   .controles{top:calc(var(--faixa) + 14px);}
 }
 /* COMPACTO — celular e iframe estreito */
@@ -835,6 +837,12 @@ a.ctrl{text-decoration:none;}
   .zoom{display:none;}
   .hero-corte{aspect-ratio:16/7;}
   .hero-corte img{margin-top:-2%;}
+}
+/* com Disney e Universal no canto são cinco botões: abaixo de 560px o Reiniciar
+   fica só com a seta circular, que já diz o que ele faz */
+@media (max-width:560px){
+  #btReset span{display:none;}
+  #btReset{padding:0 11px;}
 }
 @media (max-width:420px){
   /* espaço apertado: o botão novo fica só com o ícone, pra não empurrar o Reiniciar */
