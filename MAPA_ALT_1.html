@@ -68,8 +68,9 @@ h1,h2,h3,h4,p,li,span,a,button{overflow-wrap:anywhere;}
    de largura que voltaram pro mapa, e a lista ganhou o dobro de espaço. */
 #faixa-reg{
   position:absolute; top:0; left:0; z-index:7;
-  /* começa do tamanho da coluna da região e cresce quando a do condomínio abre */
-  width:var(--painel-reg-cheio); height:var(--faixa);
+  /* a faixa nunca é mais larga que as colunas embaixo dela: lê as larguras
+     correntes, que já encolhem quando a coluna é recolhida */
+  width:var(--painel-reg); height:var(--faixa);
   transition:width .34s var(--ease);
   background:#fff; border-bottom:1px solid var(--linha); box-shadow:var(--sombra-sm);
   display:flex; align-items:center; padding-right:14px; min-width:0;
@@ -98,7 +99,10 @@ h1,h2,h3,h4,p,li,span,a,button{overflow-wrap:anywhere;}
 #btFaixa[aria-expanded="true"] .seta{transform:rotate(180deg);}
 
 /* a gaveta: desce colada na faixa, mesma largura, e rola por dentro */
-body.condo-aberto #faixa-reg{width:calc(var(--painel-reg-cheio) + var(--painel-cheio));}
+body.condo-aberto #faixa-reg{width:calc(var(--painel-reg) + var(--painel));}
+/* faixa estreita (só o trilho da região embaixo): sobra espaço só pra seta */
+body.reg-recolhida:not(.condo-aberto) .faixa-txt{display:none;}
+body.reg-recolhida:not(.condo-aberto) #btFaixa{padding:0;justify-content:center;}
 
 #gaveta{
   position:absolute; top:var(--faixa); left:0; z-index:8;
@@ -814,7 +818,7 @@ a.ctrl{text-decoration:none;}
   :root{--painel:100%;--painel-reg:100%;--faixa:66px;}
   body{flex-direction:column;}
   /* --painel vale 100% aqui, então o calc() da faixa daria 200% */
-  #faixa-reg,#gaveta{width:100%;}
+  #faixa-reg,#gaveta,body.condo-aberto #faixa-reg{width:100%;}
   #btFaixa{padding:0 8px 0 14px;}
   .faixa-tit{font-size:18px;}
   .parque{padding:7px 9px;font-size:12.5px;}
@@ -1374,6 +1378,22 @@ function dobra(qual, recolher){
   }
 }
 
+/* As duas colunas funcionam como um acordeão: abrir um condomínio recolhe a
+   coluna da região, e voltar pras regiões fecha a do condomínio. Assim o que
+   tapa o mapa nunca passa de um trilho mais uma coluna. */
+function voltaParaRegioes(){
+  if(painelCondo.classList.contains('aberto')) fecharCondo();
+  else dobra('reg', false);
+}
+/* a coluna recolhida inteira é o alvo do clique, não só a seta. O teste do
+   .corpo importa: clicar num chip de condomínio recolhe a coluna no meio do
+   mesmo clique, e sem isso a subida do evento desfaria o que acabou de abrir. */
+painelRegiao.addEventListener('click', ev => {
+  if(!document.body.classList.contains('reg-recolhida')) return;
+  if(ev.target.closest('.corpo')) return;
+  voltaParaRegioes();
+});
+
 /* uma coluna que encolhe muda a largura dela e a posição da outra: qualquer uma
    das duas transições serve de gatilho, e o guard evita rodar duas vezes */
 let dobraPendente = null;
@@ -1386,7 +1406,7 @@ let dobraPendente = null;
     /* a caixa da capa sai da razão entre as larguras das duas colunas, então só
        dá pra recalcular com a animação terminada — no clique o offsetWidth ainda
        devolve a largura antiga */
-    if(regiaoAtual) ajustaCapa(regiaoAtual);
+    if(regiaoAtual && !document.body.classList.contains('reg-recolhida')) ajustaCapa(regiaoAtual);
     if(map) map.easeTo({padding:folga(), duration:320, essential:true});
   });
 }));
@@ -1419,7 +1439,11 @@ function abrirRegiao(id){
   sinalizaPaineis();
   painelRegiao.querySelector('.corpo').scrollTop = 0;
   painelRegiao.querySelector('.fechar').addEventListener('click', fecharRegiao);
-  painelRegiao.querySelector('.dobra').addEventListener('click', () => dobra('reg'));
+  painelRegiao.querySelector('.dobra').addEventListener('click', ev => {
+    ev.stopPropagation();
+    if(document.body.classList.contains('reg-recolhida')) voltaParaRegioes();
+    else dobra('reg', true);
+  });
   painelRegiao.querySelectorAll('.linha').forEach(b =>
     b.addEventListener('click', () => abrirCondo(r.id, +b.dataset.i)));
   ajustaCapa(r);
@@ -1715,6 +1739,7 @@ function abrirCondo(regiaoId, i){
   condoAtual = i;
 
   dobra('condo', false);
+  dobra('reg', true);     /* acordeão: o condomínio entra, a região vira trilho */
   painelCondo.innerHTML = htmlCondo(r, c);
   painelCondo.classList.add('aberto');
   painelCondo.setAttribute('aria-hidden','false');
@@ -1722,7 +1747,10 @@ function abrirCondo(regiaoId, i){
   painelCondo.querySelector('.corpo').scrollTop = 0;
   painelCondo.querySelector('.fechar').addEventListener('click', () => fecharCondo());
   painelCondo.querySelector('.voltar').addEventListener('click', () => fecharCondo());
-  painelCondo.querySelector('.dobra').addEventListener('click', () => dobra('condo'));
+  const setaCondo = painelCondo.querySelector('.dobra');
+  setaCondo.setAttribute('aria-label','Voltar para as regiões');
+  setaCondo.removeAttribute('aria-expanded');
+  setaCondo.addEventListener('click', () => fecharCondo());
   const bv = painelCondo.querySelector('.btn-video');
   if(bv) bv.addEventListener('click', () => abrirVideo(bv.dataset.video));
   limpaLojasDoMapa();
@@ -1873,6 +1901,7 @@ function htmlCondo(r, c){
 
 function fecharCondo(silencioso){
   dobra('condo', false);
+  dobra('reg', false);    /* fechar o condomínio devolve a coluna da região */
   if(slideTimer){ clearInterval(slideTimer); slideTimer = null; }
   limpaLojasDoMapa();
   destacaCondo(condoAtual, false);
