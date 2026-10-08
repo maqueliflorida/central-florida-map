@@ -498,6 +498,21 @@ body.fm-aberto .now{max-width:220px}   /* o chip branco da esquerda cabe no espa
    canto superior esquerdo — por isso some tambem a marca e a tela inicial. */
 #side, #load, #inicio, .marca { display: none !important; }
 #now { left: 16px; }
+/* A barra do sol nasce centrada e caía em cima dos botoes Tour/Orbita/Girar, que
+   sao da janela de cima. Ela passa a comecar onde eles terminam (--sol-esq, que a
+   janela manda junto com a folga) e a usar a mesma superficie branca deles. */
+body.embutido .sol{
+  left: var(--sol-esq, 14px); transform: none;
+  bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+  max-width: calc(100% - var(--sol-esq, 14px) - 20px);
+  background: #fff; border: 1px solid #e3e6ec; border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(16,24,40,.09);
+  padding: 0;   /* sem o respiro de 5px a caixa fica da altura dos outros botoes */
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+@media (max-width: 900px){
+  body.embutido .sol{ bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
+}
 </style>
 </head>
 <body class="inicio">
@@ -1053,7 +1068,8 @@ async function boot(){
     map.setLight({ anchor:"viewport", color:"#fff", intensity:.3, position:[1.4,210,35] });
     carregando(false);
     if (EMBUTIDO) {
-      document.body.classList.remove("inicio"); $("#inicio").hidden = true;
+      document.body.classList.remove("inicio"); document.body.classList.add("embutido");
+      $("#inicio").hidden = true;
       destaqueMK(false); pad(); avisaPai("pronto", {});
     } else startOrbit();                                  // a câmera já gira em volta do castelo enquanto o resto carrega
     addParkMarkers(); refreshParks(null);
@@ -2830,6 +2846,8 @@ addEventListener("message", async ev => {
       case "folga":
         folgaPai = { left:+m.left || 0, top:+m.top || 0, right:+m.right || 0, bottom:+m.bottom || 0 };
         map.setPadding(folgaPai);
+        /* onde terminam os botoes flutuantes da janela de cima */
+        if (m.solEsq != null) document.documentElement.style.setProperty("--sol-esq", m.solEsq + "px");
         break;
       case "visaoGeral":  await visaoGeral(m.areas || CFG.areas); break;
       case "regiao":      await mostraRegiao(m); break;
