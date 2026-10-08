@@ -2364,7 +2364,16 @@ const M3D = (function(){
 
     /* quanto das colunas esta por cima do mapa: o 3D centraliza no que sobra */
     ajustaFolga(){
-      if(ligado) manda(Object.assign({tipo:'folga'}, folga()));
+      if(!ligado) return;
+      const f = folga();
+      /* a barra do sol mora dentro do iframe e nasce centrada: digo pra ela onde
+         os nossos botões terminam. Calculo em vez de medir porque o .ctrl3d tem
+         transição de 'left' e no instante da troca a medida ainda é a antiga. */
+      const barra = $('.ctrl3d');
+      const estreito = window.matchMedia('(max-width:900px)').matches;
+      const esq = estreito ? 10 : f.left + 4;
+      const larg = barra ? barra.getBoundingClientRect().width : 0;
+      manda(Object.assign({tipo:'folga', solEsq: Math.round(esq + larg + 10)}, f));
     },
 
     regiao(r){
