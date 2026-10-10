@@ -5345,6 +5345,54 @@
           "aConfirmar": [
             "pin"
           ]
+        },
+        {
+          "nome": "The Hub Garden",
+          "pin": [
+            -81.6018,
+            28.1614
+          ],
+          "precoBase": "389k",
+          "chamadas": [
+            "Pré-lançamento",
+            "Townhomes de 3 suítes"
+          ],
+          "tipos": [
+            "Townhome"
+          ],
+          "fotos": [
+            "hub_1.jpg",
+            "hub_2.jpg"
+          ],
+          "video": null,
+          "texto": "Pré-lançamento de 150 townhomes em Davenport, Flórida: três suítes com closet, garden privativo, loft opcional, 1.429 sq ft, a partir de US$ 389 mil.",
+          "plantas": [
+            {
+              "nome": "Townhome",
+              "quartos": 3,
+              "area": "1,429 ft²"
+            }
+          ],
+          "ficha": {
+            "construtora": "The Hub Properties",
+            "entrega": "",
+            "hoa": "",
+            "cdd": "",
+            "lotes": "",
+            "aluguelCurtaTemporada": null,
+            "endereco": "",
+            "status": "Pré-lançamento"
+          },
+          "comodidades": [
+            "Club house",
+            "Piscina com cabanas",
+            "Academia",
+            "Splash pad"
+          ],
+          "aConfirmar": [
+            "pin"
+          ],
+          "lojas": []
         }
       ],
       "pendente": false,
@@ -6052,6 +6100,65 @@
             "precoBase",
             "pin"
           ]
+        },
+        {
+          "nome": "Hamilton Bluff",
+          "pin": [
+            -81.627,
+            28.0486
+          ],
+          "precoBase": "280k",
+          "chamadas": [
+            "Casa pronta",
+            "Meritage Homes"
+          ],
+          "tipos": [
+            "Bangalô",
+            "Single Family"
+          ],
+          "fotos": [
+            "hamilton_1.jpg",
+            "hamilton_2.jpg"
+          ],
+          "video": null,
+          "texto": "Casas novas e prontas da Meritage Homes em Lake Hamilton, Flórida: piscina com cabana, playground, dog park, trilhas, 6 plantas e a 45 minutos da Disney.",
+          "plantas": [
+            {
+              "nome": "Everglade",
+              "quartos": 3,
+              "area": "1,483 ft²"
+            },
+            {
+              "nome": "Bluebell",
+              "quartos": 3,
+              "area": "1,491 ft²"
+            },
+            {
+              "nome": "Acadia",
+              "quartos": 4,
+              "area": "1,607 ft²"
+            }
+          ],
+          "ficha": {
+            "construtora": "Meritage Homes",
+            "entrega": "",
+            "hoa": "",
+            "cdd": "",
+            "lotes": "",
+            "aluguelCurtaTemporada": null,
+            "endereco": "1409 Pocket Wilderness Way, Haines City, FL",
+            "status": "Casa pronta"
+          },
+          "comodidades": [
+            "Piscina",
+            "Cabana",
+            "Playground",
+            "Dog park"
+          ],
+          "aConfirmar": [
+            "pin"
+          ],
+          "lojas": []
         }
       ],
       "pendente": false,
