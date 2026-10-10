@@ -2467,7 +2467,7 @@ async function aplicarPrecosDoSite(d){
     if(!r.ok) return d;
     const j = await r.json();
     const porNome = {};
-    (j.condominios||[]).forEach(c => { porNome[String(c.nome).toLowerCase()] = c; });
+    (j.condominios||[]).forEach(c => [c.nome].concat(c.apelidos||[]).forEach(n => { porNome[String(n).toLowerCase()] = c; }));
     (d.regioes||[]).forEach(reg => (reg.condominios||[]).forEach(c => {
       const s = porNome[String(c.nome).toLowerCase()];
       if(!s || !s.preco_min) return;
