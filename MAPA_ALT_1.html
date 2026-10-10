@@ -2456,9 +2456,32 @@ window.addEventListener('resize', () => {
 });
 
 /* ============================================================
+   PREÇOS VIVOS — o site publica em /condominios/dados.json o menor valor de cada
+   condomínio, atualizado toda semana junto com as páginas de venda. Quando o nome
+   bate, vale o do site e o preço deixa de ficar "a confirmar"; se o arquivo não
+   responder, ficam os valores deste mapa.
+   ============================================================ */
+async function aplicarPrecosDoSite(d){
+  try{
+    const r = await fetch('https://www.maqueliflorida.com.br/condominios/dados.json?v='+Date.now(), {cache:'no-cache'});
+    if(!r.ok) return d;
+    const j = await r.json();
+    const porNome = {};
+    (j.condominios||[]).forEach(c => { porNome[String(c.nome).toLowerCase()] = c; });
+    (d.regioes||[]).forEach(reg => (reg.condominios||[]).forEach(c => {
+      const s = porNome[String(c.nome).toLowerCase()];
+      if(!s || !s.preco_min) return;
+      c.precoBase = formataK(Math.round(s.preco_min/1000));
+      if(Array.isArray(c.aConfirmar)) c.aConfirmar = c.aConfirmar.filter(x => x !== 'precoBase');
+    }));
+  }catch(e){ console.warn('preços do site indisponíveis:', e.message); }
+  return d;
+}
+
+/* ============================================================
    PARTIDA
    ============================================================ */
-carregarDados().then(d => {
+carregarDados().then(aplicarPrecosDoSite).then(d => {
   DADOS = d;
   if(EH_PREVIA) $('#selo-previa').hidden = false;
   defineRecorteDaOnda();
